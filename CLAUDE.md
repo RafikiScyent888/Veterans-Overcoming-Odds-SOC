@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026**. Supersedes the paused notes in
+Last updated **24 September 2026, second pass**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -128,6 +128,19 @@ objectives now carry AI use, governance and risk (section 3).
 > "We can not get lazy when it comes to teaching the students the right way of
 > doing things."
 
+### Second pass — SETTLED 24 September
+
+| Decision | The owner's words |
+|---|---|
+| **Do not fix the Security build's answer tells** | "No, do NOT fix the security build. This is the first exposure to it." The tells are a rule for THIS build only |
+| **Cover the new V4 material** | AI use, governance and risk · EPSS · Zero Trust · identity attacks · cloud · social engineering · automation — "Yes, we need to cover this" |
+| **CS0-003 is retiring** | Confirmed by the owner. Teach CS0-004 only |
+| **Teach everything** | Every vulnerability management detail in section 10 and every attack method in section 11 — "I need to teach everything." Nothing is struck |
+| **The queue must be done right** | "We need to make sure that we do this right." Before any content is written, one complete ticket is designed on paper and approved (section 6) |
+| **The objective list** | The owner re-supplied the V4 summary (section 3) as the objective list. Labels use its wording; no sub-objective numbers are claimed |
+| **Business names** | Section 9 — the owner's replacements |
+| **People's names** | "Pull all names from list of Dungeons and Dragons novels" — section 9 |
+
 ---
 
 ## 2. REJECTED — do not propose again
@@ -135,6 +148,7 @@ objectives now carry AI use, governance and risk (section 3).
 | Proposal | Why it was turned down |
 |---|---|
 | Keep the Security clients (Motorpool, Royal Smile, Coriakin…) and move the student down the org chart | Bleed-over. Veterans recognise patterns fast |
+| Fix the answer tells in the Security build | It is the students' first exposure. Leave it as it is |
 | The same incident from two chairs — Security Tier 5 and a CySA tier sharing one night | Bleed-over. The student would carry the answer across |
 
 ---
@@ -163,7 +177,7 @@ the owner pasted independently.
 | New: **AI use, AI governance, AI risk** across the analyst workflow | CONSISTENT |
 | New: **EPSS** for vulnerability prioritisation | CONSISTENT |
 | More emphasis on **Zero Trust (ZTNA), identity-based controls and attacks, cloud, social engineering, automation** | CONSISTENT |
-| CS0-003 retires in English **22 December 2026** | Third-party only — **confirm** |
+| CS0-003 retires in English **22 December 2026** | Third-party report — **retirement confirmed by the owner** |
 | SBOM, XDR, SASE as new topics | Low-reliability third-party only — **do not rely on** |
 | What was REMOVED | **Not found in any reliable source** |
 
@@ -356,6 +370,21 @@ describe it: evidence first, in order, then conclude.
 
 ---
 
+## 6b. Moving around freely — RECOMMENDED
+
+The owner's question: "Once they unlock everything, they are allowed to jump
+around?"
+
+**Yes — and nothing ever locks a tab inside a ticket.** The guide is advisory,
+as in the Security build. The order is *taught*, not enforced.
+
+What changes is how loudly the guide speaks. Early tickets: it unfolds step by
+step — evidence first, in order. Later tiers: shorter, then collapsed by
+default. By the end the order lives in the student's head, and pivoting
+between sources freely is the skill a real analyst has. "Do not jump between
+tabs randomly" is the lesson for somebody learning; jumping *with a reason* is
+what they graduate to.
+
 ## 7. The seat change — how it is made clear — RECOMMENDED
 
 - **The very first screen says it in plain words.** In Security you owned the
@@ -399,59 +428,60 @@ Six options, one correct · the hint ladder · wrong stays red, marked three way
 
 ---
 
-## 9. Every name in the Security build — for the owner to replace — OPEN
+## 9. Names — SETTLED 24 September (people OPEN)
 
-The owner asked for these so he can rename them now, and will supply a new
-pool. **RafikisITS is the only name that stays.**
+### Businesses — the owner's replacements
 
-### Businesses
-
-| Security name | Role in Security |
+| Security name | SOC name |
 |---|---|
-| **RafikisITS** | The company — **KEPT** |
-| Claw Perfect Trim and Cleaning | Tier 2 client, break-fix |
-| 6th Cup for the 6th Hour | Tier 3 client, PCI |
-| Motorpool of PMCS | Tier 3 client, three sites; Tier 5 espionage target |
-| Third Chance Thrift Stores | Non-profit client; Tier 4 fraud victim |
-| Royal Smile | Tier 4 client, dental, HIPAA |
-| Novoon | Tier 4 client, nine sandwich shops |
-| J. Fenty Jr School | Tier 5 client, welding trade school |
-| Nari Motor Tools | Tier 5 competitor behind the espionage |
-| Igol Tech Keepers | Tier 5 rival IT firm, innocent |
-| Prism Fibre | ISP |
-| Netcom Cable | ISP |
+| RafikisITS | **RafikisITS** — kept |
+| Claw Perfect Trim and Cleaning | **Vanguard Auto Detailing** |
+| 6th Cup for the 6th Hour | **OEF Fuel Roasters** |
+| Motorpool of PMCS | **Ironclad Auto Care** |
+| Third Chance Thrift Stores | **The Steadfast Outpost Thrift** |
+| Royal Smile | **No Go Smile** |
+| J. Fenty Jr School | **Thomas P. Payne School** |
+| Novoon | **Nexxuss** |
+| Nari Motor Tools | **Zumroh Motor Company** |
+| Igol Tech Keepers | **Saxet IT Keepers** |
+| Prism Fibre | **Optic Light Fibre** |
+| Netcom Cable | **RF Jack Cable** |
 
-### Other names
+**OPEN — role carry-over.** Renamed one for one, each business still sits in
+its Security role: a dental surgery with patient records, a charity, a motor
+shop, two rivals. A veteran who played Security may read "No Go Smile" as
+"Royal Smile" and expect the same plot. **RECOMMENDED:** the new businesses do
+not repeat their Security storylines — No Go Smile is not the patient-records
+breach, Ironclad is not the espionage target, Steadfast Outpost is not the
+fraud victim.
+
+### Still to name
 
 | Security name | What it was |
 |---|---|
-| `rafikislTS.com` | The lookalike domain |
+| `rafikislTS.com` | The lookalike domain — a new one is needed, and not a one-letter swap |
 | `rafikisITS@gmail.com`, `truman@gmail.com` | Business and personal mail |
-| VeteransOvercomingOdds (VOO) | A Security pane — and now this repository's name. **OPEN: how does VOO relate to RafikisITS here?** |
+| VeteransOvercomingOdds (VOO) | **OPEN: how VOO relates to RafikisITS in this world** |
 
-### People
+### People — from Dungeons and Dragons novels — OPEN
 
-| Security name | Role |
-|---|---|
-| Glimfeather | Lower admin, investigator |
-| Sam | Tier 3 accidental insider |
-| Pippin | Tier 4 insider |
-| Coriakin | Tier 5 insider |
-| Lucy, Digory | Staff |
-| Edmund, Caspian, Jill, Aravis, Helen, Rilian | Remote staff |
-| Frank, Trumpkin | Field techs |
-| Dana | Client contact — two of them, the autofill trap |
-| Merry | Named early as an insider, later replaced |
+The owner: "Pull all names from list of Dungeons and Dragons novels."
 
-**OPEN:** do the people change as well as the businesses? **RECOMMENDED: yes** —
-the naming convention is itself the strongest pattern in the Security build.
+Security's staff to be replaced: Glimfeather, Sam, Pippin, Coriakin, Lucy,
+Digory, Edmund, Caspian, Jill, Aravis, Helen, Rilian, Frank, Trumpkin, Dana.
 
----
+**The rule the pool has to obey — RECOMMENDED:** a name's role in the novels
+must never predict its role here. Some veterans have read Salvatore and
+Dragonlance. A famous assassin's or traitor's name on the insider — or only on
+villains — is the Narnia/Tolkien tell all over again. Heroes and villains from
+the books are spread across innocent staff and insiders alike, and the pool
+is proposed for the owner's approval before use.
 
-## 10. Vulnerability management — details to confirm against class — OPEN
+## 10. Vulnerability management — SETTLED 24 September: teach everything
 
-The owner's rule: only add what is covered in class. **In class** means it
-appears in the CySA-Sims reference material.
+The owner: "I need to teach everything." **Every row below is in the build.**
+The "In class" column now only records whether the reference sims already
+cover it — the rows marked "?" are new material the SOC teaches first.
 
 | Detail | In class? | Notes |
 |---|---|---|
@@ -485,11 +515,11 @@ appears in the CySA-Sims reference material.
 
 ---
 
-## 11. Attack methods — candidates — OPEN
+## 11. Attack methods — SETTLED 24 September: every one of them
 
-The owner wants **all** attack methods, for entry-level SOC readiness. Anchored
-to the official objectives once supplied. Marked where the class reference
-already teaches it.
+The owner wants **all** attack methods, for entry-level SOC readiness. Every
+group below is in the build. The last column records what the class reference
+already teaches.
 
 | Group | Methods | In class |
 |---|---|---|
@@ -544,22 +574,31 @@ Efficiency and process improvement sits near the end, as the owner asked.
 
 Reporting is not only Tier 5 — every ticket ends in a write-up.
 
+## 13b. Where AI is taught — OPEN
+
+"AI in security operations" is one of the objectives. Two ways to teach it:
+
+- **Once, near the end**, alongside efficiency
+- **A little in every tier** — RECOMMENDED. An AI assistant sits in the console
+  from Tier 1 and summarises alerts. Sometimes it is right, sometimes it is
+  confidently wrong, and the student has to check it against the evidence.
+  That teaches the use case and the risk by living with it. The governance
+  side — policy, what data it may see — comes in the late tier
+
 ---
 
 ## 14. Everything still OPEN
 
-| | Owner to supply or decide |
+| | Owner to decide |
 |---|---|
-| Official CS0-004 objectives document | With every sub-objective |
-| New name pool | Businesses — and people? |
-| VOO and RafikisITS | How do they relate in this world? |
-| Vulnerability management details | Section 10: which are taught in class |
-| Attack methods | Section 11: strike anything not taught, add anything missing |
-| Engine | Section 5: confirm |
-| Spine | Section 6: confirm the queue |
-| Tier shape | Section 13 |
-| Where AI in security operations sits | Near the end with efficiency, or throughout? |
-| Security build answer tells | Fix them there too? Something is already in instructors' hands |
+| **Moving around freely** | Section 6b: confirm the guide is taught early and fades later, and nothing ever locks a tab |
+| **One ticket on paper first** | Section 6: approve a complete example ticket before content is written |
+| **Role carry-over** | Section 9: do the renamed businesses keep their Security storylines? |
+| **People** | Section 9: approve a Dungeons and Dragons name pool |
+| **VOO and RafikisITS** | How do they relate in this world? |
+| **AI in security operations** | Section 13b: taught in one late tier, or a little in every tier? |
+| **Tier shape** | Section 13 |
+| **Engine** | Section 5: confirm |
 
 ---
 
