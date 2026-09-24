@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, seventh pass — official bands, decision count as a teaching method**. Supersedes the paused notes in
+Last updated **24 September 2026, eighth pass — objective list with numbers, crawl-walk-run, the live screens, ticket 003**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -193,6 +193,21 @@ objectives now carry AI use, governance and risk (section 3).
 | **The known-exploited rule** | Kept: on CISA's known-exploited list means 7 days, whatever the score |
 | **Decision count rises by tier** | "I want this as an overall teaching method." Two decisions in Tier 1, three in Tier 2, rising to six by Tier 5. **How the count behaves inside a tier is OPEN** (section 13c) |
 
+### Eighth pass — SETTLED 24 September
+
+| Decision | The owner's words |
+|---|---|
+| **Mimic a real SOC** | "I agree. We need to mimic a real SOC." Section 13c is settled: the decision count is fixed to the tier, and noise tickets get as many decisions as real ones |
+| **The objective list, with numbers** | Supplied by the owner, stored in section 3 between the markers. Numbers used as supplied, marked "owner's list", checked against CompTIA's PDF before the build is final |
+| **The 3D model** | "The 3D model is going to be what a live SOC screen looks like. I will find screenshots if needed to mimic a real SOC console." Section 13e |
+| **The instructor PIN, 3693, unlocks everything** | "Because if other instructors like it, I will hand it out cold to them." Every tier, ticket and screen, with no progress required |
+| **Ticket 003** | Drafted: `design/ticket-003-preview.md` |
+| **Real live screens** | "We need to make this like a real SOC with real live screens for them to review when looking at tickets and fine tuning the sensors." Sections 13d and 13e |
+
+**A note on the PIN, recorded honestly:** on a static site the PIN sits in the
+page's own code, so a student who reads the source can find it. It keeps
+honest people honest; it is not a lock. The Security build is the same.
+
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
 - **Every CVE fact is read from a primary source, never from memory:** the
@@ -278,7 +293,7 @@ the owner pasted independently.
 | New: **EPSS** for vulnerability prioritisation | CONSISTENT |
 | More emphasis on **Zero Trust (ZTNA), identity-based controls and attacks, cloud, social engineering, automation** | CONSISTENT |
 | CS0-003 retires in English **22 December 2026** | Third-party report — **retirement confirmed by the owner** |
-| SBOM, XDR, SASE as new topics | Low-reliability third-party only — **do not rely on** |
+| SBOM, XDR, SASE as new topics | Low-reliability third-party only. **XDR and SASE are now in the owner's objective list (below); SBOM is not** |
 | What was REMOVED | **Not found in any reliable source** |
 
 **What this means for the build:** teach CS0-004. Anyone sitting the exam from
@@ -311,6 +326,124 @@ techniques: triage, evidence handling, escalation, remediation, root cause.
 **Reporting and Communication (16%)** — vulnerability management reporting and
 communication · incident reporting, post-incident review, and metrics such as
 detection time, response time and remediation effectiveness.
+
+### The owner's objective list, with numbers — supplied 24 September
+
+**Where it came from.** The owner pasted this on 24 September. It is the
+working objective list for the build, and its wording is used for labels.
+**Its numbering and detail come from third-party pages**: CompTIA's V4 page,
+YouTube courses, Wiley's study guide, prep sites, and **at least two exam-dump
+sites** (cciedump.spoto.net, pass4success.com). So:
+
+- The **numbers (1.1–4.2) are used as supplied, marked "owner's list"**, and
+  are checked against CompTIA's official PDF before the build is final
+- **Nothing is taken from the dump sites** beyond what the owner pasted here.
+  No questions, no answer patterns
+- Where it differs from the earlier four-domain summary above, this list is
+  the more detailed one. It has **five** VM objectives, where the summary had
+  four, and **five** IR objectives, where the summary had three
+
+[OBJECTIVES START]
+
+**Domain 1.0: Security Operations (34%)**
+
+- **1.1** Explain system and network architecture concepts in security
+  operations: security architecture components, identity concepts (Zero
+  Trust/ZTNA vs. SASE, passwordless, PAM, cloud/hybrid identity), logging
+  practices (ingestion, retention, JSON/EVTX formats, NTP log correlation),
+  and system hardening
+- **1.2** Analyze indicators of potential malicious activity: suspicious
+  behavior and indicators across networks, endpoints, cloud infrastructure,
+  operational technology (OT), and identity platforms (such as
+  Living-off-the-Land Binaries/LOLBins)
+- **1.3** Use tools to determine malicious activity: SIEM, EDR/XDR, network
+  analyzers (Zeek, Suricata, Snort), packet analysis, and threat intelligence
+  platforms
+- **1.4** Explain threat intelligence and threat-hunting concepts: frameworks
+  (MITRE ATT&CK, Cyber Kill Chain, Pyramid of Pain), threat data sources, and
+  investigative methods
+- **1.5** Describe efficiency and process improvement in security operations:
+  SOAR, infrastructure as code (IaC), workflow configurations, runbooks, and
+  APIs/webhooks
+- **1.6** Summarize concepts related to the use of AI in security operations:
+  AI use cases in SOC workflows, AI governance, and machine-learning risks
+  (hallucinations, poisoning)
+
+**Domain 2.0: Vulnerability Management (26%)**
+
+- **2.1** Select the appropriate vulnerability scanning method:
+  internal/external, agent-based/agentless, credentialed/non-credentialed,
+  passive/active, based on asset inventory constraints
+- **2.2** Analyze vulnerability assessment results and security findings:
+  interpreting scan output, evaluating configurations against secure
+  baselines (CIS benchmarks, PCI DSS, ISO 27001), true vs false positives
+- **2.3** Prioritize vulnerabilities using risk-based approaches: threat
+  intelligence, business impact, asset criticality, severity metrics
+- **2.4** Apply mitigation strategies and security controls: compensating
+  controls, segmentation, hardening and patching, application security
+  vulnerabilities
+- **2.5** Understand risk management concepts, policies, and compliance
+  practices: data protection regulations (GDPR, HIPAA, PCI DSS), aligning
+  vulnerability workflows with organizational risk frameworks
+
+**Domain 3.0: Incident Response and Management (24%)**
+
+- **3.1** Summarize concepts related to attack methodology frameworks: MITRE
+  ATT&CK, the Cyber Kill Chain, and the Diamond Model of Intrusion Analysis
+  applied to live incidents
+- **3.2** Follow incident response processes: Preparation →
+  Detection/Analysis → Containment/Eradication → Recovery → Post-Incident
+  Activity
+- **3.3** Perform incident triage and evidence handling: severity of alerts,
+  parsing raw events, volatile and non-volatile data collection, chain of
+  custody
+- **3.4** Manage escalation procedures: communication steps, technical
+  escalation, and functional notifications according to playbooks
+- **3.5** Conduct remediation activities and identify root causes: isolating
+  infected entities, removing persistent malware, reconstructing attack
+  timelines, root-cause analysis (RCA)
+
+**Domain 4.0: Reporting and Communication (16%)**
+
+- **4.1** Create vulnerability management reports and communication:
+  scorecards, action plans and risk maps for specific audiences (technical
+  teams, auditors, executive boards)
+- **4.2** Explain the importance of security operations and incident response
+  reporting: dashboards, metrics and KPIs (MTTD, MTTR), lessons learned,
+  time-sensitive compliance reporting (legal, public relations, law
+  enforcement)
+
+**Called out as new in CS0-004, as supplied:** AI risks and governance
+(hallucinations, data exposure, model poisoning, malicious prompts) · Zero
+Trust (ZTNA vs SASE, passwordless, PAM, cloud and hybrid identity) · LOLBins
+and behavioural monitoring over signatures · NTP precision for reliable
+timelines · IR at 24%, with SOAR playbooks, APIs and automated containment.
+
+**New tools, as supplied:** cloud assessment (Scout Suite, Prowler, Trivy) ·
+breach and attack simulation (Atomic Red Team, Caldera) · network and SIEM
+analysis (Zeek, Suricata, Snort).
+
+[OBJECTIVES END]
+
+### What the numbered list adds to the build — every item is taught
+
+| Item | Where it lands |
+|---|---|
+| Zero Trust, ZTNA vs SASE, passwordless, PAM, cloud and hybrid identity | Identity tickets: Payne School, Nexxuss |
+| Logging: ingestion, retention, JSON and EVTX, **NTP correlation** | A timeline that fails because two clocks disagree |
+| System hardening, CIS benchmarks, PCI DSS, ISO 27001 baselines | Scan tickets: configuration against a baseline |
+| OT indicators | Ironclad's diagnostic kit and bench PCs are the natural OT |
+| XDR, Zeek, Suricata, Snort | The network sensor screen, from ticket 003 on |
+| Pyramid of Pain | Threat intel: which indicator costs the attacker most to change |
+| Diamond Model | Alongside ATT&CK and the Kill Chain, in Tier 3–4 |
+| SOAR, IaC, runbooks, APIs and webhooks | Tier 5, where the student automates what they did by hand |
+| AI hallucination, poisoning, data exposure, malicious prompts | Fizban throughout; prompt injection in Tier 5 |
+| Volatile and non-volatile collection, chain of custody | Tier 4 |
+| GDPR, HIPAA, PCI DSS | No Go Smile (HIPAA), Vanguard and OEF (PCI DSS) |
+| Scorecards, action plans, risk maps by audience | VM reporting, Tier 2 and Tier 5 |
+| MTTD, MTTR, lessons learned, legal, PR and law enforcement | Tier 4–5, and the metrics screen |
+| Scout Suite, Prowler, Trivy | Payne School's exposed cloud share; container image scans |
+| Atomic Red Team, Caldera | Tier 5: the SOC tests its own sensors |
 
 ### Sources
 
@@ -557,11 +690,15 @@ fraud victim.
 
 ### Still to name
 
-| Security name | What it was |
-|---|---|
-| `rafikislTS.com` | The lookalike domain — a new one is needed, and not a one-letter swap |
-| `rafikisITS@gmail.com`, `truman@gmail.com` | Business and personal mail |
-| VeteransOvercomingOdds (VOO) | **OPEN: how VOO relates to RafikisITS in this world** |
+**Re-explained 24 September**, because the owner asked: "We are naming what
+after it?" **Nothing is being named after RafikisITS.** Three separate small
+items were left over from Security:
+
+| Item | What it is | RECOMMENDED |
+|---|---|---|
+| **RafikisITS and the SOC** | Settled in the third pass: **Veterans Overcoming the Odds is the SOC that RafikisITS runs** for its clients. RafikisITS is the company; VOO is its security operations centre. The student is an analyst employed there. Elistan owns RafikisITS | Nothing to decide unless the owner wants it different |
+| **The lookalike domain** | In Security, attackers registered `rafikislTS.com` (a lower-case L for the I) to impersonate RafikisITS. The SOC world needs its own fake domain for the Sivak impersonation thread | **Not a one-letter swap**, which veterans would spot from Security. Use a **combosquat**, the real name plus a word: `zumroh-motor-billing.example` for the fake supplier invoice at Ironclad |
+| **Email addresses** | Security used `rafikisITS@gmail.com` and `truman@gmail.com`: a real mail provider's domain | Everything on `.example`: `soc@voo.rafikisits.example` for the SOC, and `firstname@rafikisits.example` for staff |
 
 ### People — from Dragonlance Chronicles — SETTLED (fifth pass; the staff list is in section 15)
 
@@ -684,7 +821,9 @@ Reporting is not only Tier 5 — every ticket ends in a write-up.
 
 ---
 
-## 13c. The decision count in a real SOC — RECOMMENDED, for discussion
+## 13c. The decision count in a real SOC — SETTLED 24 September
+
+The owner: "I agree. We need to mimic a real SOC."
 
 The owner asked whether decisions piling up ticket after ticket is how a real
 SOC works. **It is not**, and that is a good reason to fix the count to the
@@ -727,15 +866,84 @@ write-up.
 **"Until everything is covered"** is met at Tier 5, where one ticket runs
 every stage from alert to write-up to process improvement.
 
+## 13d. Crawl, walk, run — how the student gets there — RECOMMENDED
+
+The owner: "How are we going to take them from crawl to walk to run? We need
+to make this like a real SOC with real live screens for them to review when
+looking at tickets and fine tuning the sensors."
+
+**The principle:** the SOC doesn't get easier or harder so much as **the
+support comes away** and **more of the job becomes theirs**. That is how a
+real new hire is brought on: shadowed at first, then trusted with a queue,
+then trusted with an incident.
+
+| | **Crawl** — Tier 1 | **Walk** — Tiers 2–3 | **Run** — Tiers 4–5 |
+|---|---|---|---|
+| **The seat** | Triage: real or not, close or escalate | Investigate: prioritise, confirm, map it, recommend | Own the incident, then improve the SOC |
+| **Decisions per ticket** | 2 | 3, then 4 | 5, then 6 |
+| **The evidence** | Attached to the ticket, as tabs | Two screens linked; **the student opens the rest** (from ticket 003) | Nothing attached. The console is open and they decide where to look |
+| **The guide** | Unfolds one step at a time, says where to look | Shorter; says **what** to find, not where | Collapsed by default. Opened on request |
+| **The queue** | One ticket at a time, shift clock visible | A few tickets at once, the student chooses the order | **Live**: tickets arrive while they work, SLA clocks run, a shift handover at the end |
+| **The sensors** | Choose one of six rule changes | Set the threshold, and **see a backtest**: how many alerts it would have raised last week, and what it would have missed | Write and edit the rules; own the false-positive budget; SOAR playbooks in Tier 5 |
+| **Consequences** | Shown on the ticket | Carry into later tickets | Tuning changes **how many tickets arrive next shift**, and which real attacks get through |
+| **Fizban** | Summarises every ticket | Summarises, sometimes asked | Asked on purpose. Governed in Tier 5 |
+| **The hint ladder** | The same at every tier. Nothing at 1–2, rungs at 3 and 4, rung 3 for ever from 5, never the answer | | |
+
+**The backtest is the heart of "fine tuning the sensors".** Real detection
+engineers never change a rule blind. They run it against the last week of
+data first. The student does the same: move the threshold and the screen
+shows *this rule would have raised 212 alerts last week, and missed the
+spray on Nexxuss.* Too loose and the queue drowns them; too tight and the
+real attack walks past.
+
+## 13e. The live screens, and the 3D model — SETTLED in outline
+
+The owner: **"The 3D model is going to be what a live SOC screen looks
+like. I will find screenshots if needed to mimic a real SOC console."**
+
+**The screens the console needs** (each built generic, no vendor's name or
+logo; the owner's screenshots are for **layout only**, never copied):
+
+| Screen | What it shows | First used |
+|---|---|---|
+| **Queue** | Tickets, severity, SLA clocks, shift clock, backlog | Tier 1 |
+| **SIEM search** | Search bar, time picker, event histogram, results, field list | Tier 1 |
+| **Identity** | Sign-in logs, MFA, sessions and tokens | Tier 1 |
+| **Vulnerability scanner** | Scan jobs, policies, credential status, findings | Tier 2 |
+| **Asset inventory** | Hosts, owners, roles, approved software | Tier 2 |
+| **EDR / XDR** | Host list, process tree, timeline, files, isolate button | Tier 3 |
+| **Network sensor** | Zeek logs (conn, dns, http, ssl), Suricata/Snort alerts | Tier 3 |
+| **Threat intel** | Reputation, first seen, related indicators | Tier 3 |
+| **Packet viewer** | Packet list, details, bytes | Tier 3–4 |
+| **Detection rules** | Every rule, its threshold, and the backtest | Tier 1 (picks) → Tier 5 (edit) |
+| **Cloud posture** | Scout Suite / Prowler / Trivy-style findings | Tier 2–3 |
+| **SOAR** | Playbooks, triggers, actions, blast radius | Tier 5 |
+| **Metrics** | MTTD, MTTR, false-positive rate — **the student's own** | Tier 4–5 |
+| **Fizban** | The assistant panel | Tier 1 |
+
+**Screenshots wanted from the owner** (layout reference only): a SIEM search
+page, an alert queue, an EDR process tree, a vulnerability scanner's findings
+list, a packet viewer, a SOC wall or dashboard.
+
+**OPEN — what "3D" means here.** Either (a) the screens themselves, built to
+look like a real console, or (b) a 3D SOC room with a video wall, where the
+student walks to a desk and the screens on it are the live consoles.
+RECOMMENDED: (b) only as the entrance and between shifts, with the work done
+on full-size (a) screens, because text on a 3D surface is harder to read, and
+AAA contrast comes first.
+
 ## 14. Everything still OPEN
 
 | | Owner to decide |
 |---|---|
-| **Ticket 002** | `design/ticket-002-preview.md`, second draft with real CVEs — for the owner to adjust |
-| **Decision count inside a tier** | Section 13c: the same count for every ticket in a tier, noise included, so the number of boards never gives the answer away |
+| **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
+| **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
+| **What "3D" means** | Section 13e — the screens themselves, or a 3D SOC room around them |
+| **Screenshots** | Section 13e — the owner is finding SOC console screenshots, for layout only |
+| **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
-| **The full official objectives** | Section 3 — the document with every sub-objective, between `[OBJECTIVES START]` and `[OBJECTIVES END]` |
-| **VOO and RafikisITS** | Section 9 — how the SOC relates to the company; the new lookalike domain; the mail addresses |
+| **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
+| **VOO and RafikisITS** | Section 9 — re-explained 24 September; the owner to confirm, plus the lookalike domain and the mail addresses |
 
 ## 15. Storylines — FIRST DRAFT, 24 September — RECOMMENDED
 
