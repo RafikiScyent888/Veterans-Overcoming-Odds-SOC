@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, fifth pass — ticket 001 approved, ticket 002 drafted**. Supersedes the paused notes in
+Last updated **24 September 2026, sixth pass — real CVEs, remediation windows, crawl-walk-run**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -175,6 +175,31 @@ objectives now carry AI use, governance and risk (section 3).
 | **AI taught a little in every tier** | "Yes, the AI is taught is great." Fizban sits in the console from Tier 1; governance comes late (section 13b) |
 | **Keep going** | "Let's keep going." Tier shape (section 13) and engine (section 5) stand as the working plan; they change only if the owner changes them |
 | **The site is not public yet** | "No students have the website address. I have not given it to anyone yet." Design documents on `main` are fine for now |
+
+### Sixth pass — SETTLED 24 September
+
+| Decision | The owner's words |
+|---|---|
+| **Real CVE numbers** | "Real numbers. You are allowed to use real numbers as long as most of everything else is fake and we are doing that." Clients, hosts, addresses, domains and people stay fictional |
+| **Remediation windows are taught** | "Yes for the remediation windows. The student needs to know this information." Every scan write-up gives a due date for each finding and names the rule that set it |
+| **Crawl, walk, run on decisions** | "Keep adding decisions. Start with 2, then 3, and then 4, and so until everything is covered. We are crawl, walk, run method here to get them ready." Ticket 001 has 2, ticket 002 has 3, and the count keeps rising until a ticket's decisions cover everything its evidence teaches. **OPEN:** whether it rises every ticket or every tier (section 14) |
+
+### Real CVE data — the rules — SETTLED with the sixth pass
+
+- **Every CVE fact is read from a primary source, never from memory:** the
+  CVE Program's records (`CVEProject/cvelistV5`, which carry CISA's
+  exploitation ratings), CISA's known-exploited catalogue
+  (`cisagov/kev-data`), and GitHub's reviewed advisories. nvd.nist.gov,
+  first.org and cisa.gov are blocked by this container's proxy; those GitHub
+  copies are not
+- **Record who scored it.** Scores differ by source (NVD, the vendor, CISA),
+  which is itself an exam point
+- **Re-check at build time**, and keep the date checked with the content.
+  Known-exploited status and scores change
+- **EPSS can't be checked from here** and changes daily. It is taught in a
+  later ticket, with values looked up on first.org on the day it is built
+- Only each CVE's public one-line description is shown. No exploit code, no
+  attack steps
 
 ### Design rules that follow from ticket 001 — RECOMMENDED
 
@@ -557,10 +582,10 @@ cover it — the rows marked "?" are new material the SOC teaches first.
 | False positives and "non-issue" dispositions | **Yes** | |
 | Scanner tuning | Owner: **yes** | Not yet in the reference sims |
 | Anti-malware signatures kept current | Owner: **yes** | Not yet in the reference sims |
-| **EPSS** — likelihood of exploitation | ? | **Named as new on CS0-004** |
+| **EPSS** — likelihood of exploitation | ? | **Named as new on CS0-004.** A later ticket — values can't be checked from this container |
 | CVSS versions — v3.1 and v4.0 | ? | |
-| CISA KEV — known exploited vulnerabilities | ? | |
-| SSVC and vendor severity | ? | |
+| CISA KEV — known exploited vulnerabilities | ? | Ticket 002 — and Ironclad's policy: known-exploited means 7 days |
+| SSVC and vendor severity | ? | Ticket 002 shows CISA's exploitation rating and who scored each CVE |
 | Credentialed vs non-credentialed scans | ? | |
 | Agent vs agentless, active vs passive | ? | |
 | Internal vs external scanning, scanner placement | ? | |
@@ -653,8 +678,10 @@ Reporting is not only Tier 5 — every ticket ends in a write-up.
 
 | | Owner to decide |
 |---|---|
-| **Ticket 002** | `design/ticket-002-preview.md` — the first vulnerability management ticket, for the owner to adjust |
-| **Real or invented CVE numbers** | Ticket 002's questions for the owner |
+| **Ticket 002** | `design/ticket-002-preview.md`, second draft with real CVEs — for the owner to adjust |
+| **Remediation bands** | The class table's 7.9 and 5.0 boundaries vs the official CVSS bands (7.0 and 4.0). A 7.8 is due in 30 days under one and 14 under the other |
+| **Known-exploited rule** | Tab D of ticket 002: on the known-exploited list means 7 days, whatever the score. Not in the class table |
+| **Decision count** | Rises every ticket, or every tier? RECOMMENDED: every tier — Tier 1 two, Tier 2 three, up to six by Tier 5, where a ticket runs the whole loop |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
 | **The full official objectives** | Section 3 — the document with every sub-objective, between `[OBJECTIVES START]` and `[OBJECTIVES END]` |
 | **VOO and RafikisITS** | Section 9 — how the SOC relates to the company; the new lookalike domain; the mail addresses |
@@ -694,7 +721,7 @@ pass); the threads are still a draft.
 | Client | What happens | Mostly teaches |
 |---|---|---|
 | **Vanguard Auto Detailing** | Machines still carry the remote-access agent of their previous IT firm, **Saxet IT Keepers**. It checks in weekly and looks exactly like C2. It is legitimate software — and it is unmanaged standing access nobody watches. A risk finding, not an incident | Beaconing look-alikes; asset inventory; "most defensible conclusion" |
-| **OEF Fuel Roasters** | The online store is probed constantly — traversal and injection attempts, almost all failing. One succeeds, through a plugin with a moderate CVSS that is on the known-exploited list | Attempt vs success; CVSS vs exploitation evidence; web attacks |
+| **OEF Fuel Roasters** | The online store is probed constantly — traversal and injection attempts, almost all failing. One succeeds, through a store plugin that is **not yet** on the known-exploited list while its EPSS climbs. *Changed with the sixth pass: ticket 002 already teaches "medium score, known exploited, fix first" at Ironclad, so OEF teaches that the list lags and EPSS warns first* | Attempt vs success; EPSS; the known-exploited list lags; web attacks |
 | **Ironclad Auto Care** | Diagnostic equipment falls over when scanned aggressively. The scan tier's decoy: a critical CVSS on an isolated bench machine that matters less than the store's moderate one. Later, its parts supplier **Zumroh Motor Company** has its vendor portal compromised, and a malicious invoice arrives from a real supplier address | Fragile systems and scan windows; prioritising by context; supply chain |
 | **The Steadfast Outpost Thrift** | **Nothing, ever.** Volunteers on phones, typos, POS updates that look like beacons. Every ticket is benign | Most alerts are noise; closing well is a skill |
 | **No Go Smile** | Not a records breach. An unpatched VPN appliance leads to a **cryptominer** on the imaging workstations. Separately, their anti-malware signatures are weeks old because the update path is blocked by a firewall change | EDR telemetry; availability impact; signature currency |
