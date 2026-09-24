@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, sixth pass — real CVEs, remediation windows, crawl-walk-run**. Supersedes the paused notes in
+Last updated **24 September 2026, seventh pass — official bands, decision count as a teaching method**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -184,6 +184,15 @@ objectives now carry AI use, governance and risk (section 3).
 | **Remediation windows are taught** | "Yes for the remediation windows. The student needs to know this information." Every scan write-up gives a due date for each finding and names the rule that set it |
 | **Crawl, walk, run on decisions** | "Keep adding decisions. Start with 2, then 3, and then 4, and so until everything is covered. We are crawl, walk, run method here to get them ready." Ticket 001 has 2, ticket 002 has 3, and the count keeps rising until a ticket's decisions cover everything its evidence teaches. **OPEN:** whether it rises every ticket or every tier (section 14) |
 
+### Seventh pass — SETTLED 24 September
+
+| Decision | The owner's words |
+|---|---|
+| **EPSS values may be made up** | "The EPSS scores can be made and mimic real world numbers." They agree with CISA's exploitation rating for the CVE and are labelled as exercise values |
+| **Official CVSS bands, always** | "I want the official bands always." Critical 9.0–10.0 · High 7.0–8.9 · Medium 4.0–6.9 · Low 0.1–3.9, with the class windows of 7, 14 and 30 days. The class table's 7.9 and 5.0 boundaries are not used |
+| **The known-exploited rule** | Kept: on CISA's known-exploited list means 7 days, whatever the score |
+| **Decision count rises by tier** | "I want this as an overall teaching method." Two decisions in Tier 1, three in Tier 2, rising to six by Tier 5. **How the count behaves inside a tier is OPEN** (section 13c) |
+
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
 - **Every CVE fact is read from a primary source, never from memory:** the
@@ -196,8 +205,9 @@ objectives now carry AI use, governance and risk (section 3).
   which is itself an exam point
 - **Re-check at build time**, and keep the date checked with the content.
   Known-exploited status and scores change
-- **EPSS can't be checked from here** and changes daily. It is taught in a
-  later ticket, with values looked up on first.org on the day it is built
+- **EPSS can't be checked from here** and changes daily. Seventh pass: EPSS
+  values are made for the exercise, mimic real-world numbers, agree with
+  CISA's exploitation rating, and are labelled as exercise values
 - Only each CVE's public one-line description is shown. No exploit code, no
   attack steps
 
@@ -582,7 +592,7 @@ cover it — the rows marked "?" are new material the SOC teaches first.
 | False positives and "non-issue" dispositions | **Yes** | |
 | Scanner tuning | Owner: **yes** | Not yet in the reference sims |
 | Anti-malware signatures kept current | Owner: **yes** | Not yet in the reference sims |
-| **EPSS** — likelihood of exploitation | ? | **Named as new on CS0-004.** A later ticket — values can't be checked from this container |
+| **EPSS** — likelihood of exploitation | ? | **Named as new on CS0-004.** Ticket 002, with exercise values |
 | CVSS versions — v3.1 and v4.0 | ? | |
 | CISA KEV — known exploited vulnerabilities | ? | Ticket 002 — and Ironclad's policy: known-exploited means 7 days |
 | SSVC and vendor severity | ? | Ticket 002 shows CISA's exploitation rating and who scored each CVE |
@@ -674,14 +684,55 @@ Reporting is not only Tier 5 — every ticket ends in a write-up.
 
 ---
 
+## 13c. The decision count in a real SOC — RECOMMENDED, for discussion
+
+The owner asked whether decisions piling up ticket after ticket is how a real
+SOC works. **It is not**, and that is a good reason to fix the count to the
+tier.
+
+**What really happens:**
+
+- **A ticket's size comes from the ticket, not from the analyst's experience.**
+  A phishing report has a few decisions whoever picks it up. A senior analyst
+  doesn't make more decisions on the same alert. They make them faster, and
+  they are trusted with bigger tickets
+- **What grows is how much of the job the analyst owns.** Tier 1 triages:
+  real or not, close it or escalate it. Tier 2 investigates: how far it spread,
+  what to contain. Incident response runs the whole thing, through recovery
+  and lessons learned. That is a career ladder, and it lines up with the
+  owner's crawl, walk, run
+- **Most of every shift is small tickets, even for seniors.** Real incidents
+  are rare
+- **Very large incidents have dozens of decisions, split across people and
+  days.** Nobody makes twenty on one screen
+
+**What that means for the build:**
+
+| Tier | The analyst's seat | Decisions per ticket |
+|---|---|---|
+| 1 First shift | Triage: real or not, close or escalate | 2 |
+| 2 The scan | Prioritise, confirm, fix the sensor | 3 |
+| 3 Endpoint and wire | Investigate: what happened, how far, which technique | 4 |
+| 4 The incident | Contain, preserve, escalate, find the root cause | 5 |
+| 5 Maturity | The whole loop, then improve the process | 6 |
+
+**The count is a floor for the tier, not a signal.** The trap: if only
+real incidents get the big boards, veterans will read "six boards = real
+attack" before reading a word. So in each tier the noise tickets get the
+same number of decisions as the real ones. That is also true to life:
+proving an alert benign takes the same checks as proving it malicious. A
+benign ticket in Tier 4 still asks for scope, evidence, tuning and a
+write-up.
+
+**"Until everything is covered"** is met at Tier 5, where one ticket runs
+every stage from alert to write-up to process improvement.
+
 ## 14. Everything still OPEN
 
 | | Owner to decide |
 |---|---|
 | **Ticket 002** | `design/ticket-002-preview.md`, second draft with real CVEs — for the owner to adjust |
-| **Remediation bands** | The class table's 7.9 and 5.0 boundaries vs the official CVSS bands (7.0 and 4.0). A 7.8 is due in 30 days under one and 14 under the other |
-| **Known-exploited rule** | Tab D of ticket 002: on the known-exploited list means 7 days, whatever the score. Not in the class table |
-| **Decision count** | Rises every ticket, or every tier? RECOMMENDED: every tier — Tier 1 two, Tier 2 three, up to six by Tier 5, where a ticket runs the whole loop |
+| **Decision count inside a tier** | Section 13c: the same count for every ticket in a tier, noise included, so the number of boards never gives the answer away |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
 | **The full official objectives** | Section 3 — the document with every sub-objective, between `[OBJECTIVES START]` and `[OBJECTIVES END]` |
 | **VOO and RafikisITS** | Section 9 — how the SOC relates to the company; the new lookalike domain; the mail addresses |

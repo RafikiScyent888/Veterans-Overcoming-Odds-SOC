@@ -60,18 +60,22 @@ start time **in the middle of a Tuesday**, and **one failed login**.
 
 ### Tab B — Findings, as the scanner sorts them (by CVSS, highest first)
 
-| CVSS 3.x | Host | Finding | CISA: exploitation | Known exploited | How detected |
-|---|---|---|---|---|---|
-| 10.0 | 10.40.14.21–24 bay tablets | End-of-life embedded operating system, 7 findings on 4 hosts. *Scanner's own rating, no CVE* | — | — | Remote, no login |
-| 9.8 | 10.40.12.30 bench-pc-02 | ECU flashing suite bundles Apache Commons Text 1.9, **CVE-2022-42889** | none | No | Credentialed: library found on disk |
-| 9.8 | 10.40.12.31 bench-pc-03 | Same finding | none | No | Credentialed: library found on disk |
-| 8.1 | 10.40.11.8 parts-db | Service banner reads OpenSSH 8.7p1, **CVE-2024-6387** | proof of concept | No | **Remote: version banner only** |
-| 7.8 | 10.40.11.12 file-srv | 7-Zip 24.06, **CVE-2024-11477** | proof of concept | No | Credentialed: installed version |
-| … | | *36 more high* | | | |
-| 5.3 | 203.0.113.60 book.ironcladauto.example | Joomla! 4.2.7, improper access check in web service endpoints, **CVE-2023-23752** | **active** | **Yes, since 2024-01-08** | External, active check: the endpoint answered without a login |
-| … | | *117 more medium* | | | |
-| 3.7 | 10.40.11.12 file-srv | Self-signed certificate. One of 61 findings on this host, 58 of them informational | — | — | Credentialed |
-| … | | *243 more low/info* | | | |
+| CVSS 3.x | Host | Finding | EPSS* | CISA: exploitation | Known exploited | How detected |
+|---|---|---|---|---|---|---|
+| 10.0 | 10.40.14.21–24 bay tablets | End-of-life embedded operating system, 7 findings on 4 hosts. *Scanner's own rating, no CVE* | — | — | — | Remote, no login |
+| 9.8 | 10.40.12.30 bench-pc-02 | ECU flashing suite bundles Apache Commons Text 1.9, **CVE-2022-42889** | 0.03 | none | No | Credentialed: library found on disk |
+| 9.8 | 10.40.12.31 bench-pc-03 | Same finding | 0.03 | none | No | Credentialed: library found on disk |
+| 8.1 | 10.40.11.8 parts-db | Service banner reads OpenSSH 8.7p1, **CVE-2024-6387** | 0.12 | proof of concept | No | **Remote: version banner only** |
+| 7.8 | 10.40.11.12 file-srv | 7-Zip 24.06, **CVE-2024-11477** | 0.05 | proof of concept | No | Credentialed: installed version |
+| … | | *36 more high* | | | | |
+| 5.3 | 203.0.113.60 book.ironcladauto.example | Joomla! 4.2.7, improper access check in web service endpoints, **CVE-2023-23752** | **0.94** | **active** | **Yes, since 2024-01-08** | External, active check: the endpoint answered without a login |
+| … | | *117 more medium* | | | | |
+| 3.7 | 10.40.11.12 file-srv | Self-signed certificate. One of 61 findings on this host, 58 of them informational | — | — | — | Credentialed |
+| … | | *243 more low/info* | | | | |
+
+\* **EPSS values are set for the exercise**, as the owner allowed on 24 September.
+They follow CISA's exploitation ratings (active is high, none is low). The live
+EPSS for a real CVE changes daily and may differ.
 
 **The booking site sits in the middle of 118 mediums.** Sorted by score, the
 student meets it after every critical and every high.
@@ -97,8 +101,8 @@ Notes from Ironclad:
 
 ### Tab D — Ironclad's remediation policy (in the RafikisITS contract)
 
-The class material's windows, with the boundaries set on the official CVSS
-bands (see question 1 at the end).
+The class material's windows, on the **official CVSS bands** (owner, 24
+September: "I want the official bands always").
 
 | Severity (CVSS 3.x base) | Fix within | Applies to |
 |---|---|---|
@@ -214,7 +218,7 @@ tickets.
 
 Nothing at guesses one and two. For Decision 1:
 
-- **Rung 1 (guess 3): where to look.** "Read the asset register and the two
+- **Rung 1 (guess 3): where to look.** "Read the asset register and the
   exploitation columns next to the scores."
 - **Rung 2 (guess 4): the principle.** "A score describes the flaw as if every
   system were equally exposed. Priority is the flaw, whether anybody is using
@@ -308,11 +312,11 @@ the official records, not from memory:
 ratings. CISA's known-exploited catalogue, version 2026.09.23
 (`github.com/cisagov/kev-data`). GitHub's reviewed advisory database.
 
-**What could not be checked: EPSS.** FIRST, NVD and cisa.gov are all blocked
-by this container's network. EPSS changes every day in any case. So this ticket
-uses CISA's exploitation rating and the known-exploited list as its evidence
-of exploitation, and **EPSS is taught in a later ticket**. Its values will be
-looked up on first.org on the day it is built.
+**EPSS is the one number that is made up.** FIRST, NVD and cisa.gov are
+blocked by this container's network, and EPSS changes every day anyway. The
+owner: "The EPSS scores can be made and mimic real world numbers." They are
+set to agree with CISA's exploitation rating for each CVE, and the tab says
+they are exercise values.
 
 **Rule for the build:** real CVE facts are re-checked at build time against
 the same sources, and the build records the date they were checked. Known-exploited
@@ -326,16 +330,11 @@ public one-line description.
 
 ---
 
-## For the owner to adjust
+## Settled with the owner, 24 September
 
-1. **One number in the class table disagrees with the official CVSS bands.**
-   The class explanations say:
-   *9.0 and above: 7 days (PROD, UAT). Between 7.9 and 9.0: 14 days (PROD
-   only). Between 5.0 and 7.9: 30 days (PROD only).*
-   The official CVSS bands are **High 7.0–8.9** and **Medium 4.0–6.9**. It
-   matters on this very ticket: the 7-Zip finding is **7.8**. Under the class
-   table it is due in 30 days. Under the official bands it is high, due in 14.
-   Tab D uses the official bands. **Which do you want?**
-2. **Tab D adds a rule the class table doesn't have:** known-exploited means 7
-   days, whatever the score. Real SOC policies commonly have it, and it is what
-   puts the booking site first. Keep it?
+- **Official CVSS bands, always.** Critical 9.0–10.0, High 7.0–8.9, Medium
+  4.0–6.9, Low 0.1–3.9. The class table's 7.9 and 5.0 boundaries are not used.
+  The 7-Zip finding at 7.8 is High, due in 14 days
+- **The known-exploited rule stays.** On CISA's list means 7 days, whatever
+  the score
+- **EPSS values are made for the exercise,** mimicking real-world numbers
