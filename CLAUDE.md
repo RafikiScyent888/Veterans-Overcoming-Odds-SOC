@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, second pass**. Supersedes the paused notes in
+Last updated **24 September 2026, third pass**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -140,6 +140,18 @@ objectives now carry AI use, governance and risk (section 3).
 | **The objective list** | The owner re-supplied the V4 summary (section 3) as the objective list. Labels use its wording; no sub-objective numbers are claimed |
 | **Business names** | Section 9 — the owner's replacements |
 | **People's names** | "Pull all names from list of Dungeons and Dragons novels" — section 9 |
+
+### Third pass — SETTLED 24 September
+
+| Decision | The owner's words |
+|---|---|
+| **The SOC's name** | **Veterans Overcoming the Odds** — the SOC RafikisITS runs |
+| **Storylines are rebuilt from scratch** | "We need to talk about the story lines due to the pattern recognize that veterans have. We will have to rebuild this aspect." The renamed businesses get **new storylines** — none of them repeats its Security plot |
+| **Name signal** | "I am not worried about this at all." The rule that a character's book role must not predict their role here is **dropped** |
+| **Which novels** | "Draw the names from the first series of D&D" — **Dragonlance Chronicles** (Weis and Hickman, 1984), the first D&D novel series, **pending the owner's confirmation** |
+| **A guide, like Security** | Yes — advisory, unfolding one step at a time |
+| **The guide fades** | Yes — step by step early, shorter later, collapsed by default at the end. Nothing ever locks a tab |
+| **The hint ladder applies here** | Yes, exactly as in Security: nothing at guesses 1–2, rung 1 at 3, rung 2 at 4, rung 3 for ever from 5, never the answer |
 
 ---
 
@@ -370,7 +382,7 @@ describe it: evidence first, in order, then conclude.
 
 ---
 
-## 6b. Moving around freely — RECOMMENDED
+## 6b. Moving around freely — SETTLED 24 September
 
 The owner's question: "Once they unlock everything, they are allowed to jump
 around?"
@@ -574,7 +586,7 @@ Efficiency and process improvement sits near the end, as the owner asked.
 
 Reporting is not only Tier 5 — every ticket ends in a write-up.
 
-## 13b. Where AI is taught — OPEN
+## 13b. Where AI is taught — OPEN (re-explained 24 September)
 
 "AI in security operations" is one of the objectives. Two ways to teach it:
 
@@ -591,14 +603,31 @@ Reporting is not only Tier 5 — every ticket ends in a write-up.
 
 | | Owner to decide |
 |---|---|
-| **Moving around freely** | Section 6b: confirm the guide is taught early and fades later, and nothing ever locks a tab |
 | **One ticket on paper first** | Section 6: approve a complete example ticket before content is written |
-| **Role carry-over** | Section 9: do the renamed businesses keep their Security storylines? |
-| **People** | Section 9: approve a Dungeons and Dragons name pool |
-| **VOO and RafikisITS** | How do they relate in this world? |
+| **Storylines** | Section 15 — the next conversation |
+| **People** | Confirm Dragonlance Chronicles; the pool is drawn once the storylines say how many people and what roles |
 | **AI in security operations** | Section 13b: taught in one late tier, or a little in every tier? |
 | **Tier shape** | Section 13 |
 | **Engine** | Section 5: confirm |
+
+## 15. Storylines — the next conversation — OPEN
+
+Rebuilt from scratch because veterans find patterns fast. The Security build's
+storylines had a shape a veteran would learn in two tiers, and any of it
+repeating here hands them the plot:
+
+- **One client, one incident, in tier order** — each tier adds a bigger client
+  and a bigger incident
+- **One insider per tier**, escalating from accident to deliberate to planted
+- **Each client's type predicts its incident** — the dental surgery leaks
+  patient records, the charity gets defrauded
+- **Every incident is real** — no false alarms that take up a whole storyline
+- **Every clue matters** — nothing is noise
+
+Points to agree before any plot is written (RECOMMENDED, for discussion):
+false alarms and dead ends as part of the story, some clients who never have
+an incident, incidents that do not match the client's industry, more than one
+thing happening at once, and no fixed escalation curve.
 
 ---
 
