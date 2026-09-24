@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, third pass**. Supersedes the paused notes in
+Last updated **24 September 2026, fourth pass — storylines drafted**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -17,6 +17,12 @@ Last updated **24 September 2026, third pass**. Supersedes the paused notes in
 - **Talk every detail out before building anything.** The Security build took
   longer because it was talked out over several days first, and it was better
   for it.
+- **Backed up to GitHub on a branch — SETTLED 24 September.** The owner:
+  "If you are now able to commit to GitHub, please do so as to not lose the
+  work we do together" — and then: **"No push to main."** This repository only:
+  work is pushed to `claude/student-resources-knowledge-base-vgvfni` and never
+  to `main`, so the live site is untouched. The owner still publishes to
+  `main` himself. Every other repository keeps the never-push rule
 - **This file is updated every 3 hours until it is time to build.** A routine
   fires into the session to do it. Conversations have disappeared overnight
   before — this file is the memory. The container is temporary: **only a copy
@@ -148,7 +154,10 @@ objectives now carry AI use, governance and risk (section 3).
 | **The SOC's name** | **Veterans Overcoming the Odds** — the SOC RafikisITS runs |
 | **Storylines are rebuilt from scratch** | "We need to talk about the story lines due to the pattern recognize that veterans have. We will have to rebuild this aspect." The renamed businesses get **new storylines** — none of them repeats its Security plot |
 | **Name signal** | "I am not worried about this at all." The rule that a character's book role must not predict their role here is **dropped** |
-| **Which novels** | "Draw the names from the first series of D&D" — **Dragonlance Chronicles** (Weis and Hickman, 1984), the first D&D novel series, **pending the owner's confirmation** |
+| **Which novels** | **Dragonlance Chronicles** (Weis and Hickman, 1984) — confirmed by the owner |
+| **The one-ticket preview** | Yes — "so we can work faster once I see something I am able to adjust." First draft: `design/ticket-001-preview.md` |
+| **Thresholds and sensors** | The students set them. "This is where the CVSS comes into play. The students will need to set their threshold/sensors up to catch these kind of issues" |
+| **As real as possible, safely** | "As close to a real SOC without getting into trouble, and using the sub-objectives to guide the students through to prepare them for the exam." Documentation IP ranges, `.example` domains, no working exploit code, no real malware, no real people |
 | **A guide, like Security** | Yes — advisory, unfolding one step at a time |
 | **The guide fades** | Yes — step by step early, shorter later, collapsed by default at the end. Nothing ever locks a tab |
 | **The hint ladder applies here** | Yes, exactly as in Security: nothing at guesses 1–2, rung 1 at 3, rung 2 at 4, rung 3 for ever from 5, never the answer |
@@ -604,30 +613,96 @@ Reporting is not only Tier 5 — every ticket ends in a write-up.
 | | Owner to decide |
 |---|---|
 | **One ticket on paper first** | Section 6: approve a complete example ticket before content is written |
-| **Storylines** | Section 15 — the next conversation |
+| **Storylines** | Section 15 — first draft for the owner's reaction |
+| **Ticket preview** | `design/ticket-001-preview.md` — for the owner to adjust |
 | **People** | Confirm Dragonlance Chronicles; the pool is drawn once the storylines say how many people and what roles |
 | **AI in security operations** | Section 13b: taught in one late tier, or a little in every tier? |
 | **Tier shape** | Section 13 |
 | **Engine** | Section 5: confirm |
 
-## 15. Storylines — the next conversation — OPEN
+## 15. Storylines — FIRST DRAFT, 24 September — RECOMMENDED
 
-Rebuilt from scratch because veterans find patterns fast. The Security build's
-storylines had a shape a veteran would learn in two tiers, and any of it
-repeating here hands them the plot:
+The owner: "Let's see what you come up with." Nothing here is decided.
 
-- **One client, one incident, in tier order** — each tier adds a bigger client
-  and a bigger incident
-- **One insider per tier**, escalating from accident to deliberate to planted
-- **Each client's type predicts its incident** — the dental surgery leaks
-  patient records, the charity gets defrauded
-- **Every incident is real** — no false alarms that take up a whole storyline
-- **Every clue matters** — nothing is noise
+### The patterns this draft is built to break — agreed by the owner
 
-Points to agree before any plot is written (RECOMMENDED, for discussion):
-false alarms and dead ends as part of the story, some clients who never have
-an incident, incidents that do not match the client's industry, more than one
-thing happening at once, and no fixed escalation curve.
+1. One client, one incident, in tier order, each bigger than the last
+2. One insider per tier, escalating from accident to planted
+3. The client's type predicting the incident
+4. Every alert real — no false alarms
+5. Every clue meaningful — no noise
+
+### How the draft breaks them
+
+- **Threads, not episodes.** Several stories run at once across tiers. Each
+  starts looking like noise
+- **The queue is mostly noise, every shift.** Benign true positives, false
+  positives, duplicates. The real threads hide inside it
+- **What happens depends on the student's tuning,** not on the tier number. A
+  spray campaign under the default thresholds is invisible in Tier 1; tuned
+  well in Tier 2 it is caught in Tier 3 with little damage; left alone it
+  succeeds. There is no fixed escalation curve
+- **Incidents do not match the industry.** The dental office gets a
+  cryptominer. The coffee roaster gets web exploitation. The thrift store gets
+  nothing at all
+- **One client has two things at once.** One has none
+- **The "insider" the student first suspects is innocent.** One real insider
+  exists, at a client, mid-run — not at the climax
+
+### Clients and their threads
+
+| Client | What happens | Mostly teaches |
+|---|---|---|
+| **Vanguard Auto Detailing** | Machines still carry the remote-access agent of their previous IT firm, **Saxet IT Keepers**. It checks in weekly and looks exactly like C2. It is legitimate software — and it is unmanaged standing access nobody watches. A risk finding, not an incident | Beaconing look-alikes; asset inventory; "most defensible conclusion" |
+| **OEF Fuel Roasters** | The online store is probed constantly — traversal and injection attempts, almost all failing. One succeeds, through a plugin with a moderate CVSS that is on the known-exploited list | Attempt vs success; CVSS vs exploitation evidence; web attacks |
+| **Ironclad Auto Care** | Diagnostic equipment falls over when scanned aggressively. The scan tier's decoy: a critical CVSS on an isolated bench machine that matters less than the store's moderate one. Later, its parts supplier **Zumroh Motor Company** has its vendor portal compromised, and a malicious invoice arrives from a real supplier address | Fragile systems and scan windows; prioritising by context; supply chain |
+| **The Steadfast Outpost Thrift** | **Nothing, ever.** Volunteers on phones, typos, POS updates that look like beacons. Every ticket is benign | Most alerts are noise; closing well is a skill |
+| **No Go Smile** | Not a records breach. An unpatched VPN appliance leads to a **cryptominer** on the imaging workstations. Separately, their anti-malware signatures are weeks old because the update path is blocked by a firewall change | EDR telemetry; availability impact; signature currency |
+| **Thomas P. Payne School** | Constant phishing noise from a young user base. The student's own posture scan finds an **exposed cloud share**. Later, an **AI voice-cloned call** to the help desk, as the principal, asks for an MFA reset | Cloud misconfiguration; deepfake social engineering; identity |
+| **Nexxuss** | **Two things at once.** A slow password-spray campaign across many clients lands here, and a cloud consent-phishing app takes over a mailbox. At the same time, an employee who has resigned is copying files to personal cloud storage | Identity and cloud attacks; a real insider; running two investigations together |
+| **Optic Light Fibre / RF Jack Cable** | A regional outage floods every client's queue with alerts at once — sixty tickets, one cause. Late on, a genuine DDoS hits OEF's store | Correlation instead of sixty escalations; availability |
+
+### Threat actors — named from Dragonlance Chronicles, for the owner to approve
+
+| Group | Methods |
+|---|---|
+| **The Seekers** | Password spraying, credential stuffing, MFA fatigue, consent phishing |
+| **Bozak** | Web exploitation — traversal, injection, the store plugin |
+| **Sivak** | Impersonation — AI voice cloning, lookalike domains, pretexting (a sivak takes the shape of those it kills) |
+
+### The SOC — Veterans Overcoming the Odds
+
+| Name | Role |
+|---|---|
+| **The student** | New analyst, Tier 1 |
+| Tanis | SOC manager |
+| Laurana | Tier 2 lead |
+| Sturm | Incident response lead |
+| Flint | Detection engineer — owns the rules the student tunes |
+| Riverwind | Vulnerability management engineer |
+| Goldmoon | Compliance and reporting |
+| Caramon, Tika | Fellow Tier 1 analysts on shift |
+| Raistlin | Threat intelligence. Runs PowerShell at 3am — **the innocent "insider"**; it is scheduled automation |
+| Tasslehoff | Help desk — takes the voice-cloned call |
+| Elistan | Owner of RafikisITS — the seat the student used to sit in |
+| **Fizban** | The AI assistant in the console. Helpful, confident, and sometimes wrong. In the last tier somebody plants text in a log field aimed at it — **prompt injection** |
+
+### Which threads show in which tier
+
+| | T1 First shift | T2 The scan | T3 Endpoint and wire | T4 The incident | T5 Maturity |
+|---|---|---|---|---|---|
+| Noise, every client | ● | ● | ● | ● | ● |
+| Vanguard / Saxet agent | looks like C2 | found in inventory | resolved | | |
+| OEF store | probes | the plugin | success, if not patched | | DDoS |
+| Ironclad | | fragile scan, decoy | | Zumroh invoice | |
+| No Go Smile | | stale signatures | cryptominer | | |
+| Payne School | phishing noise | exposed share | | voice clone | |
+| Nexxuss | spray, below threshold | spray, if tuned | consent phishing | insider + mailbox | |
+| ISP outage | | | alert flood | | |
+| Fizban | wrong sometimes | | | | prompt injection |
+
+"If not patched" and "if tuned" are the point: the student's decisions move
+threads, the tier does not.
 
 ---
 
