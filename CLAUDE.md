@@ -2,12 +2,12 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, fourth pass — storylines drafted**. Supersedes the paused notes in
+Last updated **24 September 2026, fifth pass — ticket 001 approved, ticket 002 drafted**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
 |---|---|
-| Repository | `RafikiScyent888/Veterans-Overcoming-Odds-SOC` — currently a README only |
+| Repository | `RafikiScyent888/Veterans-Overcoming-Odds-SOC` — design documents on `main` and the branch; no site code yet |
 | Site | `rafikiscyent888.github.io/Veterans-Overcoming-Odds-SOC/` |
 | Exam | **CompTIA CySA+ V4, CS0-004** (see section 3) |
 | README | Written **after** the design conversation, not before |
@@ -99,7 +99,7 @@ Scanner output with CVEs, CVSS, hosts and false positives · a SIEM query result
 > "Yes, I need all of the attack methods in this build. I need to get my
 > students ready to get an entry level position in a SOC."
 
-The list is **OPEN** — section 11 holds the candidates for confirmation.
+Every method in section 11 is in — settled in the second pass.
 
 ### Vulnerability management as a discipline
 
@@ -111,9 +111,8 @@ The list is **OPEN** — section 11 holds the candidates for confirmation.
 > the other missing details. **I only want to add the missing details that we
 > are covering in class.**"
 
-That last sentence is a rule. Section 10 lists candidate details, each marked
-with whether the class reference material covers it. **Nothing is added until
-the owner confirms it is taught.**
+Superseded in the second pass by "I need to teach everything" — every
+detail in section 10 is in the build.
 
 ### Efficiency and process improvement — included, toward the end
 
@@ -163,6 +162,49 @@ objectives now carry AI use, governance and risk (section 3).
 | **A guide, like Security** | Yes — advisory, unfolding one step at a time |
 | **The guide fades** | Yes — step by step early, shorter later, collapsed by default at the end. Nothing ever locks a tab |
 | **The hint ladder applies here** | Yes, exactly as in Security: nothing at guesses 1–2, rung 1 at 3, rung 2 at 4, rung 3 for ever from 5, never the answer |
+
+### Fifth pass — SETTLED 24 September
+
+| Decision | The owner's words |
+|---|---|
+| **Ticket 001 is approved as the shape** | "I love the ticket. That is great." Every ticket follows `design/ticket-001-preview.md`: queue entry → evidence tabs → guide → decisions → write-up → objectives |
+| **Fizban's voice** | "The AI assistant is clear and quick to the point. That is good." Short, confident, one recommendation |
+| **Two or more decisions per ticket** | "Yes, two or more decisions to plug the leaks." A ticket is never one board — each decision closes a way to guess through it |
+| **The write-up** | "Yes, the write up is great." The student writes it themselves, against the five prompts, ending in *what can you not prove?* |
+| **Threat actors and SOC staff** | "Yes, I approve of these." Section 15's names are final |
+| **AI taught a little in every tier** | "Yes, the AI is taught is great." Fizban sits in the console from Tier 1; governance comes late (section 13b) |
+| **Keep going** | "Let's keep going." Tier shape (section 13) and engine (section 5) stand as the working plan; they change only if the owner changes them |
+| **The site is not public yet** | "No students have the website address. I have not given it to anyone yet." Design documents on `main` are fine for now |
+
+### Design rules that follow from ticket 001 — RECOMMENDED
+
+- **Fizban is not always wrong.** If the assistant is wrong on every ticket,
+  "ignore Fizban" becomes the tell. Across the build it is right on some
+  tickets, wrong on some, and half right on some — and the student checks it
+  every time, whichever it is
+- **Decisions chain inside a ticket.** A wrong answer never carries into the
+  next board; reset goes back to the last decision answered correctly
+- **Buried details live across tabs.** The fact that decides a board is in a
+  different tab from the one it seems to belong to, so reading one source is
+  never enough
+
+### The answer-tell check, run on paper — 24 September
+
+Measured on the five decision boards in tickets 001 and 002 **as first
+written**: the correct option was the **longest in 5 of 5**. That is the
+Security build's tell, and it crept in again, because a right answer that
+explains itself is naturally longer. **The verifier in section 5 is required,
+not optional.**
+
+The wording was rebalanced without changing any option's meaning:
+
+| Check | Before | After |
+|---|---|---|
+| Correct option's length rank, out of 6 | 1, 1, 1, 1, 1 | 3, 4, 3, 3, 5 |
+| Options with an absolute word (every, never, all, only…) | — | correct 2 of 5, wrong 10 of 25 — the same rate |
+
+The owner approved ticket 001 before this change. Its options now read
+slightly differently, with the same meaning.
 
 ---
 
@@ -321,7 +363,7 @@ call, not a correction of their material**:
 
 ---
 
-## 5. The engine — same, or start fresh? — RECOMMENDED
+## 5. The engine — same, or start fresh? — WORKING PLAN (owner: "Let's keep going")
 
 **The owner's question:** "Are you able to keep the same engine and still make
 changes or is it better to start fresh? Again, we need to do our best to have no
@@ -451,7 +493,7 @@ Six options, one correct · the hint ladder · wrong stays red, marked three way
 
 ---
 
-## 9. Names — SETTLED 24 September (people OPEN)
+## 9. Names — SETTLED 24 September
 
 ### Businesses — the owner's replacements
 
@@ -486,19 +528,16 @@ fraud victim.
 | `rafikisITS@gmail.com`, `truman@gmail.com` | Business and personal mail |
 | VeteransOvercomingOdds (VOO) | **OPEN: how VOO relates to RafikisITS in this world** |
 
-### People — from Dungeons and Dragons novels — OPEN
+### People — from Dragonlance Chronicles — SETTLED (fifth pass; the staff list is in section 15)
 
 The owner: "Pull all names from list of Dungeons and Dragons novels."
 
 Security's staff to be replaced: Glimfeather, Sam, Pippin, Coriakin, Lucy,
 Digory, Edmund, Caspian, Jill, Aravis, Helen, Rilian, Frank, Trumpkin, Dana.
 
-**The rule the pool has to obey — RECOMMENDED:** a name's role in the novels
-must never predict its role here. Some veterans have read Salvatore and
-Dragonlance. A famous assassin's or traitor's name on the insider — or only on
-villains — is the Narnia/Tolkien tell all over again. Heroes and villains from
-the books are spread across innocent staff and insiders alike, and the pool
-is proposed for the owner's approval before use.
+~~The rule that a name's role in the novels must never predict its role
+here~~ — **dropped in the third pass** ("I am not worried about this at all").
+The approved names are in section 15.
 
 ## 10. Vulnerability management — SETTLED 24 September: teach everything
 
@@ -582,9 +621,9 @@ concepts carry; nothing else does. Reframed for the analyst's seat:
 
 ---
 
-## 13. Tier shape — a first proposal to react to — RECOMMENDED
+## 13. Tier shape — WORKING PLAN (owner: "Let's keep going")
 
-Not decided. Each tier touches every domain, weighted differently.
+Each tier touches every domain, weighted differently.
 Efficiency and process improvement sits near the end, as the owner asked.
 
 | Tier | Working title | Heaviest domain |
@@ -597,7 +636,7 @@ Efficiency and process improvement sits near the end, as the owner asked.
 
 Reporting is not only Tier 5 — every ticket ends in a write-up.
 
-## 13b. Where AI is taught — OPEN (re-explained 24 September)
+## 13b. Where AI is taught — SETTLED 24 September: a little in every tier
 
 "AI in security operations" is one of the objectives. Two ways to teach it:
 
@@ -614,17 +653,16 @@ Reporting is not only Tier 5 — every ticket ends in a write-up.
 
 | | Owner to decide |
 |---|---|
-| **One ticket on paper first** | Section 6: approve a complete example ticket before content is written |
-| **Storylines** | Section 15 — first draft for the owner's reaction |
-| **Ticket preview** | `design/ticket-001-preview.md` — for the owner to adjust |
-| **People** | Confirm Dragonlance Chronicles; the pool is drawn once the storylines say how many people and what roles |
-| **AI in security operations** | Section 13b: taught in one late tier, or a little in every tier? |
-| **Tier shape** | Section 13 |
-| **Engine** | Section 5: confirm |
+| **Ticket 002** | `design/ticket-002-preview.md` — the first vulnerability management ticket, for the owner to adjust |
+| **Real or invented CVE numbers** | Ticket 002's questions for the owner |
+| **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
+| **The full official objectives** | Section 3 — the document with every sub-objective, between `[OBJECTIVES START]` and `[OBJECTIVES END]` |
+| **VOO and RafikisITS** | Section 9 — how the SOC relates to the company; the new lookalike domain; the mail addresses |
 
 ## 15. Storylines — FIRST DRAFT, 24 September — RECOMMENDED
 
-The owner: "Let's see what you come up with." Nothing here is decided.
+The owner: "Let's see what you come up with." The names are approved (fifth
+pass); the threads are still a draft.
 
 ### The patterns this draft is built to break — agreed by the owner
 
@@ -664,7 +702,7 @@ The owner: "Let's see what you come up with." Nothing here is decided.
 | **Nexxuss** | **Two things at once.** A slow password-spray campaign across many clients lands here, and a cloud consent-phishing app takes over a mailbox. At the same time, an employee who has resigned is copying files to personal cloud storage | Identity and cloud attacks; a real insider; running two investigations together |
 | **Optic Light Fibre / RF Jack Cable** | A regional outage floods every client's queue with alerts at once — sixty tickets, one cause. Late on, a genuine DDoS hits OEF's store | Correlation instead of sixty escalations; availability |
 
-### Threat actors — named from Dragonlance Chronicles, for the owner to approve
+### Threat actors — named from Dragonlance Chronicles — APPROVED
 
 | Group | Methods |
 |---|---|

@@ -104,12 +104,12 @@ option written to about the same length so the longest is not the answer.
 
 | | Option | Why it is wrong |
 |---|---|---|
-| ✅ | **Benign true positive — the rule fired as written, but the same device and session moved from store Wi-Fi onto a mobile carrier. Close with the evidence.** | — |
-| ✗ | True positive, account compromise — disable the account and reset the password | Over-classification. The assistant's answer. Nothing in the log looks like somebody else's device |
-| ✗ | Escalate to Tier 2 as a possible compromise, with the sign-in log attached | The evidence already answers the question. Escalating it adds work without adding certainty |
-| ✗ | False positive — the rule is broken, so turn it off | The rule measured exactly what it says. Turning it off blinds you to the real one |
-| ✗ | Benign — close the ticket with no notes, since nothing happened | Right conclusion, no evidence. Nobody can check your reasoning later |
-| ✗ | Add this volunteer to a permanent exception so it never alerts again | Hides a real takeover of this account for ever |
+| ✅ | **Benign true positive — the same device and session moved to a mobile carrier. Close with the evidence** | — |
+| ✗ | True positive, account compromise — disable the account and reset the password before it spreads any further | Over-classification. The assistant's answer. Nothing in the log looks like somebody else's device |
+| ✗ | Escalate to Tier 2 as a possible compromise, with the alert, the sign-in log and Fizban's summary attached | The evidence already answers the question. Escalating it adds work without adding certainty |
+| ✗ | False positive — the rule measured the wrong thing, so turn it off until it is rewritten | The rule measured exactly what it says. Turning it off blinds you to the real one |
+| ✗ | Benign — close the ticket with no notes, since the volunteer was just on their phone | Right conclusion, no evidence. Nobody can check your reasoning later |
+| ✗ | Add this volunteer to a permanent exception so the rule never alerts on them again, anywhere | Hides a real takeover of this account for ever |
 
 **The exam lesson inside it:** a *false positive* means the rule was wrong. A
 *benign true positive* means the rule was right and the event was harmless.
@@ -121,12 +121,12 @@ They are different, and CySA tests the difference.
 
 | | Option | Why it is wrong |
 |---|---|---|
-| ✅ | **Suppress only when the device ID, the session and the authenticator all match the previous sign-in — keep alerting on a new device from anywhere** | — |
-| ✗ | Raise the distance to 2,000 miles so trips like this stop alerting | A real attacker in the next state over now slips through |
-| ✗ | Suppress impossible travel for every Steadfast Outpost account | One client becomes a blind spot |
-| ✗ | Exclude every mobile-carrier network from the rule | Attackers use phones and carrier networks too |
-| ✗ | Lower the rule to informational so it never pages anybody | It still fires; nobody reads it |
-| ✗ | Leave the rule alone and close these by hand as they come in | Every analyst loses minutes to the same false alarm every shift |
+| ✅ | **Suppress only when device ID, session and authenticator all match — still alert on any new device** | — |
+| ✗ | Raise the distance to 2,000 miles so short trips like this one stop alerting across every client we watch | A real attacker in the next state over now slips through |
+| ✗ | Suppress impossible travel for every Steadfast Outpost account, since the volunteers there all use their own phones | One client becomes a blind spot |
+| ✗ | Exclude every mobile-carrier network from the rule, since that is where these alarms keep coming from | Attackers use phones and carrier networks too |
+| ✗ | Lower the rule to informational so it is still recorded but never pages anybody | It still fires; nobody reads it |
+| ✗ | Leave the rule alone and close these by hand as they come in, with a note on each | Every analyst loses minutes to the same false alarm every shift |
 
 This is where the owner's point lands: **the students set the thresholds and
 sensors.** Too loose and the queue drowns them; too tight and the real attack
@@ -197,9 +197,17 @@ numbers are claimed.
 
 ---
 
-## For the owner to adjust
+## APPROVED 24 September
 
-- Is this the right amount of evidence for a Tier 1 ticket, or too much?
-- Is the AI assistant too obviously wrong here? It can be subtler in later tiers
-- Two decisions per ticket, or one?
-- The write-up — free text, or prompts the student fills in?
+> "I love the ticket. That is great. The AI assistant is clear and quick to
+> the point. That is good. Yes, two or more decisions to plug the leaks. Yes,
+> the write up is great."
+
+This is the shape every ticket follows. The questions that were here are
+answered:
+
+- **Amount of evidence** — right for Tier 1
+- **Fizban** — clear and quick to the point; keep the voice
+- **Decisions** — two or more per ticket, each one closing a way to guess
+  through it
+- **Write-up** — the student writes it, against the five prompts
