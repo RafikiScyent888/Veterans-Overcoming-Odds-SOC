@@ -17,12 +17,14 @@ Last updated **24 September 2026, fourth pass — storylines drafted**. Supersed
 - **Talk every detail out before building anything.** The Security build took
   longer because it was talked out over several days first, and it was better
   for it.
-- **Backed up to GitHub on a branch — SETTLED 24 September.** The owner:
+- **Backed up to GitHub — SETTLED 24 September.** The owner:
   "If you are now able to commit to GitHub, please do so as to not lose the
-  work we do together" — and then: **"No push to main."** This repository only:
-  work is pushed to `claude/student-resources-knowledge-base-vgvfni` and never
-  to `main`, so the live site is untouched. The owner still publishes to
-  `main` himself. Every other repository keeps the never-push rule
+  work we do together" — then **"No push to main"** — and minutes later
+  **"Push it main."** The last word stands. This repository only: work is
+  committed on `claude/student-resources-knowledge-base-vgvfni` and pushed to
+  both that branch and `main`. Until "build" there is no site code, so `main`
+  carries design documents only. Every other repository keeps the never-push
+  rule
 - **This file is updated every 3 hours until it is time to build.** A routine
   fires into the session to do it. Conversations have disappeared overnight
   before — this file is the memory. The container is temporary: **only a copy
@@ -126,7 +128,7 @@ The *concepts* carry. The scenarios, names and plot do not. Section 12.
 
 ### AI in security operations
 
-The owner has closed the reference-material gap on his side. The official V4
+The owner has closed the reference-material gap on their side. The official V4
 objectives now carry AI use, governance and risk (section 3).
 
 ### No cutting corners
@@ -306,7 +308,7 @@ answers** — or they will be recognised on sight:
 
 Two mappings in the reference answer keys don't match the model the exam uses.
 Recorded so they are not copied into the new build unchecked — **the owner's
-call, not a correction of his material**:
+call, not a correction of their material**:
 
 - **Kill Chain PBQ:** *Reconnaissance = Phishing* and *Installation =
   Encryption.* In the Lockheed Martin model phishing is **Delivery**, and
