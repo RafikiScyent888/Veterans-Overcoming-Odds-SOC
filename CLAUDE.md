@@ -1311,20 +1311,22 @@ The owner: "Yes, because you can do that in the real world, correct?"
 - **Reopen** happens inside the story, with a reason, as VOO-1187 is in
   Tier 3
 
-## 14. Everything still OPEN
+## 14. Everything still OPEN — tidied 26 September
+
+Settled today and removed from this list: the storylines (all ideas approved),
+the world and every name (`design/world-bible.md`), the scenario types (laid
+out in the world bible), the five-additional-scenarios rule (ten practice
+tickets per type), and how VOO relates to RafikisITS (RafikisITS runs the SOC).
 
 | | Owner to decide |
 |---|---|
-| **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
-| **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
-| **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
-| **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
-
-| **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
-| **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
-| **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
+| **Ticket 003** | Four screens the student opens themselves, with the click-a-value menu to move between them: the right step up? |
+| **Ticket 004** | The objective summary has seven rows on a Tier 1 ticket: keep all, or only the three or four the ticket leaned on hardest? |
+| **Crawl, walk, run** | Section 13d: no objection raised; still to be confirmed |
+| **Email addresses and the lookalike domain** | Section 9: `soc@voo.rafikisits.example` for the SOC, `firstname@rafikisits.example` for staff, and `zumroh-motor-billing.example` for Sivak's fake domain |
 | **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
-| **VOO and RafikisITS** | Section 9 — re-explained 24 September; the owner to confirm, plus the lookalike domain and the mail addresses |
+| **The README** | Written after the design conversation ends, per section 0 |
+| **"Build"** | The owner's word starts it. RECOMMENDED: the console and Tier 1 first (7 tickets, the search bar, every verifier), then tier by tier |
 
 ## 15. Storylines — FIRST DRAFT, 24 September — RECOMMENDED
 
