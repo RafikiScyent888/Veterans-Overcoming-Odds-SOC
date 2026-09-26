@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, eleventh pass — the phishing ticket, the objective summary**. Supersedes the paused notes in
+Last updated **24 September 2026, twelfth pass — the queue mock-up, 21 tickets, going back to check**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -240,6 +240,16 @@ honest people honest; it is not a lock. The Security build is the same.
 | **First phishing ticket at Payne School** | "Yes." Drafted as `design/ticket-004-preview.md` (Tier 1) |
 | **Nobody submits a password in Tier 1** | "Yes, at a later tier." A later tier brings the submitter: password reset, and signing them out of every session |
 | **An objective-by-objective summary after every ticket** | The owner, in place of an exam-wording panel: "a summary with each objective that was used and an explanation about why it is." Shown after the ticket closes. One row per objective used: **what you did · why it is this objective · the words the exam uses**. First drafted in ticket 004, section 6. Tickets 001–003 are converted to it at build |
+
+### Twelfth pass — SETTLED 26 September
+
+| Decision | The owner's words |
+|---|---|
+| **A mock-up of the queue screen** | "Yes, make the mock-up of the queue screen." "I would like to see what the console would look like when built." Built as `design/mockups/queue.html`, published privately for the owner. It is a preview, not the build |
+| **The instructor PIN is a toggle** | "The instructor PIN is 3693 and it is toggled." On and off, remembered on the shared `cwp:instructor` key as on every CWP site. On: every tier and ticket unlocked, with a banner saying so |
+| **A good amount of tickets** | "I need a good amount of tickets for real world exam prep. Is 21 tickets enough?" Section 13g |
+| **Going back to check** | "Are they able to go back to the SOC and double check it?" Yes, section 13g |
+| **Storylines lined up with the objectives** | "We still need to talk about the storylines that line up with the objectives." Section 13g is the first draft of that map |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -1186,6 +1196,63 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | 16 | Reporting to audiences, and metrics | 5 (and every ticket) | 4.1 · 4.2 | To discuss |
 | 17 | Automation, SOAR, AI governance, prompt injection | 5 | 1.5 · 1.6 | To discuss |
 
+## 13g. 21 story tickets, mapped to storylines and objectives — RECOMMENDED
+
+The owner asked whether 21 tickets is enough. **For coverage, yes.** With the
+decision count fixed by tier (2, 3, 4, 5, 6), 21 tickets give **82 decisions**,
+about the length of the real exam (85 questions at most). Every objective in
+the owner's list appears at least twice. For **practice**, 21 is thin, so the
+**five-additional-scenarios** rule becomes a practice queue (below).
+
+| # | Tier | Ticket | Client and thread | Type | Owner's list |
+|---|---|---|---|---|---|
+| 1 | 1 | 001 Impossible travel | Steadfast Outpost: a volunteer on a phone | 1 | 1.2 · 1.5 · 1.6 · 3.3 |
+| 2 | 1 | 004 Reported phishing | Payne School: phishing noise | 2 | 1.1 · 1.2 · 1.3 · 1.6 · 2.4 · 3.3 · 4.2 |
+| 3 | 1 | VOO-1187 First sight of the beacon | Vanguard: the Saxet agent | 8 | 1.2 · 1.3 · 4.2 |
+| 4 | 1 | Threat-feed hit on the till | Steadfast Outpost: a POS update, low-confidence feed | 3 | 1.3 · 1.4 · 3.3 |
+| 5 | 1 | Failed sign-ins below lockout | Nexxuss: the spray, below the threshold | 1 | 1.2 · 1.5 |
+| 6 | 2 | 002 The first scan | Ironclad: fragile kit, the decoy critical | 4 · 5 | 2.1 · 2.2 · 2.3 · 2.5 · 4.1 |
+| 7 | 2 | The exposed cloud share | Payne School: the posture scan | 7 | 1.2 · 2.1 · 2.2 · 2.4 · 2.5 |
+| 8 | 2 | Signatures 19 days old | No Go Smile: the update path blocked, HIPAA | 6 | 1.1 · 2.1 · 2.2 · 2.4 · 2.5 |
+| 9 | 2 | The store plugin | OEF: EPSS climbing, not yet known-exploited | 4 | 1.4 · 2.3 · 4.1 |
+| 10 | 3 | 003 The beacon reopened | Vanguard: new evidence | 8 | 1.2 · 1.3 · 1.4 · 2.5 · 3.1 · 3.4 |
+| 11 | 3 | Attempt or success | OEF: traversal and injection in the logs | 10 | 1.2 · 1.3 · 3.1 · 3.3 |
+| 12 | 3 | The cryptominer | No Go Smile: process tree from the VPN | 9 | 1.2 · 1.3 · 3.1 · 3.5 |
+| 13 | 3 | Sixty tickets, one cause, then a hunt | The ISP outage; Pyramid of Pain | 11 · 12 | 1.4 · 1.5 · 3.3 |
+| 14 | 4 | The supplier invoice | Ironclad and Zumroh: the owner's process tree | 9 · 15 | 3.1 · 3.2 · 3.3 · 3.5 |
+| 15 | 4 | The mailbox taken over | Nexxuss: consent phishing, a password submitted | 1 · 7 · 13 | 1.1 · 1.2 · 3.2 · 3.5 |
+| 16 | 4 | The resigned employee | Nexxuss: the insider | 14 | 1.2 · 3.3 · 3.4 · 4.2 |
+| 17 | 4 | The principal's voice | Payne School: the AI voice clone | 2 | 1.1 · 1.6 · 3.4 |
+| 18 | 5 | Quality review | Caramon's closed tickets | 3 · 16 | 3.3 · 4.2 |
+| 19 | 5 | Fix the playbook | The phishing SOAR playbook and its gaps | 17 | 1.5 · 2.4 |
+| 20 | 5 | Report to leadership | MTTD, MTTR, the VM scorecard | 16 | 4.1 · 4.2 |
+| 21 | 5 | Fizban told to lie | Prompt injection in a log field; AI governance; the OEF DDoS | 17 | 1.6 · 3.2 |
+
+Decisions: Tier 1 **10**, Tier 2 **12**, Tier 3 **16**, Tier 4 **20**, Tier 5 **24**
+= **82**. The Steadfast Outpost never has an incident, as the storyline says.
+
+### The practice queue — the five-additional-scenarios rule — RECOMMENDED
+
+Once a scenario type has been met in the story, **five more tickets of that
+type** open in a practice queue: the same skill, new data, new answers. That
+gives 17 types × 5 = **85 practice tickets**. They're drawn at random so no
+two students see the same order, and they use the same rules: six options,
+the hint ladder, shuffled by seed, the summary at the end.
+
+### Going back to check — SETTLED in principle
+
+Yes. It is what real SOCs do: closed cases stay in the system, searchable,
+and can be reopened with a reason.
+
+- **Closed tickets stay in the queue** under "Closed this shift", and later
+  under the full case history. The mock-up shows the tab
+- **Review** opens a closed case read-only, with the student's own write-up,
+  every decision they made, and the activity log
+- **Replay** runs the same ticket again from the start, for practice, without
+  touching the record of the first time
+- **Reopen** happens inside the story, with a reason, as VOO-1187 is in
+  Tier 3
+
 ## 14. Everything still OPEN
 
 | | Owner to decide |
@@ -1193,6 +1260,9 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
+| **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
+| **21 tickets and the practice queue** | Section 13g: the map, and five practice tickets per scenario type |
+| **Storylines against objectives** | Section 13g is the first draft; the owner wants to talk it through |
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |

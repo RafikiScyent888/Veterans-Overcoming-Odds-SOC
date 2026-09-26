@@ -1,0 +1,573 @@
+<title>VOO Alert Queue</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<script>
+/* Theme, easier reading and instructor mode: the programme's shared keys
+   (cwp:theme, cwp:dyslexia, cwp:instructor), stamped before first paint. */
+(function () {
+  function read(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  var el = document.documentElement;
+  var t = read("cwp:theme");
+  if (t !== "light" && t !== "dark") {
+    t = el.getAttribute("data-theme");
+    if (t !== "light" && t !== "dark") {
+      try { t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"; } catch (e) { t = "dark"; }
+    }
+  }
+  el.setAttribute("data-theme", t);
+  el.setAttribute("data-dyslexia", read("cwp:dyslexia") === "on" ? "on" : "off");
+  el.setAttribute("data-instructor", read("cwp:instructor") === "1" ? "on" : "off");
+})();
+</script>
+<style>
+/* ---- Tokens: dark first, like a real SOC floor ------------------------ */
+:root {
+  color-scheme: dark;
+  --bg: #0b0f16;
+  --surface: #111823;
+  --surface-2: #18212f;
+  --select: #1d2b40;
+  --line: #263244;
+  --edge: #6b7b90;
+  --ink: #eef3f9;
+  --ink-dim: #c3ced9;
+  --accent: #8fc8f5;
+  --accent-ink: #0b0f16;
+  --fizban: #cdb2f5;
+  --fizban-bg: #211b30;
+  --sev-critical: #ff9d9d;
+  --sev-high: #ffc27a;
+  --sev-medium: #f2d16b;
+  --sev-low: #7fdca4;
+  --sev-info: #c9d2dc;
+  --banner-bg: #2a2412;
+  --banner-ink: #f2d16b;
+  --instr-bg: #1c2a1f;
+  --instr-ink: #7fdca4;
+  --font-body: "Atkinson Hyperlegible", Verdana, Tahoma, "DejaVu Sans", sans-serif;
+  --font-mono: "IBM Plex Mono", "DejaVu Sans Mono", Consolas, monospace;
+  --tracking: 0;
+  --word: 0;
+  --leading: 1.45;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+    --bg: #e9edf2; --surface: #ffffff; --surface-2: #f4f6f9; --select: #dfe9f5;
+    --line: #cfd6df; --edge: #5b6878;
+    --ink: #0f141b; --ink-dim: #334155;
+    --accent: #0b4577; --accent-ink: #ffffff;
+    --fizban: #4a2a84; --fizban-bg: #f1ecfa;
+    --sev-critical: #8a1c24; --sev-high: #7a3a00; --sev-medium: #5c4700;
+    --sev-low: #1d5a34; --sev-info: #3f4a58;
+    --banner-bg: #fbf3d6; --banner-ink: #4d3c00;
+    --instr-bg: #e3f3e8; --instr-ink: #1d5a34;
+  }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #e9edf2; --surface: #ffffff; --surface-2: #f4f6f9; --select: #dfe9f5;
+  --line: #cfd6df; --edge: #5b6878;
+  --ink: #0f141b; --ink-dim: #334155;
+  --accent: #0b4577; --accent-ink: #ffffff;
+  --fizban: #4a2a84; --fizban-bg: #f1ecfa;
+  --sev-critical: #8a1c24; --sev-high: #7a3a00; --sev-medium: #5c4700;
+  --sev-low: #1d5a34; --sev-info: #3f4a58;
+  --banner-bg: #fbf3d6; --banner-ink: #4d3c00;
+  --instr-bg: #e3f3e8; --instr-ink: #1d5a34;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+
+/* Easier reading: the spacing does most of the work, as on every CWP site */
+:root[data-dyslexia="on"] {
+  --font-body: Verdana, Tahoma, "Trebuchet MS", "DejaVu Sans", sans-serif;
+  --tracking: .04em;
+  --word: .16em;
+  --leading: 1.9;
+}
+
+/* ---- Base ------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: var(--leading);
+  letter-spacing: var(--tracking);
+  word-spacing: var(--word);
+}
+.mono, code { font-family: var(--font-mono); letter-spacing: 0; word-spacing: 0; font-variant-numeric: tabular-nums; }
+button { font: inherit; letter-spacing: inherit; word-spacing: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+.app { display: grid; grid-template-columns: 208px minmax(0, 1fr); min-height: 100%; }
+
+/* ---- Left rail: icons AND words -------------------------------------- */
+.rail {
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+  padding-block: 14px;
+  padding-inline: 10px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 14px; font-weight: 700; line-height: 1.2; }
+.brand svg { flex: none; }
+.brand small { display: block; font-weight: 400; color: var(--ink-dim); font-size: 13px; }
+.rail a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 10px; border-radius: 6px;
+  color: var(--ink-dim); text-decoration: none; font-size: 15px;
+}
+.rail a svg { flex: none; stroke: currentColor; }
+.rail a:hover { background: var(--surface-2); color: var(--ink); }
+.rail a[aria-current="page"] { background: var(--select); color: var(--ink); font-weight: 700; box-shadow: inset 3px 0 0 var(--accent); }
+.rail .later { margin-left: auto; font-size: 12px; color: var(--ink-dim); }
+
+/* ---- Main column ------------------------------------------------------ */
+.main { display: flex; flex-direction: column; min-width: 0; }
+.topbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px;
+  padding-block: 10px; padding-inline: 20px;
+  background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.crumbs { font-size: 15px; color: var(--ink-dim); }
+.crumbs b { color: var(--ink); }
+.seat {
+  font-size: 14px; font-weight: 700;
+  padding: 3px 10px; border-radius: 999px;
+  border: 1px solid var(--edge); color: var(--ink);
+}
+.clock { font-size: 14px; color: var(--ink-dim); }
+.clock .mono { color: var(--ink); }
+.switches { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.switch {
+  background: var(--surface-2); border: 1px solid var(--edge);
+  border-radius: 6px; padding: 5px 10px; font-size: 14px;
+}
+.switch[aria-pressed="true"] { background: var(--select); font-weight: 700; }
+
+.preview {
+  padding-block: 6px; padding-inline: 20px;
+  background: var(--banner-bg); color: var(--banner-ink); font-size: 14px;
+}
+.instr-banner {
+  padding-block: 6px; padding-inline: 20px;
+  background: var(--instr-bg); color: var(--instr-ink); font-size: 14px; font-weight: 700;
+}
+:root[data-instructor="off"] .instr-banner { display: none; }
+
+.pinbox {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  padding-block: 10px; padding-inline: 20px;
+  background: var(--surface-2); border-bottom: 1px solid var(--line); font-size: 15px;
+}
+.pinbox[hidden] { display: none; }
+.pinbox input {
+  font-family: var(--font-mono); font-size: 16px; width: 8ch;
+  padding: 4px 8px; border-radius: 6px; border: 1px solid var(--edge);
+  background: var(--surface); color: var(--ink);
+}
+.pinbox .msg { color: var(--ink); }
+
+.content { padding-block: 16px 8px; padding-inline: 20px; display: flex; flex-direction: column; gap: 14px; }
+
+/* Tier strip */
+.tiers { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tiers .label { font-size: 14px; color: var(--ink-dim); margin-right: 4px; }
+.tier {
+  font-size: 14px; padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink-dim);
+}
+.tier.current { border-color: var(--accent); color: var(--ink); font-weight: 700; }
+.tier .lock { font-size: 12px; margin-left: 4px; }
+
+/* Search bar */
+.search { display: flex; gap: 8px; flex-wrap: wrap; }
+.search label { position: absolute; left: -9999px; }
+.search input {
+  flex: 1 1 320px; min-width: 0;
+  font-family: var(--font-mono); font-size: 15px;
+  padding: 9px 12px; border-radius: 6px;
+  border: 1px solid var(--edge); background: var(--surface); color: var(--ink);
+}
+.search .time, .search .go {
+  border-radius: 6px; padding: 8px 14px; font-size: 15px; border: 1px solid var(--edge);
+}
+.search .time { background: var(--surface); }
+.search .go { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+
+/* Severity summary: chips, not giant tiles */
+.summary { display: flex; flex-wrap: wrap; gap: 8px; }
+.count {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 5px 12px; border-radius: 6px;
+  background: var(--surface); border: 1px solid var(--line); font-size: 15px;
+}
+.count[aria-pressed="true"] { border-color: var(--edge); background: var(--select); }
+.count b { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+/* Severity: a dot AND a word, always */
+.sev { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; white-space: nowrap; }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex: none; box-shadow: 0 0 0 2px var(--surface); }
+.s-critical { color: var(--sev-critical); } .s-critical .dot { background: var(--sev-critical); }
+.s-high     { color: var(--sev-high); }     .s-high .dot     { background: var(--sev-high); }
+.s-medium   { color: var(--sev-medium); }   .s-medium .dot   { background: var(--sev-medium); }
+.s-low      { color: var(--sev-low); }      .s-low .dot      { background: var(--sev-low); }
+.s-info     { color: var(--sev-info); }     .s-info .dot     { background: var(--sev-info); }
+
+/* Queue + drawer */
+.workarea { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 14px; align-items: start; }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.tabs { display: flex; gap: 4px; padding: 8px 10px 0; border-bottom: 1px solid var(--line); }
+.tab {
+  background: none; border: none; border-bottom: 3px solid transparent;
+  padding: 6px 10px 8px; font-size: 15px; color: var(--ink-dim);
+}
+.tab[aria-selected="true"] { color: var(--ink); font-weight: 700; border-bottom-color: var(--accent); }
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th {
+  text-align: left; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink-dim); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap;
+}
+td { padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--surface-2); }
+tbody tr[aria-selected="true"] { background: var(--select); box-shadow: inset 3px 0 0 var(--accent); }
+td.id, td.time, td.entity, td.attack { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0; word-spacing: 0; white-space: nowrap; }
+td.alert { min-width: 22ch; }
+td.client { min-width: 13ch; }
+td.entity { white-space: normal; overflow-wrap: anywhere; min-width: 16ch; max-width: 26ch; }
+td .sub { display: block; color: var(--ink-dim); font-size: 13px; }
+.status { font-size: 14px; }
+.status.mine { font-weight: 700; }
+.sla { font-family: var(--font-mono); font-size: 14px; }
+.sla.warn { color: var(--sev-high); font-weight: 600; }
+.dayhead td {
+  background: var(--surface-2); color: var(--ink-dim); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em; padding-block: 6px; cursor: default;
+}
+.dayhead:hover td { background: var(--surface-2); }
+
+.drawer { padding: 16px; display: flex; flex-direction: column; gap: 12px; position: sticky; top: 12px; }
+.drawer h2 { margin: 0; font-size: 19px; line-height: 1.3; text-wrap: balance; }
+.drawer .idline { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 14px; color: var(--ink-dim); }
+.drawer dl { margin: 0; display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 12px; font-size: 15px; }
+.drawer dt { color: var(--ink-dim); }
+.drawer dd { margin: 0; overflow-wrap: anywhere; }
+.fizban { background: var(--fizban-bg); border-radius: 8px; padding: 12px; border: 1px solid var(--line); }
+.fizban .who { color: var(--fizban); font-weight: 700; font-size: 14px; display: flex; gap: 8px; align-items: center; }
+.fizban p { margin: 6px 0 0; font-size: 15px; }
+.fizban .note { color: var(--ink-dim); font-size: 13px; margin-top: 8px; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.actions button { padding: 7px 12px; border-radius: 6px; border: 1px solid var(--edge); background: var(--surface-2); font-size: 15px; }
+.actions button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+.drawer .said { font-size: 14px; color: var(--ink); min-height: 1.4em; }
+.querybox { font-family: var(--font-mono); font-size: 13px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; overflow-x: auto; white-space: pre; letter-spacing: 0; word-spacing: 0; }
+
+footer {
+  margin-top: auto; padding-block: 18px; padding-inline: 20px;
+  border-top: 1px solid var(--line); color: var(--ink-dim); font-size: 14px; max-width: 110ch;
+}
+
+/* ---- Narrow screens --------------------------------------------------- */
+@media (max-width: 1499px) {
+  .workarea { grid-template-columns: minmax(0, 1fr); }
+  .drawer { position: static; }
+}
+@media (max-width: 820px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .rail { flex-direction: row; overflow-x: auto; border-right: none; border-bottom: 1px solid var(--line); padding-inline: 16px; }
+  .brand { padding: 4px 8px 4px 0; }
+  .rail a { white-space: nowrap; }
+  .rail .later { display: none; }
+  .topbar, .preview, .instr-banner, .pinbox, .content, footer { padding-inline: 16px; }
+  .switches { margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="app">
+  <nav class="rail" aria-label="Console">
+    <div class="brand">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 9 L15 22 L23 9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>VOO Console<small>Veterans Overcoming the Odds</small></span>
+    </div>
+    <a href="#" aria-current="page"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Alert queue</a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>Search</a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 5-6 8-6s6.5 2 8 6"/></svg>Identity</a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Email</a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/></svg>Vulnerabilities<span class="later">T2</span></a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="12" rx="1"/><path d="M8 20h8M12 16v4"/></svg>Endpoint<span class="later">T3</span></a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12l10-5M7 12l10 5"/></svg>Network<span class="later">T3</span></a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v5l3 2"/></svg>Threat intel<span class="later">T3</span></a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6"/></svg>Cases</a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 7h10M4 17h6M18 7h2M14 17h6"/><circle cx="16" cy="7" r="2"/><circle cx="12" cy="17" r="2"/></svg>Detection rules</a>
+    <a href="#"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Metrics<span class="later">T4</span></a>
+  </nav>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="crumbs">Veterans Overcoming the Odds › <b>Alert queue</b></div>
+      <span class="seat">You: Tier 1 analyst</span>
+      <span class="clock">Shift 06:00–18:00 UTC · <span class="mono">09:41</span></span>
+      <div class="switches">
+        <button class="switch" id="themeBtn" type="button" aria-pressed="false">Light theme</button>
+        <button class="switch" id="dysBtn" type="button" aria-pressed="false">Easier reading</button>
+        <button class="switch" id="instrBtn" type="button" aria-pressed="false">Instructor</button>
+      </div>
+    </header>
+    <div class="preview">Preview of the console, for design review. Nothing here is live yet.</div>
+    <div class="instr-banner">Instructor mode is on: every tier and every ticket is unlocked.</div>
+    <form class="pinbox" id="pinbox" hidden>
+      <label for="pin">Instructor PIN</label>
+      <input id="pin" name="pin" inputmode="numeric" autocomplete="off" maxlength="8">
+      <button class="switch" type="submit">Unlock</button>
+      <button class="switch" type="button" id="pinCancel">Cancel</button>
+      <span class="msg" id="pinMsg" role="status"></span>
+    </form>
+
+    <div class="content">
+      <div class="tiers" aria-label="Tiers">
+        <span class="label">Tier</span>
+        <span class="tier current">1 · First shift</span>
+        <span class="tier" data-tier>2 · The scan<span class="lock">locked</span></span>
+        <span class="tier" data-tier>3 · Endpoint and wire<span class="lock">locked</span></span>
+        <span class="tier" data-tier>4 · The incident<span class="lock">locked</span></span>
+        <span class="tier" data-tier>5 · Maturity<span class="lock">locked</span></span>
+      </div>
+
+      <form class="search" id="searchForm">
+        <label for="q">Search the queue</label>
+        <input id="q" name="q" value="status!=closed | sort -severity, time" spellcheck="false">
+        <button class="time" type="button">Last 24 hours</button>
+        <button class="go" type="submit">Search</button>
+      </form>
+
+      <div class="summary" id="summary" aria-label="Open alerts by severity"></div>
+
+      <div class="workarea">
+        <section class="panel" aria-label="Alerts">
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" id="tabOpen" aria-selected="true" type="button">Open</button>
+            <button class="tab" role="tab" id="tabClosed" aria-selected="false" type="button">Closed this shift</button>
+          </div>
+          <div class="tablewrap">
+            <table>
+              <thead>
+                <tr><th>Case</th><th>Time (UTC)</th><th>Severity</th><th>Alert</th><th>Client</th><th>Entity</th><th>ATT&amp;CK</th><th>Status</th><th>SLA</th></tr>
+              </thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+        </section>
+        <aside class="panel drawer" id="drawer" aria-live="polite"></aside>
+      </div>
+    </div>
+
+    <footer>Cyber Warrior Program — built by an instructor, for students, to make certification study more interactive. For educational purposes only. Not affiliated with, endorsed by, or sponsored by CompTIA®. All trademarks belong to their respective owners.</footer>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var PIN = "3693";   /* a door, not a lock: it is in the page source, as on every CWP site */
+  function read(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+  function write(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { /* not fatal */ } }
+  var root = document.documentElement;
+
+  var SEV = { critical: "Critical", high: "High", medium: "Medium", low: "Low", info: "Info" };
+  var RANK = { critical: 0, high: 1, medium: 2, low: 3, info: 4 };
+
+  var OPEN = [
+    { id: "VOO-1051", time: "05:55:12", sev: "critical", alert: "Connection to an address on a threat feed", source: "Firewall", client: "The Steadfast Outpost Thrift", entity: "POS-01 → 203.0.113.9", attack: "T1071", status: "Assigned · Caramon", sla: "Due 06:10", late: true,
+      facts: [["Rule", "Outbound to indicator on a community feed"], ["Feed entry", "Added 3 days ago, one source, low confidence"], ["Traffic", "HTTPS every 6 hours, same size each time"]],
+      query: 'source=firewall src="POS-01" dest="203.0.113.9" earliest=-7d\n| stats count by dest_port, bytes_out' },
+    { id: "VOO-1058", time: "06:47:30", sev: "high", alert: "WAF: path traversal attempts (214)", source: "WAF", client: "OEF Fuel Roasters", entity: "shop.oeffuel.example", attack: "T1190", status: "New", sla: "28 min",
+      facts: [["Rule", "Path traversal pattern in URL, 214 hits in 20 min"], ["Sources", "3 addresses"], ["WAF action", "Blocked: 214 of 214"]],
+      query: 'source=waf host="shop.oeffuel.example" earliest=-1h\n| stats count by src_ip, action, status' },
+    { id: "VOO-1042", time: "09:34:02", sev: "medium", alert: "Impossible travel: 930 mi in 29 min", source: "SIEM", client: "The Steadfast Outpost Thrift", entity: "otik@steadfastoutpost.example", attack: "T1078", status: "New", sla: "53 min",
+      facts: [["Rule", "Two successful sign-ins >500 mi apart within 60 min"], ["Event 1", "09:02 · 203.0.113.44 · Charlotte, NC"], ["Event 2", "09:31 · 198.51.100.17 · Dallas, TX"]],
+      fizban: "Likely account compromise. Two successful sign-ins 930 miles apart in 29 minutes. Recommend disabling the account and resetting the password.",
+      query: 'source=signin user="otik@steadfastoutpost.example" earliest=-24h\n| table time src_ip geo asn device_id type mfa result' },
+    { id: "VOO-1063", time: "08:22:40", sev: "medium", alert: "Reported email: “Your password expires today”", source: "User report", client: "Thomas P. Payne School", entity: "alhana@payneschool.example", attack: "", status: "New", sla: "41 min",
+      facts: [["Reported by", "alhana@payneschool.example"], ["From", "it-support@payneschool.example"], ["Filter verdict", "Delivered, not flagged"]],
+      fizban: "Credential phishing. DMARC failed and the link goes to a domain registered two days ago. Recommend resetting the passwords of all five recipients.",
+      query: 'source=proxy url="*payneschool-login.example*" earliest=-24h\n| table time user src_ip method url status' },
+    { id: "VOO-1064", time: "08:32:05", sev: "low", alert: "Reported email: “Password change required by Friday”", source: "User report", client: "Thomas P. Payne School", entity: "eben@payneschool.example", attack: "", status: "New", sla: "3 h 51 min",
+      facts: [["Reported by", "eben@payneschool.example"], ["From", "it@payneschool.example"], ["Filter verdict", "Delivered, not flagged"]],
+      query: 'source=mail message_id="<*20261006.0831*@payneschool.example>"\n| table time from return_path spf dkim dmarc' },
+    { id: "VOO-1187", time: "07:05:18", sev: "medium", alert: "Periodic outbound beacon, hourly", source: "SIEM", client: "Vanguard Auto Detailing", entity: "VAD-FRONT-01", attack: "T1071", status: "In progress · you", mine: true, sla: "1 h 12 min",
+      facts: [["Rule", "Same destination, regular interval, steady sizes"], ["Destination", "relay.saxet-keeper.example :443"], ["Interval", "3600 s ± 4 s over 72 h"]],
+      query: 'source=zeek.conn id.orig_h="10.20.1.15" earliest=-72h\n| stats count avg(orig_bytes) avg(resp_bytes) by id.resp_h' },
+    { id: "VOO-1055", time: "06:12:44", sev: "low", alert: "Failed sign-ins below lockout threshold (3 users)", source: "Identity", client: "Nexxuss", entity: "3 accounts", attack: "T1110.003", status: "New", sla: "3 h 12 min",
+      facts: [["Rule", "Failures below lockout, several users, one hour"], ["Failures", "2 per user, 11 users seen in 7 days"], ["Source", "Many addresses, one password each"]],
+      query: 'source=signin client="Nexxuss" result=failure earliest=-7d\n| stats dc(user) count by src_ip' },
+    { id: "VOO-1049", time: "05:40:09", sev: "info", alert: "Anti-malware signatures older than 7 days (4 hosts)", source: "EDR health", client: "No Go Smile", entity: "IMG-WS-01 … 04", attack: "", status: "New", sla: "Next day",
+      facts: [["Check", "Signature age on every host, daily"], ["Oldest", "19 days"], ["Last update attempt", "Failed: connection timed out"]],
+      query: 'source=edr.health client="No Go Smile" earliest=-30d\n| table host sig_version sig_age_days last_update_result' }
+  ];
+
+  var CLOSED = [
+    { id: "VOO-1031", time: "07:48:10", sev: "medium", alert: "Impossible travel: 610 mi in 40 min", source: "SIEM", client: "The Steadfast Outpost Thrift", entity: "tika@steadfastoutpost.example", attack: "T1078", status: "Closed · benign true positive", sla: "Met",
+      facts: [["Closed by", "You, 08:03"], ["Disposition", "Benign true positive"], ["Not proven", "That the phone was in the volunteer's hands"]] },
+    { id: "VOO-1027", time: "07:20:55", sev: "low", alert: "New admin account created", source: "Identity", client: "Ironclad Auto Care", entity: "svc-backup2", attack: "T1136", status: "Closed · change ticket CHG-2231", sla: "Met",
+      facts: [["Closed by", "Caramon, 07:34"], ["Disposition", "Benign: approved change"], ["Evidence", "Matching change ticket, same technician"]] },
+    { id: "VOO-1022", time: "06:58:03", sev: "high", alert: "WAF: SQL injection attempts (38)", source: "WAF", client: "OEF Fuel Roasters", entity: "shop.oeffuel.example", attack: "T1190", status: "Closed · duplicate of VOO-1021", sla: "Met",
+      facts: [["Closed by", "Tika, 07:05"], ["Disposition", "Duplicate"], ["Linked", "VOO-1021"]] }
+  ];
+
+  var view = "open";
+  var selected = "VOO-1042";
+  var sevFilter = null;
+  var said = "";
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function sevHtml(s) { return '<span class="sev s-' + s + '"><span class="dot" aria-hidden="true"></span>' + SEV[s] + "</span>"; }
+  function list() { return view === "open" ? OPEN : CLOSED; }
+
+  function renderSummary() {
+    var counts = { critical: 0, high: 0, medium: 0, low: 0, info: 0 };
+    OPEN.forEach(function (r) { counts[r.sev]++; });
+    var html = Object.keys(SEV).map(function (s) {
+      return '<button type="button" class="count" data-sev="' + s + '" aria-pressed="' + (sevFilter === s) + '">' + sevHtml(s) + " <b>" + counts[s] + "</b></button>";
+    }).join("");
+    document.getElementById("summary").innerHTML = html;
+  }
+
+  function renderRows() {
+    var rows = list().slice().filter(function (r) { return !sevFilter || r.sev === sevFilter; });
+    rows.sort(function (a, b) { return RANK[a.sev] - RANK[b.sev] || (a.time < b.time ? -1 : 1); });
+    var html = '<tr class="dayhead"><td colspan="9">Tuesday 6 October 2026</td></tr>';
+    if (!rows.length) html += '<tr><td colspan="9">No alerts match. Clear the severity filter to see everything.</td></tr>';
+    html += rows.map(function (r) {
+      return '<tr tabindex="0" data-id="' + r.id + '" aria-selected="' + (r.id === selected) + '">' +
+        '<td class="id">' + r.id + "</td>" +
+        '<td class="time">' + r.time + "</td>" +
+        "<td>" + sevHtml(r.sev) + "</td>" +
+        '<td class="alert">' + esc(r.alert) + '<span class="sub">' + esc(r.source) + "</span></td>" +
+        '<td class="client">' + esc(r.client) + "</td>" +
+        '<td class="entity">' + esc(r.entity) + "</td>" +
+        '<td class="attack">' + (r.attack || "—") + "</td>" +
+        '<td><span class="status' + (r.mine ? " mine" : "") + '">' + esc(r.status) + "</span></td>" +
+        '<td><span class="sla' + (r.late ? " warn" : "") + '">' + (r.late ? "Overdue · " : "") + esc(r.sla) + "</span></td></tr>";
+    }).join("");
+    document.getElementById("rows").innerHTML = html;
+  }
+
+  function renderDrawer() {
+    var r = OPEN.concat(CLOSED).filter(function (x) { return x.id === selected; })[0];
+    var d = document.getElementById("drawer");
+    if (!r) { d.innerHTML = "<p>Select an alert to see its summary.</p>"; return; }
+    var closed = CLOSED.indexOf(r) >= 0;
+    var html = '<div class="idline"><span class="mono">' + r.id + "</span>" + sevHtml(r.sev) + "<span>" + esc(r.status) + "</span></div>" +
+      "<h2>" + esc(r.alert) + "</h2>" +
+      "<dl><dt>Client</dt><dd>" + esc(r.client) + "</dd><dt>Entity</dt><dd class=\"mono\">" + esc(r.entity) + "</dd>" +
+      r.facts.map(function (f) { return "<dt>" + esc(f[0]) + "</dt><dd>" + esc(f[1]) + "</dd>"; }).join("") + "</dl>";
+    if (r.fizban) {
+      html += '<div class="fizban"><div class="who"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>Fizban · AI assistant</div><p>' +
+        esc(r.fizban) + '</p><div class="note">Fizban can be wrong. Check it against the evidence.</div></div>';
+    }
+    if (r.query) html += '<div><div style="font-size:14px;color:var(--ink-dim);margin-bottom:4px">Suggested first search</div><div class="querybox">' + esc(r.query) + "</div></div>";
+    html += '<div class="actions">' +
+      (closed ? '<button type="button" class="primary" data-act="review">Review case</button><button type="button" data-act="reopen">Reopen</button>'
+              : '<button type="button" class="primary" data-act="open">Open case</button><button type="button" data-act="assign">Assign to me</button><button type="button" data-act="search">Run search</button>') +
+      '</div><div class="said" role="status">' + esc(said) + "</div>";
+    d.innerHTML = html;
+  }
+
+  function render() { renderSummary(); renderRows(); renderDrawer(); }
+
+  document.getElementById("rows").addEventListener("click", function (e) {
+    var tr = e.target.closest("tr[data-id]"); if (!tr) return;
+    selected = tr.getAttribute("data-id"); said = ""; render();
+  });
+  document.getElementById("rows").addEventListener("keydown", function (e) {
+    if (e.key !== "Enter" && e.key !== " ") return;
+    var tr = e.target.closest("tr[data-id]"); if (!tr) return;
+    e.preventDefault(); selected = tr.getAttribute("data-id"); said = ""; render();
+    var again = document.querySelector('tr[data-id="' + selected + '"]'); if (again) again.focus();
+  });
+  document.getElementById("summary").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-sev]"); if (!b) return;
+    var s = b.getAttribute("data-sev");
+    sevFilter = sevFilter === s ? null : s;
+    if (view !== "open") { view = "open"; setTabs(); }
+    render();
+  });
+  document.getElementById("drawer").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-act]"); if (!b) return;
+    var msgs = {
+      open: "In the build, this opens the case page: analyst notes, investigation and resolution.",
+      assign: "In the build, this assigns the case to you and starts the activity log.",
+      search: "In the build, this runs the search in the Search screen.",
+      review: "In the build, this opens the closed case read-only, with its activity log.",
+      reopen: "In the build, this reopens the case with a reason, the way VOO-1187 is reopened in Tier 3."
+    };
+    said = msgs[b.getAttribute("data-act")] || ""; renderDrawer();
+  });
+
+  function setTabs() {
+    document.getElementById("tabOpen").setAttribute("aria-selected", String(view === "open"));
+    document.getElementById("tabClosed").setAttribute("aria-selected", String(view === "closed"));
+  }
+  document.getElementById("tabOpen").addEventListener("click", function () { view = "open"; setTabs(); render(); });
+  document.getElementById("tabClosed").addEventListener("click", function () { view = "closed"; sevFilter = null; selected = CLOSED[0].id; said = ""; setTabs(); render(); });
+  document.getElementById("searchForm").addEventListener("submit", function (e) { e.preventDefault(); said = "In the build, the search bar runs typed searches from ticket 001."; renderDrawer(); });
+
+  /* ---- switches ------------------------------------------------------- */
+  var themeBtn = document.getElementById("themeBtn");
+  var dysBtn = document.getElementById("dysBtn");
+  var instrBtn = document.getElementById("instrBtn");
+  function syncSwitches() {
+    var dark = root.getAttribute("data-theme") !== "light";
+    themeBtn.textContent = dark ? "Light theme" : "Dark theme";
+    themeBtn.setAttribute("aria-pressed", "false");
+    dysBtn.setAttribute("aria-pressed", String(root.getAttribute("data-dyslexia") === "on"));
+    var on = root.getAttribute("data-instructor") === "on";
+    instrBtn.setAttribute("aria-pressed", String(on));
+    instrBtn.textContent = on ? "Instructor: on" : "Instructor";
+    Array.prototype.forEach.call(document.querySelectorAll("[data-tier]"), function (t) {
+      var lock = t.querySelector(".lock");
+      if (lock) lock.textContent = on ? "open" : "locked";
+    });
+  }
+  themeBtn.addEventListener("click", function () {
+    var v = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", v); write("cwp:theme", v); syncSwitches();
+  });
+  dysBtn.addEventListener("click", function () {
+    var v = root.getAttribute("data-dyslexia") === "on" ? "off" : "on";
+    root.setAttribute("data-dyslexia", v); write("cwp:dyslexia", v); syncSwitches();
+  });
+  var pinbox = document.getElementById("pinbox");
+  var pinMsg = document.getElementById("pinMsg");
+  instrBtn.addEventListener("click", function () {
+    if (root.getAttribute("data-instructor") === "on") {
+      root.setAttribute("data-instructor", "off"); write("cwp:instructor", "0"); syncSwitches(); return;
+    }
+    pinbox.hidden = false; pinMsg.textContent = ""; document.getElementById("pin").focus();
+  });
+  document.getElementById("pinCancel").addEventListener("click", function () { pinbox.hidden = true; });
+  pinbox.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("pin");
+    if (String(input.value).trim() === PIN) {
+      root.setAttribute("data-instructor", "on"); write("cwp:instructor", "1");
+      input.value = ""; pinbox.hidden = true; syncSwitches();
+    } else {
+      pinMsg.textContent = "That PIN didn't match. Instructor mode stays off.";
+      input.value = ""; input.focus();
+    }
+  });
+
+  syncSwitches();
+  render();
+})();
+</script>
