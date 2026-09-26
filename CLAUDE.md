@@ -960,6 +960,48 @@ its threat score) appears in the build.
   exactly as with the class sims (section 4). That lab also answers in free
   text boxes; this build keeps its six-option boards
 
+### Field lists the owner supplied — 26 September
+
+The owner sent field lists, not screenshots, for four screens. Every emoji in
+them becomes a colour **and** a word on screen, never colour alone.
+
+**Identity sign-in log.** The owner's four fields (user, location, MFA
+result, device), plus what real identity platforms also record, which the
+tickets need: time, application, IP address and network, sign-in type
+(interactive or token refresh), device ID, conditional-access result, failure
+reason, and risk level. Ticket 001 already uses most of these. *"User +
+location + MFA result + device = sign-in context"* is the owner's one-line
+summary, and it goes on the screen's help panel.
+
+**Reported-email view.** Reported by, sender, recipient, subject, message ID,
+received time, headers (From, To, Date, Reply-To, Return-Path, Received),
+authentication results, **message trace** (sender → gateway → filtering →
+mailbox → reported), source IP, attachments, links. *Headers say where it
+came from; the trace says what happened to it inside.*
+
+One teaching point hides in the owner's example, **SPF pass · DKIM pass ·
+DMARC fail**. That combination is real, but only when the visible **From**
+domain is different from the domains SPF and DKIM checked (the Return-Path
+and the signing domain). **Passing is not aligning.** It is section 12's
+"SPF, DKIM and DMARC prove origin, not legitimacy", and it belongs in
+scenario type 2.
+
+**Vulnerability findings list and finding detail.** List: severity, finding,
+asset, CVE, status. Detail: finding, severity, asset, CVE, CVSS, affected
+component, description, evidence (installed version, host, port),
+remediation. **Add from ticket 002:** EPSS, CISA's exploitation rating,
+known-exploited status, **how it was detected**, due date and the rule that
+set it. The owner's example checked on 26 September: **CVE-2021-44228**
+(Log4j), log4j-core 2.14.1 affected (from 2.0-beta9), CVSS 3.1 **10.0**
+(CISA), exploitation **active**, known-exploited since **2021-12-10**.
+
+**Severity colours in the owner's example:** Critical red, **High orange**,
+Medium yellow, **Low blue**. Blue is royal. Orange is still OPEN (below).
+
+**Still wanted:** a case or ticket page with notes and a write-up box, if the
+owner has one. Otherwise it is designed from the detection-detail
+screenshots.
+
 ### The query bar — OPEN
 
 A real SIEM is driven by typing queries (`field=value`, `AND`, `| stats count by host`).
