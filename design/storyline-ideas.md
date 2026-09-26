@@ -150,7 +150,7 @@ cryptominer on the imaging workstations (Tier 3).
    someone else's foothold. **Lessons:** the full IR process (3.2), order of
    volatility and chain of custody (3.3), and "is this a HIPAA breach?"
    belonging to legal, not the analyst (2.5, 4.2)
-2. **Keep it small on purpose.** No Go Smile's whole story is hygiene:
+2. ~~**Keep it small on purpose.**~~ *Dropped 26 September: the owner kept the near miss, "because they are going to be in a real SOC."* No Go Smile's whole story is hygiene:
    signatures, patching, one cryptominer. Not every client needs a
    catastrophe, and veterans will notice if every thread escalates
 

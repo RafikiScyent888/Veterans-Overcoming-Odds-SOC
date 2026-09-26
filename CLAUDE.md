@@ -264,6 +264,7 @@ honest people honest; it is not a lock. The Security build is the same.
 
 | Decision | The owner's words |
 |---|---|
+| **No Go Smile: the near miss** | "Keep the near miss because they are going to be in a real SOC." |
 | **Every storyline idea approved** | "I like everything that you suggested. Add it." All of `design/storyline-ideas.md` is in: section 13g is now 32 story tickets, 124 decisions. This includes the 15-year-old with a port scanner |
 | **Three attackers who cross clients** | "Yes to the three attackers across clients." The Seekers, Bozak and Sivak each hit several clients, and the SOC is the only one that can see it. The run ends with the student linking them in the Diamond Model. Timeline in section 15, "The three campaigns" |
 
@@ -1259,9 +1260,10 @@ Decisions: Tier 1 7 × 2 = **14**, Tier 2 6 × 3 = **18**, Tier 3 7 × 4 = **28*
 Tier 4 8 × 5 = **40**, Tier 5 4 × 6 = **24**. Total **124**. The Steadfast
 Outpost never has an incident: four tickets, all benign.
 
-**One either/or, resolved for now:** two No Go Smile ideas pulled against each
-other, *the near miss* (ransomware staging caught early) and *keep it small on
-purpose*. The map uses the near miss (27). The owner may swap it back.
+**No Go Smile keeps the near miss — SETTLED 26 September.** The owner:
+"Keep the near miss because they are going to be in a real SOC." Ticket 27
+stays: resold access, ransomware staging caught before encryption. *Keep it
+small on purpose* is dropped.
 
 ### The practice queue — SETTLED 26 September: ten per type
 
@@ -1313,7 +1315,6 @@ The owner: "Yes, because you can do that in the real world, correct?"
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
 | **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
-| **No Go Smile: near miss or keep it small** | Section 13g uses the near miss; the owner may swap it |
 
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
