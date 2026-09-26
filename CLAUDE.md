@@ -1233,8 +1233,8 @@ three times. Campaign: **S** = the Seekers, **B** = Bozak, **V** = Sivak.
 | 9 | 2 | The exposed cloud share | Payne School: public, encrypted, logging off | | 7 | 1.2 · 2.1 · 2.2 · 2.4 · 2.5 · 4.2 |
 | 10 | 2 | Signatures 19 days old | No Go Smile: the update path blocked, HIPAA | | 6 | 1.1 · 2.1 · 2.2 · 2.4 · 2.5 |
 | 11 | 2 | The store plugin | OEF: EPSS climbing, not yet known-exploited | B | 4 | 1.4 · 2.3 · 4.1 |
-| 12 | 2 | The pipeline that published the keys | Nexxuss: infrastructure as code, a public bucket, a leaked key | | 7 | 1.5 · 2.2 · 2.4 |
-| 13 | 2 | The firmware certificate changed | Ironclad: the diagnostic tablets are OT | | 6 · 5 | 1.2 · 2.4 · 2.5 |
+| 12 | 2 | The pipeline that published the keys | Nexxuss: infrastructure as code, a public bucket, a leaked key | | 7 | 1.5 · 2.2 · 2.3 · 2.4 |
+| 13 | 2 | The firmware certificate changed | Ironclad: the diagnostic tablets are OT | | 6 · 5 | 1.2 · 2.3 · 2.4 · 2.5 |
 | 14 | 3 | 003 The beacon reopened | Vanguard: new evidence | | 8 | 1.2 · 1.3 · 1.4 · 2.5 · 3.1 · 3.4 |
 | 15 | 3 | Attempt or success | OEF: traversal and injection in the logs | B | 10 | 1.2 · 1.3 · 3.1 · 3.3 |
 | 16 | 3 | The cryptominer | No Go Smile: process tree from the VPN | | 9 | 1.2 · 1.3 · 3.1 · 3.5 |
