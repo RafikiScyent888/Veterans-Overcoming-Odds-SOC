@@ -25,8 +25,13 @@ Last updated **24 September 2026, eighth pass — objective list with numbers, c
   both that branch and `main`. Until "build" there is no site code, so `main`
   carries design documents only. Every other repository keeps the never-push
   rule
-- **This file is updated every 3 hours until it is time to build.** A routine
-  fires into the session to do it. Conversations have disappeared overnight
+- **This file is updated every 3 hours until it is time to build — but only
+  while the owner and Claude are actually talking and planning.** Owner, 26
+  September: "The 3 hour check only applies when we are talking and planning
+  out everything." The routine (`trig_01TrcSyB5SnRBobj2umnqmwz`) is
+  **switched off between conversations** and switched back on when a planning
+  conversation starts. Every decision is also written in and pushed at the
+  end of the turn it was made in, so nothing waits on the routine. Conversations have disappeared overnight
   before — this file is the memory. The container is temporary: **only a copy
   in the owner's hands survives a rebuild**, so the file is sent to the owner
   whenever it changes.
