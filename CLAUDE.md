@@ -932,6 +932,7 @@ its threat score) appears in the build.
 | **Process graph** | Processes as nodes, with toggles for file, network, registry, DNS and lateral movement, and an ATT&CK matrix beside it | Tier 3–4 |
 | **Investigation graph** | Hosts, users, files, domains and indicators as a node graph, a legend with counts, and a side panel per entity: host details, discovery, vulnerabilities, identity, **cloud misconfigurations** | Tier 4 |
 | **Event search** | Query bar, time range, fields with coverage percentages, raw events | Tier 3 on |
+| **SIEM search (second set, 26 September)** | App bar; tabs for Search, Reports, Alerts, Dashboards; a **query bar with a time picker** ("Last 24 hours"); search history. Results: event count, tabs for Events / Patterns / Statistics / Visualization, a timeline, 20 per page. A **field sidebar**: selected fields (host, source, sourcetype) and "interesting fields", each marked as text or number, **each with a count of distinct values** (`host 8`). Each event shows its raw line, and expands into key and value pairs | The SIEM, from Tier 1. **The distinct-value counts teach the class principle "count unique entities, not rows" (section 4) on the screen itself** |
 | **Creating a detection** | Name → query → *raise a detection* or *send a scheduled report* → severity → **ATT&CK tactic and technique** → how often it runs and over what window → who is notified | **The sensor-tuning screen at the run stage.** This is exactly how a real detection engineer writes a rule |
 | **Vulnerability dashboard** | Counts by the **vendor's own risk rating** beside counts by **CVSS severity**, and a 45-day trend of open findings | Tier 2. Two ratings side by side teaches "vendor severity vs CVSS" |
 | **Threat intel** | Indicators added and expired, categories, indicator types, alerts, latest intelligence, top threat sources | Tier 3 |
@@ -958,6 +959,26 @@ its threat score) appears in the build.
   `haris.khan` and `daniel.richards` users. **Same skills, new artefacts**,
   exactly as with the class sims (section 4). That lab also answers in free
   text boxes; this build keeps its six-option boards
+
+### The query bar — OPEN
+
+A real SIEM is driven by typing queries (`field=value`, `AND`, `| stats count by host`).
+
+- **Real world:** reading and writing queries is daily work
+- **Exam (1.3):** knowing what a query, a field and a time range do. No one
+  vendor's language is tested
+- **RECOMMENDED:** a query bar in a **generic** language that looks like the
+  common ones, not a copy of any vendor's. **Clicking a value writes the query
+  for you**, as real consoles do, so typing is never required but the student
+  always sees the query their clicks built. From Tier 3, some tickets ask them
+  to read a query and say what it would miss
+- **The owner to decide:** is typing optional throughout, or required from a
+  later tier?
+
+**Do not reuse the second set's data.** The results screenshot is a public
+practice dataset (`index=botsv1`: the `gotham-fortigate` firewall,
+`192.168.250.x`, `71.39.18.122`) that students may already have met in
+online training labs.
 
 ### The process tree the owner pasted — checked
 
@@ -1020,6 +1041,7 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Scenario types** | Section 13f — each type talked through, real world against exam |
+| **The query bar** | Section 13e — typing optional throughout, or required from a later tier? |
 | **The colour for "High"** | Section 13e — orange is standard in real consoles but outside the royal six; needs a preview |
 | **The wrongly closed ticket** | (a) a colleague's mistake, (b) the student's own earlier ticket, closed correctly with what they could see then and reopened on new evidence (RECOMMENDED), or both — see the owner conversation of 26 September |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
