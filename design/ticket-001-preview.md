@@ -43,6 +43,17 @@ DISTANCE  ~930 mi in 29 min
 
 ### Tab B — Sign-in log (identity provider), last 8 rows for this account
 
+**The student runs this search themselves** (settled 26 September: "We are
+taught to search from the beginning"). On this first ticket the guide shows
+it:
+
+```
+source=signin user="otik@steadfastoutpost.example" earliest=-24h
+| table time src_ip geo asn device_id type mfa result
+```
+
+Clicking any value in the results adds it to the search.
+
 | Time | Source IP | Geo | Network (ASN) | Device ID | Type | MFA | Result |
 |---|---|---|---|---|---|---|---|
 | 08:55 | 203.0.113.44 | Charlotte, NC | RF Jack Cable | iPhone-7F2A | Interactive | — | **Failed — bad password** |

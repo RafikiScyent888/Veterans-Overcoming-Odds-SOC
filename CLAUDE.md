@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, ninth pass — no 3D, a real SOC console, the owner's screenshots, scenario types**. Supersedes the paused notes in
+Last updated **24 September 2026, tenth pass — severity colours, real names, the case page, searching from day one**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -222,6 +222,15 @@ honest people honest; it is not a lock. The Security build is the same.
 | **Balance real world and exam prep** | "We need to talk through each type of scenario to ensure we balance real world prep with exam prep." Section 13f lists the types; each is talked through before it is built |
 | **The wrongly closed ticket** | "I am trying to balance real world and exam prep. Let's talk about this one." OPEN, options in section 14 |
 | **The 3-hour check** | Only while planning (section 0) |
+
+### Tenth pass — SETTLED 26 September
+
+| Decision | The owner's words |
+|---|---|
+| **Severity colours** | "Match the screenshots that I gave you to mimic the real world." Critical red · High orange · Medium yellow · Low green |
+| **Real public DNS and real cloud names** | "Real public DNS addresses are allowed and real cloud provider names are allowed. They are going to see it is real life." |
+| **The case page** | "What is the real world like? Match it." Limits go in the closure notes; the analyst writes "evidence reviewed"; the console keeps an automatic activity log |
+| **Searching** | "We are taught to search from the beginning." Typed searches from ticket 001 |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -896,7 +905,7 @@ then trusted with an incident.
 |---|---|---|---|
 | **The seat** | Triage: real or not, close or escalate | Investigate: prioritise, confirm, map it, recommend | Own the incident, then improve the SOC |
 | **Decisions per ticket** | 2 | 3, then 4 | 5, then 6 |
-| **The evidence** | Attached to the ticket, as tabs | Two screens linked; **the student opens the rest** (from ticket 003) | Nothing attached. The console is open and they decide where to look |
+| **The evidence** | Attached to the ticket, as tabs, **plus their own searches from ticket 001** (the guide shows the first one) | Two screens linked; **the student opens the rest** (from ticket 003) | Nothing attached. The console is open and they decide where to look |
 | **The guide** | Unfolds one step at a time, says where to look | Shorter; says **what** to find, not where | Collapsed by default. Opened on request |
 | **The queue** | One ticket at a time, shift clock visible | A few tickets at once, the student chooses the order | **Live**: tickets arrive while they work, SLA clocks run, a shift handover at the end |
 | **The sensors** | Choose one of six rule changes | Set the threshold, and **see a backtest**: how many alerts it would have raised last week, and what it would have missed | Write and edit the rules; own the false-positive budget; SOAR playbooks in Tier 5 |
@@ -945,9 +954,11 @@ its threat score) appears in the build.
 - **AAA contrast beats the screenshots.** Several use small grey text or red
   text on near-black, which will not reach 7:1. The layout is copied; the
   colours are the royal palette at AAA
-- **OPEN — the colour for "High".** Real consoles use **orange** for High,
-  between red and yellow. Orange is outside the royal six, so it needs the
-  owner's approval on a preview first
+- **Severity colours — SETTLED 26 September:** "Match the screenshots that I
+  gave you to mimic the real world." **Critical red · High orange · Medium
+  yellow · Low green**, with Informational in blue or silver. Orange is the
+  owner's approved exception to the royal six for severity. Every one sits
+  beside its word, and the word meets AAA
 - **Do not copy data from the screenshots.** One mock queue marks
   `93.184.216.34` as "known bad". That is the real address of example.com.
   Another uses `corp.com`, which is a real, registered domain. The build keeps
@@ -1012,15 +1023,22 @@ The owner's reason for it: *"so another analyst can understand exactly what
 happened without repeating the investigation."* That is the Reporting
 domain (4.2) in one sentence.
 
-**RECOMMENDED additions:**
+**Matched to the real world — SETTLED 26 September.** The owner: "What is
+the real world like? Match it."
 
-- **A fourth part: Not proven / open questions.** The owner's template has no
-  place for *what can you not prove?*, the prompt that makes reopening a
-  ticket possible (ticket 003, and option C for the wrongly closed ticket)
-- **"Evidence reviewed" fills itself in** from the screens the student
-  actually opened, and they can't tick a source they never looked at. Real
-  case tools attach pivots the same way. It also shows the student, and the
-  instructor, what they skipped
+- **No separate "Not proven" section.** Real case pages don't have one. Good
+  analysts write limits into the **closure notes**, often with a confidence
+  level (high, moderate, low), and incident and intelligence reports carry
+  "gaps" or "limitations". So the closure notes' guide text reads *root cause,
+  remediation, affected users and assets, final disposition, and **what could
+  not be confirmed***. The approved write-up prompt stays, inside the closure
+  notes, where a real template would put it
+- **"Evidence reviewed" is written by the analyst**, as it is in real case
+  tools. **What real tools do add automatically is the activity log**: every
+  search run, every entity attached, every status change, with the time and
+  who did it. The console keeps that log on every case. The student doesn't
+  fill it in, and the instructor can read it to see what was and wasn't
+  looked at
 
 ### Field lists for the later tiers — 26 September
 
@@ -1040,9 +1058,10 @@ priority), the affected asset, the packets that matched, and related alerts.
 vulnerability example rated High orange. **The console uses one scale
 everywhere** (see the open colour question). The example also shows DNS going
 to `8.8.8.8`, a real public resolver. That realism matters, because devices
-skipping the company's own DNS is a genuine indicator. **RECOMMENDED:** well-known
-public resolvers may appear by their real address, and they are **never**
-labelled malicious.
+skipping the company's own DNS is a genuine indicator. **SETTLED 26
+September:** well-known public resolvers appear by their real address ("They
+are going to see it is real life"), and they are **never** labelled
+malicious.
 
 **Cloud posture finding** (Tier 2–3). Finding, severity, cloud, resource,
 account, region; details (public access, encryption, logging, data
@@ -1056,9 +1075,9 @@ owner's example holds two lessons:
 - **Logging disabled.** So nobody can prove whether it was read. That goes
   straight into *not proven*
 
-Payne School's exposed share (section 15) uses this screen. **RECOMMENDED:**
-the client's cloud may be named with real provider and service names (the
-exam and the jobs use them). The console itself stays unbranded.
+Payne School's exposed share (section 15) uses this screen. **SETTLED 26
+September:** clients' clouds are named with real provider and service names.
+The console itself stays unbranded.
 
 **SOAR playbook editor** (Tier 5). Triggers, actions, conditions,
 integrations and decision points on a canvas. The owner's example phishing
@@ -1078,20 +1097,26 @@ job is to find them:
   radius (section 12). Blocking a URL that turns out to be the client's own
   payment page stops the business
 
-### The query bar — OPEN
+### The query bar — SETTLED 26 September: students type searches from Tier 1
 
 A real SIEM is driven by typing queries (`field=value`, `AND`, `| stats count by host`).
 
 - **Real world:** reading and writing queries is daily work
 - **Exam (1.3):** knowing what a query, a field and a time range do. No one
   vendor's language is tested
-- **RECOMMENDED:** a query bar in a **generic** language that looks like the
-  common ones, not a copy of any vendor's. **Clicking a value writes the query
-  for you**, as real consoles do, so typing is never required but the student
-  always sees the query their clicks built. From Tier 3, some tickets ask them
-  to read a query and say what it would miss
-- **The owner to decide:** is typing optional throughout, or required from a
-  later tier?
+- **The owner: "We are taught to search from the beginning."** Students
+  type searches from their first ticket
+- A **generic** query language that looks like the common ones, not a copy of
+  any vendor's. As in real consoles, **clicking a value adds it to the
+  search**, fields autocomplete, and search history is kept. Those are
+  conveniences real analysts use, not a way round typing
+- **Searching is how they find evidence; the six-option boards are how they
+  decide.** A search that returns nothing is an answer, not a failure, and
+  nothing locks
+- A mistyped search gets a plain error that says what is wrong and how to fix
+  it, never a blank screen
+- From Tier 3, some tickets ask them to read a colleague's search and say what
+  it would miss
 
 **Do not reuse the second set's data.** The results screenshot is a public
 practice dataset (`index=botsv1`: the `gotham-fortigate` firewall,
@@ -1159,9 +1184,7 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Scenario types** | Section 13f — each type talked through, real world against exam |
-| **The query bar** | Section 13e — typing optional throughout, or required from a later tier? |
-| **The colour for "High"** | Section 13e — orange is standard in real consoles but outside the royal six; needs a preview |
-| **The wrongly closed ticket** | (a) a colleague's mistake, (b) the student's own earlier ticket, closed correctly with what they could see then and reopened on new evidence (RECOMMENDED), or both — see the owner conversation of 26 September |
+| **Who closed the old ticket in ticket 003** | Re-explained 26 September: a coworker who got it wrong, or the student themselves in Tier 1, right for what they could see then |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
 | **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
