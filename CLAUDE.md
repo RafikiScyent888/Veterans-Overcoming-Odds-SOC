@@ -1291,7 +1291,7 @@ The owner: "Yes, because you can do that in the real world, correct?"
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
 | **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
 | **21 tickets and the practice queue** | Section 13g: the map, and five practice tickets per scenario type |
-| **Storylines against objectives** | Section 13g is the first draft; the owner wants to talk it through |
+| **Storylines against objectives** | Section 13g is the first draft. **Ideas for the owner to pick from: `design/storyline-ideas.md`** (26 September): three cross-client campaigns, and new ideas per client |
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
