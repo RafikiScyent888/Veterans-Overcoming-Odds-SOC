@@ -998,9 +998,29 @@ set it. The owner's example checked on 26 September: **CVE-2021-44228**
 **Severity colours in the owner's example:** Critical red, **High orange**,
 Medium yellow, **Low blue**. Blue is royal. Orange is still OPEN (below).
 
-**Still wanted:** a case or ticket page with notes and a write-up box, if the
-owner has one. Otherwise it is designed from the detection-detail
-screenshots.
+**Case / ticket page** (supplied the same day). Header: case ID, status,
+priority, assigned to, created, title, user, source, related alert. Then three
+parts:
+
+| Part | What goes in it | Where ticket 001's write-up prompts land |
+|---|---|---|
+| **Analyst notes** | The running log: what was seen, as it was seen | *What did the alert say?* |
+| **Investigation** | Findings · **evidence reviewed** (headers, trace, sender, URL reputation, user activity…) · actions taken | *What did the evidence show, and where?* · *What did you change?* |
+| **Resolution / closure** | Root cause, remediation, affected users and assets, **final disposition** | *What did you conclude, and why is it the most defensible reading?* |
+
+The owner's reason for it: *"so another analyst can understand exactly what
+happened without repeating the investigation."* That is the Reporting
+domain (4.2) in one sentence.
+
+**RECOMMENDED additions:**
+
+- **A fourth part: Not proven / open questions.** The owner's template has no
+  place for *what can you not prove?*, the prompt that makes reopening a
+  ticket possible (ticket 003, and option C for the wrongly closed ticket)
+- **"Evidence reviewed" fills itself in** from the screens the student
+  actually opened, and they can't tick a source they never looked at. Real
+  case tools attach pivots the same way. It also shows the student, and the
+  instructor, what they skipped
 
 ### The query bar — OPEN
 
