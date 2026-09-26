@@ -1,6 +1,8 @@
 # The SOC world — everything named, for the owner to adjust
 
-**Status: PROPOSED 26 September, for the owner to adjust.** The owner asked:
+**Status: SETTLED 26 September.** The owner: "Nope, it all looks good." That includes the four new attackers (Kapak, Ember, Baaz, Sleet), the client names, and **Sivak** kept as it is.
+
+First posted for the owner to adjust. The owner asked:
 "Lay out what businesses are facing what attacks and the names of the
 attackers. Just name everything and let me see it. So that way, if we need
 to, we can make adjustments."
@@ -172,9 +174,25 @@ balance between the real world and the exam.
 
 ---
 
+## 5. The insiders — who, and why (26 September)
+
+The owner asked: "Who are we making the insider threat?" The build has
+**one real malicious insider, one real accidental insider, and two innocent
+suspects**. That matches the real world, where most insider alerts are not
+malice, and it keeps veterans from learning "the insider is whoever looks
+guilty."
+
+| Who | Where | Kind | What happens | Ticket |
+|---|---|---|---|---|
+| **Derek** | Nexxuss | **Malicious** (or at least unauthorised) | A senior developer who has resigned and is joining a competitor, **Palanthas Labs**. During his notice period, with his access still active as normal, he uploads 3.8 GB of source code and a customer list to personal cloud storage | 24 (T4) |
+| **Porthios** | Nexxuss | **Accidental** | A platform engineer whose infrastructure-as-code change publishes a storage bucket and leaks a key in a build log. No bad intent; real damage | 12 (T2) |
+| **Sestun** | Payne School | Innocent suspect | A 15-year-old's port scan after cyber club | 18 (T3) |
+| **Raistlin** | The SOC | Innocent suspect | PowerShell at 3 a.m.: his scheduled threat-intel automation | Tier 3 noise |
+
+**Palanthas Labs** is new: Nexxuss's competitor, named after the city in the
+Chronicles. PROPOSED.
+
 ## 5. Still to adjust
 
-1. **The four new attackers:** Kapak, Ember, Baaz, Sleet
-2. **The client names** in section 3
-3. **Sivak or Aurak,** if the names must be strictly from the Chronicles
-4. Anything else, anywhere: this is the page to change
+The owner approved the page. It stays the place to change anything:
+**Palanthas Labs** is the one new name still to confirm.
