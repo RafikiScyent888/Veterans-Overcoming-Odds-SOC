@@ -1161,7 +1161,7 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | # | Scenario type | Tier | Owner's list | Status |
 |---|---|---|---|---|
 | 1 | Identity alert triage: impossible travel, MFA fatigue, spraying | 1 | 1.1 · 1.2 · 3.3 | Ticket 001 |
-| 2 | User-reported phishing: headers, SPF/DKIM/DMARC, clicked vs submitted | 1 | 1.2 · 1.3 · 3.3 | To discuss |
+| 2 | User-reported phishing: headers, SPF/DKIM/DMARC, clicked vs submitted | 1 | 1.2 · 1.3 · 3.3 | **Proposed 26 September, owner not yet answered:** Payne School; SPF and DKIM pass but DMARC fails (From not aligned); trace shows 4 more recipients; 1 clicked, none submitted. D1 credential phishing despite the passes; D2 purge and block, no resets. A benign IT password notice the same shift. Questions: this client? nobody submits in Tier 1? a "how the exam asks this" panel on every ticket? |
 | 3 | Noise and closing well: benign, duplicates, false positives | Every tier | 1.5 · 4.2 | Throughout |
 | 4 | Vulnerability prioritisation | 2 | 2.2 · 2.3 · 4.1 | Ticket 002 |
 | 5 | Scan method and scanner tuning | 2 | 2.1 | Ticket 002 |
