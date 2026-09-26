@@ -18,7 +18,10 @@ The rules the storylines have to keep, all already agreed:
 
 ---
 
-## A. The big idea: three campaigns that cross clients
+## A. The big idea: three campaigns that cross clients — SETTLED 26 September
+
+The owner: "Yes to the three attackers across clients." The timeline is in
+`CLAUDE.md` section 15, "The three campaigns".
 
 In a real managed SOC, **one analyst watches many clients, so the same
 attacker can be seen at three companies at once.** A single company's IT
@@ -202,8 +205,7 @@ isolated tickets:
 
 ## Questions for the owner
 
-1. **The three cross-client campaigns (section A):** yes? They're the biggest
-   change from the draft.
+1. ~~The three cross-client campaigns~~ — **settled: yes**
 2. **The 15-year-old with a port scanner:** is a child "attacker" all right
    for your students?
 3. **Which new ideas to keep, client by client?** They can all be mixed with

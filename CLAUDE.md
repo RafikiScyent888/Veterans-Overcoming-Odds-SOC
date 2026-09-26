@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, thirteenth pass — severity colours fixed, a bigger practice queue, going back to check**. Supersedes the paused notes in
+Last updated **24 September 2026, fourteenth pass — three attackers across clients**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -259,6 +259,12 @@ honest people honest; it is not a lock. The Security build is the same.
 | **More practice tickets** | "Then let's add more." **Ten practice tickets per scenario type**, 17 × 10 = **170**, on top of the 21 story tickets |
 | **Going back to check** | "Yes, because you can do that in the real world, correct?" Review and reopen are real; replay is a training feature, and is labelled as one (section 13g) |
 | **"Do all of this."** | The owner's instruction for the three items above |
+
+### Fourteenth pass — SETTLED 26 September
+
+| Decision | The owner's words |
+|---|---|
+| **Three attackers who cross clients** | "Yes to the three attackers across clients." The Seekers, Bozak and Sivak each hit several clients, and the SOC is the only one that can see it. The run ends with the student linking them in the Diamond Model. Timeline in section 15, "The three campaigns" |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -1340,6 +1346,27 @@ pass); the threads are still a draft.
 | **Thomas P. Payne School** | Constant phishing noise from a young user base. The student's own posture scan finds an **exposed cloud share**. Later, an **AI voice-cloned call** to the help desk, as the principal, asks for an MFA reset | Cloud misconfiguration; deepfake social engineering; identity |
 | **Nexxuss** | **Two things at once.** A slow password-spray campaign across many clients lands here, and a cloud consent-phishing app takes over a mailbox. At the same time, an employee who has resigned is copying files to personal cloud storage | Identity and cloud attacks; a real insider; running two investigations together |
 | **Optic Light Fibre / RF Jack Cable** | A regional outage floods every client's queue with alerts at once — sixty tickets, one cause. Late on, a genuine DDoS hits OEF's store | Correlation instead of sixty escalations; availability |
+
+### The three campaigns, across clients — SETTLED 26 September (timeline RECOMMENDED)
+
+The owner: "Yes to the three attackers across clients." A managed SOC's real
+advantage is that one analyst sees many companies, so one attacker can be seen
+at three of them at once. Numbers in brackets are the 21-ticket map in
+section 13g.
+
+| Tier | The Seekers (stolen logins) | Bozak (website attacks) | Sivak (impersonation) |
+|---|---|---|---|
+| 1 | Failed sign-ins below the lockout at Nexxuss [5]. **The threshold the student sets here decides when the campaign is caught** | Traversal probes at OEF, blocked by the WAF: queue noise | The lookalike login page at Payne School [2]: Sivak's first touch |
+| 2 | Tuned well, a new alert fires: **one address spraying three clients**. Tuned badly, nothing | The Joomla flaw on Ironclad's booking site [6]; the OEF plugin with EPSS climbing [9] | — |
+| 3 | Still spraying if the student didn't tune | Attempt vs success at OEF [11]; the hunt [13]: Bozak's addresses change daily, their tool's fingerprint never does (**Pyramid of Pain**) | After Vanguard removes the Saxet agent [10], a call "from Saxet" asks to reinstall it |
+| 4 | A password lands at Nexxuss; **MFA fatigue** at 2 a.m.; a consent app keeps the access [15] | — | The Zumroh invoices at Ironclad [14]; the principal's cloned voice at Payne School [17] |
+| 5 | — | Prompt injection in a user-agent that Fizban reads [21]; the DDoS as a smokescreen | — |
+| 5 | **All three, linked in the Diamond Model** (adversary · capability · infrastructure · victim) in the report to leadership [20] | | |
+
+**What the student's choices change:** only the Seekers' timeline moves with
+tuning. A tight Tier 1 threshold catches them in Tier 2, and ticket 15 becomes a
+near miss instead of a mailbox takeover. Bozak and Sivak run on the story's
+clock, so every student meets them.
 
 ### Threat actors — named from Dragonlance Chronicles — APPROVED
 
