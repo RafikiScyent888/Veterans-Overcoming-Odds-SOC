@@ -1316,6 +1316,7 @@ The owner: "Yes, because you can do that in the real world, correct?"
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
+| **The world, everything named** | `design/world-bible.md` (26 September): every business, what it faces, who's behind it, which ticket. Proposes four more attackers (Kapak, Ember, Baaz, Sleet) and client staff names |
 | **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
 
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
