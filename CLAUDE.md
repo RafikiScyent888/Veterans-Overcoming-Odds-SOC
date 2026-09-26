@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, fifteenth pass — every storyline idea added: 32 story tickets**. Supersedes the paused notes in
+Last updated **24 September 2026, sixteenth pass — ticket 005 settled, the HIPAA line explained**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -264,6 +264,8 @@ honest people honest; it is not a lock. The Security build is the same.
 
 | Decision | The owner's words |
 |---|---|
+| **Ticket 005 settled** | Five decisions at the run stage: "Yes." Fizban wrong in a dangerous way: "Yes." The HIPAA line: "If that is how it goes in the SOC, yes, and explain more." Explained in ticket 005, section 4b: the analyst contains, preserves, records the discovery time and escalates; the covered entity's privacy officer runs the four-factor assessment and decides. Checked against HHS's pages |
+| **Mechanism panels before hard decisions** | Following the standing rule: where a decision depends on how something works (law, protocol, a tool), a short panel explains the mechanism **above** the board. Ticket 005's HIPAA panel is the pattern |
 | **No Go Smile: the near miss** | "Keep the near miss because they are going to be in a real SOC." |
 | **Every storyline idea approved** | "I like everything that you suggested. Add it." All of `design/storyline-ideas.md` is in: section 13g is now 32 story tickets, 124 decisions. This includes the 15-year-old with a port scanner |
 | **Three attackers who cross clients** | "Yes to the three attackers across clients." The Seekers, Bozak and Sivak each hit several clients, and the SOC is the only one that can see it. The run ends with the student linking them in the Diamond Model. Timeline in section 15, "The three campaigns" |
@@ -1314,7 +1316,6 @@ The owner: "Yes, because you can do that in the real world, correct?"
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
-| **Ticket 005** | `design/ticket-005-preview.md` — the near miss (map 27), the first run-stage ticket: five decisions, nothing attached, guide collapsed |
 | **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
 
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |

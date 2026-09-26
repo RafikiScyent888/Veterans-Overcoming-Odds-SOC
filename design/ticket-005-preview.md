@@ -59,9 +59,11 @@ uploads.
 the imaging workstations; entry point the unpatched VPN appliance; appliance
 patch scheduled.* The asset inventory shows the patch **still not applied**.
 
-**Client runbook.** Out-of-hours contact: the practice manager. Privacy
-officer for HIPAA questions: the practice's outside counsel. RafikisITS
-escalation: **Sturm**, incident response lead.
+**Client runbook.** Out-of-hours contact: the practice manager. HIPAA
+privacy officer: the practice's owner-dentist, advised by outside counsel.
+RafikisITS escalation: **Sturm**, incident response lead. **Business associate
+agreement:** RafikisITS tells the practice about any suspected incident
+involving patient records **within 24 hours of discovery**.
 
 ### Fizban, asked on purpose
 
@@ -190,6 +192,64 @@ ways, until solved or reset.
 
 ---
 
+## 4b. How the HIPAA line works in a real SOC — shown before Decision 4
+
+The owner asked for more on this (26 September). This panel sits **above**
+Decision 4, so the student has the mechanism before the question, as the
+standing rules ask. Checked against HHS's own pages (sources below).
+
+**Who is who**
+
+| | Role under HIPAA | In this ticket |
+|---|---|---|
+| **The dental practice** | A **covered entity**: it owns the patient records and the legal duty | No Go Smile |
+| **RafikisITS and its SOC** | A **business associate**: a contractor that can touch patient records, bound by a **business associate agreement (BAA)** | The student's employer |
+| **The privacy officer** | Every covered entity must name a privacy official. In a small practice it's often the owner or practice manager, advised by counsel | The owner-dentist, with outside counsel |
+
+**What happens, step by step**
+
+1. **The analyst contains and preserves** (Decisions 2 and 3), and writes
+   down **when the incident was discovered**. The discovery time starts
+   legal clocks, so the timestamp in the ticket matters
+2. **The analyst escalates** through the runbook: the IR lead, and the
+   client's named contact. The BAA sets how fast. Here it's 24 hours; the law's
+   outer limit for a business associate is 60 days, but contracts are usually
+   much shorter
+3. **The practice decides whether it's a breach.** Under the HIPAA Breach
+   Notification Rule, unauthorised access to patient records **is presumed to
+   be a breach**, unless the practice can show a **low probability** that the
+   records were compromised. That takes a documented risk assessment of at
+   least four factors:
+   - what records were involved, and how identifiable
+   - who got access to them
+   - whether the records were actually taken or viewed
+   - how far the risk has been reduced
+4. **If it is a breach, the practice notifies:** the patients, the
+   Department of Health and Human Services, and for large breaches the media,
+   within legal deadlines. Some states add their own rules on top. Lawyers,
+   often supplied through the practice's cyber insurer, usually run this part
+5. **The practice decides about law enforcement,** with its counsel
+
+**What the analyst never does:** tell the client it's "not a breach", contact
+patients, talk to the press, or call law enforcement on their own. The
+analyst's job is facts: **what happened, when, to which systems and which
+records, and what can't be confirmed**. Step 3 depends entirely on that. In
+this ticket, the 4,180 files read make "were records viewed?" a real question,
+and "could not be confirmed: that no files left the network" is exactly what
+the privacy officer needs to know.
+
+**Why it's on the exam:** 2.5 names HIPAA, and 4.2 names time-sensitive
+compliance reporting and communication with legal, PR and law enforcement.
+Expect questions like "Who should the analyst notify FIRST?" (whoever the IR
+plan names, which is not the patients and not the press) and "What determines
+whether notification is required?" (the regulation and the organisation's
+legal assessment, not the analyst).
+
+**Sources (HHS):**
+[Breach Notification Rule](https://www.hhs.gov/hipaa/for-professionals/breach-notification/index.html) ·
+[Fact Sheet: Ransomware and HIPAA](https://www.hhs.gov/hipaa/for-professionals/security/guidance/cybersecurity/ransomware-fact-sheet/index.html).
+A teaching summary, not legal advice.
+
 ## 5. The write-up — on the case page
 
 > **Analyst notes.** 01:21–01:38: new admin account on NGS-FILE-01, 4,180
@@ -205,7 +265,7 @@ ways, until solved or reset.
 > *Actions taken:* VPN session ended; `imgtech` and `support_tmp` disabled;
 > IMG-WS-02 and -03 isolated; memory, connections and disk images captured,
 > chain of custody recorded; escalated to Sturm and the practice manager at
-> 01:52.
+> 01:52. **Discovered: 01:40.**
 >
 > **Resolution.** Ransomware staging, contained before encryption. Root
 > cause: the VPN patch never applied and vendor credentials never rotated
@@ -247,10 +307,9 @@ Account · T1135 Network Share Discovery · T1490 Inhibit System Recovery. What
 
 ---
 
-## For the owner to adjust
+## Settled with the owner, 26 September
 
-1. **Five decisions at the run stage:** is this the right weight?
-2. **Fizban wrong in a dangerous way** (shut everything down): good for Tier
-   4?
-3. **The HIPAA line:** the analyst escalates, and the practice's privacy
-   officer decides. Is that how you teach it?
+1. **Five decisions at the run stage:** "Yes."
+2. **Fizban wrong in a dangerous way:** "Yes."
+3. **The HIPAA line:** "If that is how it goes in the SOC, yes, and explain
+   more." It is how it goes: see section 4b
