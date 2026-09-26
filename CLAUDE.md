@@ -220,7 +220,7 @@ honest people honest; it is not a lock. The Security build is the same.
 | **No 3D model in this build** | "Forget the 3D model for this build. I want it to look like a real SOC, period. This is the bottom line. I want it to be real." **This overrides the standing 3D rule for this build only**, on the owner's explicit instruction |
 | **Zeek logs** | Raw Zeek field names, with a plain-English heading under each |
 | **Balance real world and exam prep** | "We need to talk through each type of scenario to ensure we balance real world prep with exam prep." Section 13f lists the types; each is talked through before it is built |
-| **The wrongly closed ticket** | "I am trying to balance real world and exam prep. Let's talk about this one." OPEN, options in section 14 |
+| **The wrongly closed ticket** | "I am trying to balance real world and exam prep. Let's talk about this one." Settled in the tenth pass |
 | **The 3-hour check** | Only while planning (section 0) |
 
 ### Tenth pass — SETTLED 26 September
@@ -231,6 +231,7 @@ honest people honest; it is not a lock. The Security build is the same.
 | **Real public DNS and real cloud names** | "Real public DNS addresses are allowed and real cloud provider names are allowed. They are going to see it is real life." |
 | **The case page** | "What is the real world like? Match it." Limits go in the closure notes; the analyst writes "evidence reviewed"; the console keeps an automatic activity log |
 | **Searching** | "We are taught to search from the beginning." Typed searches from ticket 001 |
+| **The old ticket in ticket 003** | "Yes. I like this." The student closed VOO-1187 in Tier 1, correctly for what they could see, with a *not proven* line that reopens it in Tier 3. **A colleague's sloppy closure (Caramon) goes to Tier 5**, when the student reviews other analysts' closed tickets as a real SOC's quality check |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -1184,7 +1185,6 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Scenario types** | Section 13f — each type talked through, real world against exam |
-| **Who closed the old ticket in ticket 003** | Re-explained 26 September: a coworker who got it wrong, or the student themselves in Tier 1, right for what they could see then |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
 | **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
@@ -1263,7 +1263,8 @@ pass); the threads are still a draft.
 | | T1 First shift | T2 The scan | T3 Endpoint and wire | T4 The incident | T5 Maturity |
 |---|---|---|---|---|---|
 | Noise, every client | ● | ● | ● | ● | ● |
-| Vanguard / Saxet agent | looks like C2 | found in inventory | resolved | | |
+| Vanguard / Saxet agent | VOO-1187: the student closes it, benign true positive, *approval not proven* | found in inventory | reopened on new evidence (ticket 003) | | |
+| Tier 5 quality review | | | | | a colleague's sloppy closures (Caramon) |
 | OEF store | probes | the plugin | success, if not patched | | DDoS |
 | Ironclad | | fragile scan, decoy | | Zumroh invoice | |
 | No Go Smile | | stale signatures | cryptominer | | |

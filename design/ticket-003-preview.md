@@ -29,11 +29,11 @@ now 4).
 | **Severity** | Medium |
 | **Client** | Vanguard Auto Detailing |
 | **Hosts** | 3 — `VAD-FRONT-01`, `VAD-OFFICE-01`, `VAD-OFFICE-02` |
-| **Linked** | VOO-1187, three weeks ago, one host, **closed by Caramon: "vendor traffic, benign"** — no evidence, no notes |
+| **Linked** | VOO-1187, three weeks ago, one host — **the student's own Tier 1 ticket**, closed with evidence and a *not proven* line |
 | **Status** | New · assigned to you |
 
-Laurana, the Tier 2 lead, has written on it: *"Same thing Caramon closed. Why
-is it back on three machines?"*
+Laurana, the Tier 2 lead, has written on it: *"You closed this one three weeks
+ago. Why is it back on three machines?"*
 
 ---
 
@@ -127,10 +127,18 @@ through the agent since then except checking in.
 
 ### Screen 6 — Ticket history (open it yourself)
 
-> **VOO-1187**, three weeks ago. Beacon on VAD-FRONT-01 to
-> relay.saxet-keeper.example. Closed by Caramon: *"vendor traffic, benign."*
+> **VOO-1187**, three weeks ago, **closed by you** in Tier 1. Beacon on
+> VAD-FRONT-01 to relay.saxet-keeper.example. *Benign true positive: signed
+> remote-support agent from Saxet IT Keepers, heartbeat only.*
+> **Not proven: whether this software is still approved for Vanguard.**
 
-No evidence was attached and nobody was told.
+It was the right call for what could be seen then: one host, and no asset
+inventory at Tier 1. **The student's own *not proven* line is what reopens
+it.** Now the sensors reach three hosts and the inventory shows the contract
+ended. This is the most common real reason a ticket is reopened: new
+evidence, not a mistake. (Settled with the owner, 26 September. A
+colleague's sloppy closure is saved for Tier 5, when the student reviews
+other analysts' tickets the way real SOCs check quality.)
 
 ### Fizban's summary
 
@@ -170,7 +178,7 @@ answered correctly.
 |---|---|---|
 | ✅ | **A real vendor's agent, contract ended — unmanaged standing access. Raise a risk finding** | — |
 | ✗ | Command-and-control by malware — isolate all three hosts right away and open a full incident | Over-classification. Signed, matches the vendor's release, no sessions or child processes since February |
-| ✗ | Benign true positive — known vendor software, so close it just the way VOO-1187 was closed | Saxet is no longer Vanguard's vendor. That is the mistake VOO-1187 made |
+| ✗ | Benign true positive — known vendor software, so close it just the way VOO-1187 was closed | VOO-1187 left approval unproven. The inventory now answers it: the contract ended in February |
 | ✗ | False positive — the beacon rule misfired on ordinary HTTPS traffic, so tune it and close it | The rule was right. It is a beacon: hourly, steady sizes, one destination |
 | ✗ | Insider threat — someone at Vanguard installed it to reach the office from home | Installed in June 2021, during Saxet's contract, and signed by Saxet |
 | ✗ | Supply-chain attack — Saxet's relay was hijacked and sends commands in | Nothing shows commands: no sessions since 27 February, no children, nothing listening |
@@ -211,7 +219,7 @@ do you do with this?*
 | ✗ | Block the relay domain at Vanguard's firewall today, and close the ticket once the traffic stops | The agent stays installed, can find another relay, and the client never hears about it |
 | ✗ | Isolate the three hosts in EDR until Saxet IT Keepers explains the traffic to us | Takes the card terminal offline for a risk, not an incident |
 | ✗ | Email Saxet IT Keepers directly and ask them to switch the agent off from their end of the relay | Saxet isn't our client. Vanguard owns that relationship, and it is Saxet's access you're worried about |
-| ✗ | Reopen VOO-1187, note that it was closed wrongly, then close both tickets as a duplicate | Paperwork instead of action. The access is still there |
+| ✗ | Reopen VOO-1187, add the new evidence to it, then close both tickets as a duplicate | Paperwork instead of action. The access is still there |
 
 **The seat, again:** an analyst escalates with evidence so that somebody with
 the authority can decide. At Tier 3 the student is still not the client's
@@ -271,7 +279,7 @@ Written up well:
 > coverage reached their VLAN on the 9th. ATT&CK: T1219.002. Escalated to
 > Laurana, recommending Vanguard remove the agent under a change, then block
 > the relay. Rule change proposed: check beacons against each client's
-> approved remote-access list. VOO-1187 annotated.
+> approved remote-access list. VOO-1187 reopened and linked.
 > **Not proven:** that nobody reached Saxet's relay account between February
 > and now. We see the agent's side, not the relay's.
 
@@ -312,8 +320,9 @@ The owner's objective list, with its numbers as supplied. The numbering is
 
 1. **Is "go and open the screens yourself" the right step up** for the walk,
    or too big a jump from ticket 002, where every tab was attached?
-2. **The Tier 1 ticket that was closed wrongly** (Caramon's VOO-1187). Real
-   SOCs have these all the time. Is it all right that a colleague made the
-   mistake, or would you rather the earlier ticket was the student's own?
+2. ~~Who closed the old ticket~~ — **settled 26 September:** the student,
+   in Tier 1, correctly for what they could see, with a *not proven* line that
+   reopens it now. A colleague's sloppy closure goes to the Tier 5 quality
+   review
 3. ~~Zeek field names~~ — **settled 26 September:** raw Zeek names, with a
    plain-English heading under each
