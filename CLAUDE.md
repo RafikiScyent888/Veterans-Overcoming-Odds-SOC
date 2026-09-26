@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, twelfth pass — the queue mock-up, 21 tickets, going back to check**. Supersedes the paused notes in
+Last updated **24 September 2026, thirteenth pass — severity colours fixed, a bigger practice queue, going back to check**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -250,6 +250,15 @@ honest people honest; it is not a lock. The Security build is the same.
 | **A good amount of tickets** | "I need a good amount of tickets for real world exam prep. Is 21 tickets enough?" Section 13g |
 | **Going back to check** | "Are they able to go back to the SOC and double check it?" Yes, section 13g |
 | **Storylines lined up with the objectives** | "We still need to talk about the storylines that line up with the objectives." Section 13g is the first draft of that map |
+
+### Thirteenth pass — SETTLED 26 September
+
+| Decision | The owner's words |
+|---|---|
+| **Severity colours were off** | "The Critical, High, Medium, Low, and Info colors are off." Fixed to match the screenshots: a **true-colour dot** (red, orange, yellow, green, blue) with the **word in full-contrast ink**, not coloured text. Light mode gives each dot a dark 2 px ring so yellow and green stay visible. Checked: words AAA on painted pixels; every mark at least 3:1 against its ground, with a planted ringless dot to prove the mark check fails when it should |
+| **More practice tickets** | "Then let's add more." **Ten practice tickets per scenario type**, 17 × 10 = **170**, on top of the 21 story tickets |
+| **Going back to check** | "Yes, because you can do that in the real world, correct?" Review and reopen are real; replay is a training feature, and is labelled as one (section 13g) |
+| **"Do all of this."** | The owner's instruction for the three items above |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -1231,18 +1240,38 @@ the owner's list appears at least twice. For **practice**, 21 is thin, so the
 Decisions: Tier 1 **10**, Tier 2 **12**, Tier 3 **16**, Tier 4 **20**, Tier 5 **24**
 = **82**. The Steadfast Outpost never has an incident, as the storyline says.
 
-### The practice queue — the five-additional-scenarios rule — RECOMMENDED
+### The practice queue — SETTLED 26 September: ten per type
 
-Once a scenario type has been met in the story, **five more tickets of that
-type** open in a practice queue: the same skill, new data, new answers. That
-gives 17 types × 5 = **85 practice tickets**. They're drawn at random so no
-two students see the same order, and they use the same rules: six options,
-the hint ladder, shuffled by seed, the summary at the end.
+The owner, on five per type: "Then let's add more." Once a scenario type has
+been met in the story, **ten more tickets of that type** open in a practice
+queue: the same skill, new data, new answers. **17 types × 10 = 170 practice
+tickets**, plus the 21 in the story. The five-additional-scenarios rule is
+the floor; this is double it.
 
-### Going back to check — SETTLED in principle
+- **Drawn at random,** so no two students see the same order
+- **The same rules** as the story: six options, the hint ladder, shuffled by
+  seed, the objective summary at the end
+- **Decision count follows the tier** where the type is first met, so a
+  practice ticket is never harder than the student has reached
+- **At this size they are built from templates with seeded data.** Each
+  template's own verifier must prove **the generated evidence actually shows
+  the right answer**. The standing rules record three bugs caught exactly this
+  way, where generated scenarios would have marked correct students wrong
 
-Yes. It is what real SOCs do: closed cases stay in the system, searchable,
-and can be reopened with a reason.
+### Going back to check — SETTLED 26 September
+
+The owner: "Yes, because you can do that in the real world, correct?"
+**Mostly.** Two of the three are exactly real, and one is a training tool:
+
+- **Review is real.** Closed cases stay in the case system, searchable, for
+  as long as the retention policy says. Analysts reread old cases all the
+  time, especially when a new alert looks familiar
+- **Reopen is real.** A closed case can be reopened, **with a reason**, and
+  the case's audit trail records who reopened it and why
+- **Replay is not a feature of real case tools.** You can't rerun a real
+  incident. Its real-world counterparts are training ranges, tabletop
+  exercises and after-action reviews. Replay stays, **labelled as practice**,
+  so no student thinks a real console has it
 
 - **Closed tickets stay in the queue** under "Closed this shift", and later
   under the full case history. The mock-up shows the tab

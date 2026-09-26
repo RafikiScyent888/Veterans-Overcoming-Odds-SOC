@@ -10,6 +10,7 @@ const { chromium } = (await import("/opt/node22/lib/node_modules/playwright/inde
 const SRC = new URL("./queue.html", import.meta.url).pathname;
 const plant = process.argv.includes("--plant");
 let html = "<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'></head><body>" + readFileSync(SRC, "utf8") + "</body></html>";
+if (process.argv.includes('--plant-dot')) html = html.replace('<div class="content">', '<style>:root{--dot-ring:transparent!important}</style><div class="content">');
 if (process.argv.includes('--plant-wide')) html = html.replace('<div class="content">', '<div class="content"><div style="width:700px">PLANT wide</div>');
 if (plant) html = html.replace('<div class="content">', '<div class="content"><p id="plant1" style="color:#5a6473">PLANT low contrast grey</p><p id="plant2" style="background-image:linear-gradient(#f0f0f0,#ffffff);color:#eef3f9">PLANT gradient trap</p>');
 const srv = createServer((q, r) => { r.writeHead(200, { "content-type": "text/html" }); r.end(html); }).listen(8765);
@@ -59,6 +60,12 @@ for (const st of states) {
   });
   const slaSeen = await page.evaluate(() => { const c = document.querySelector("td .sla"); if (!c) return "n/a"; const w = document.querySelector(".tablewrap").getBoundingClientRect(); const r = c.getBoundingClientRect(); return r.right <= w.right ? "visible" : "scrolled out of view"; });
   console.log(`   deadline column: ${slaSeen}`);
+  const dots = await page.evaluate(() => [...document.querySelectorAll(".dot")].map(d => {
+    const r = d.getBoundingClientRect();
+    let clip = null; for (let a = d.parentElement; a && a !== document.body; a = a.parentElement) { const o = getComputedStyle(a); if (/(auto|scroll|hidden)/.test(o.overflowX + o.overflowY)) { clip = a.getBoundingClientRect(); break; } }
+    if (!r.width || (clip && (r.right <= clip.left || r.left >= clip.right || r.bottom <= clip.top || r.top >= clip.bottom))) return null;
+    return { x: r.x + scrollX, y: r.y + scrollY, w: r.width, h: r.height };
+  }).filter(Boolean));
   const bodyW0 = await page.evaluate(() => [document.documentElement.scrollWidth, innerWidth]);
   if (bodyW0[0] > bodyW0[1]) { console.log(`   PAGE SCROLLS SIDEWAYS (before screenshot): ${bodyW0[0]} > ${bodyW0[1]}`); totalFails++; }
   await page.addStyleTag({ content: "*{color:transparent!important;text-shadow:none!important;caret-color:transparent!important} input{-webkit-text-fill-color:transparent!important}" });
@@ -81,6 +88,22 @@ for (const st of states) {
       return grounds.length ? grounds : [[...counts].sort((a, b) => b[1] - a[1])[0][0].split(",").map(Number)];
     });
   }, { b64, runs });
+  /* A mark is visible if its strongest edge pixel stands 3:1 off the ground around it. */
+  const dotRes = await page.evaluate(async ({ b64, dots }) => {
+    const img = new Image(); img.src = "data:image/png;base64," + b64; await img.decode();
+    const c = document.createElement("canvas"); c.width = img.width; c.height = img.height;
+    const g = c.getContext("2d"); g.drawImage(img, 0, 0);
+    return dots.map(d => {
+      const box = g.getImageData(Math.floor(d.x), Math.floor(d.y), Math.ceil(d.w), Math.ceil(d.h)).data;
+      const px = []; for (let i = 0; i < box.length; i += 4) px.push([box[i], box[i+1], box[i+2]]);
+      const ground = Array.from(g.getImageData(Math.round(d.x - 5), Math.round(d.y + d.h / 2), 1, 1).data.slice(0, 3));
+      return { px, ground };
+    });
+  }, { b64, dots });
+  let dotFails = 0;
+  dotRes.forEach((d, i) => { const edge = Math.max(...d.px.map(p => ratio(p, d.ground))); if (edge < 3) { dotFails++; if (process.env.DEBUG) console.log('     ', JSON.stringify(d.ground), edge.toFixed(2), Math.round(dots[i].x), Math.round(dots[i].y)); } });
+  if (dotFails) { console.log(`   ${dotFails} severity marks below 3:1 against their ground`); }
+  totalFails += dotFails; if (process.argv.includes("--plant-dot")) plantHits += dotFails;
   const fails = [];
   runs.forEach((r, i) => {
     const m = r.color.match(/\d+(\.\d+)?/g).map(Number); const fg = m.slice(0, 3);
@@ -96,5 +119,6 @@ for (const st of states) {
   await page.close();
 }
 await browser.close(); srv.close();
-if (plant) { console.log(plantHits >= states.length * 2 - 2 ? `\nplants caught: ${plantHits}` : `\nPLANT MISSED (${plantHits}) — the check cannot be trusted`); }
+if (process.argv.includes('--plant-dot')) console.log(plantHits ? `\nring plant caught: ${plantHits} marks fail without the ring` : '\nRING PLANT MISSED — the mark check cannot be trusted');
+else if (plant) { console.log(plantHits >= states.length * 2 - 2 ? `\nplants caught: ${plantHits}` : `\nPLANT MISSED (${plantHits}) — the check cannot be trusted`); }
 else console.log(totalFails ? `\nFAIL: ${totalFails}` : "\nAll text meets AAA on painted pixels.");
