@@ -1,6 +1,8 @@
 # Storyline ideas — for the owner to pick from
 
-**Nothing here is decided.** The owner asked on 26 September: "Let's get
+**SETTLED 26 September: every idea here is approved.** The owner: "I like
+everything that you suggested. Add it." They are placed in the 32-ticket map
+in `CLAUDE.md` section 13g. The owner first asked: "Let's get
 started on the storylines. Give me some ideas." Each client has its current
 draft thread (from `CLAUDE.md` section 15) and new ideas beside it. Every
 idea says which objectives it teaches (the owner's numbered list, unverified

@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, fourteenth pass — three attackers across clients**. Supersedes the paused notes in
+Last updated **24 September 2026, fifteenth pass — every storyline idea added: 32 story tickets**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -264,6 +264,7 @@ honest people honest; it is not a lock. The Security build is the same.
 
 | Decision | The owner's words |
 |---|---|
+| **Every storyline idea approved** | "I like everything that you suggested. Add it." All of `design/storyline-ideas.md` is in: section 13g is now 32 story tickets, 124 decisions. This includes the 15-year-old with a port scanner |
 | **Three attackers who cross clients** | "Yes to the three attackers across clients." The Seekers, Bozak and Sivak each hit several clients, and the SOC is the only one that can see it. The run ends with the student linking them in the Diamond Model. Timeline in section 15, "The three campaigns" |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
@@ -1211,40 +1212,56 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | 16 | Reporting to audiences, and metrics | 5 (and every ticket) | 4.1 · 4.2 | To discuss |
 | 17 | Automation, SOAR, AI governance, prompt injection | 5 | 1.5 · 1.6 | To discuss |
 
-## 13g. 21 story tickets, mapped to storylines and objectives — RECOMMENDED
+## 13g. 32 story tickets, mapped to storylines and objectives — SETTLED 26 September
 
-The owner asked whether 21 tickets is enough. **For coverage, yes.** With the
-decision count fixed by tier (2, 3, 4, 5, 6), 21 tickets give **82 decisions**,
-about the length of the real exam (85 questions at most). Every objective in
-the owner's list appears at least twice. For **practice**, 21 is thin, so the
-**five-additional-scenarios** rule becomes a practice queue (below).
+First drafted as 21 tickets. On 26 September the owner approved **every idea
+in `design/storyline-ideas.md`** ("I like everything that you suggested. Add
+it"), which brings the story to **32 tickets and 124 decisions**, about one
+and a half real exams. Every objective in the owner's list appears at least
+three times. Campaign: **S** = the Seekers, **B** = Bozak, **V** = Sivak.
 
-| # | Tier | Ticket | Client and thread | Type | Owner's list |
-|---|---|---|---|---|---|
-| 1 | 1 | 001 Impossible travel | Steadfast Outpost: a volunteer on a phone | 1 | 1.2 · 1.5 · 1.6 · 3.3 |
-| 2 | 1 | 004 Reported phishing | Payne School: phishing noise | 2 | 1.1 · 1.2 · 1.3 · 1.6 · 2.4 · 3.3 · 4.2 |
-| 3 | 1 | VOO-1187 First sight of the beacon | Vanguard: the Saxet agent | 8 | 1.2 · 1.3 · 4.2 |
-| 4 | 1 | Threat-feed hit on the till | Steadfast Outpost: a POS update, low-confidence feed | 3 | 1.3 · 1.4 · 3.3 |
-| 5 | 1 | Failed sign-ins below lockout | Nexxuss: the spray, below the threshold | 1 | 1.2 · 1.5 |
-| 6 | 2 | 002 The first scan | Ironclad: fragile kit, the decoy critical | 4 · 5 | 2.1 · 2.2 · 2.3 · 2.5 · 4.1 |
-| 7 | 2 | The exposed cloud share | Payne School: the posture scan | 7 | 1.2 · 2.1 · 2.2 · 2.4 · 2.5 |
-| 8 | 2 | Signatures 19 days old | No Go Smile: the update path blocked, HIPAA | 6 | 1.1 · 2.1 · 2.2 · 2.4 · 2.5 |
-| 9 | 2 | The store plugin | OEF: EPSS climbing, not yet known-exploited | 4 | 1.4 · 2.3 · 4.1 |
-| 10 | 3 | 003 The beacon reopened | Vanguard: new evidence | 8 | 1.2 · 1.3 · 1.4 · 2.5 · 3.1 · 3.4 |
-| 11 | 3 | Attempt or success | OEF: traversal and injection in the logs | 10 | 1.2 · 1.3 · 3.1 · 3.3 |
-| 12 | 3 | The cryptominer | No Go Smile: process tree from the VPN | 9 | 1.2 · 1.3 · 3.1 · 3.5 |
-| 13 | 3 | Sixty tickets, one cause, then a hunt | The ISP outage; Pyramid of Pain | 11 · 12 | 1.4 · 1.5 · 3.3 |
-| 14 | 4 | The supplier invoice | Ironclad and Zumroh: the owner's process tree | 9 · 15 | 3.1 · 3.2 · 3.3 · 3.5 |
-| 15 | 4 | The mailbox taken over | Nexxuss: consent phishing, a password submitted | 1 · 7 · 13 | 1.1 · 1.2 · 3.2 · 3.5 |
-| 16 | 4 | The resigned employee | Nexxuss: the insider | 14 | 1.2 · 3.3 · 3.4 · 4.2 |
-| 17 | 4 | The principal's voice | Payne School: the AI voice clone | 2 | 1.1 · 1.6 · 3.4 |
-| 18 | 5 | Quality review | Caramon's closed tickets | 3 · 16 | 3.3 · 4.2 |
-| 19 | 5 | Fix the playbook | The phishing SOAR playbook and its gaps | 17 | 1.5 · 2.4 |
-| 20 | 5 | Report to leadership | MTTD, MTTR, the VM scorecard | 16 | 4.1 · 4.2 |
-| 21 | 5 | Fizban told to lie | Prompt injection in a log field; AI governance; the OEF DDoS | 17 | 1.6 · 3.2 |
+| # | Tier | Ticket | Client and thread | Campaign | Type | Owner's list |
+|---|---|---|---|---|---|---|
+| 1 | 1 | 001 Impossible travel | Steadfast Outpost: a volunteer on a phone | | 1 | 1.2 · 1.5 · 1.6 · 3.3 |
+| 2 | 1 | 004 Reported phishing | Payne School: the lookalike login page | V | 2 | 1.1 · 1.2 · 1.3 · 1.6 · 2.4 · 3.3 · 4.2 |
+| 3 | 1 | VOO-1187 First sight of the beacon | Vanguard: the Saxet agent | | 8 | 1.2 · 1.3 · 4.2 |
+| 4 | 1 | Threat-feed hit on the till | Steadfast Outpost: a POS update, low-confidence feed | | 3 | 1.3 · 1.4 · 3.3 |
+| 5 | 1 | Failed sign-ins below lockout | Nexxuss: the spray, below the threshold | S | 1 | 1.2 · 1.5 |
+| 6 | 1 | Unknown devices on the network | Steadfast Outpost: donated laptops with old software | | 3 | 1.2 · 2.1 |
+| 7 | 1 | Peer-to-peer traffic | Steadfast Outpost: a volunteer's teenager gaming on the Wi-Fi | | 3 | 1.2 · 1.3 · 3.3 |
+| 8 | 2 | 002 The first scan | Ironclad: fragile kit, the decoy critical, the Joomla flaw | B | 4 · 5 | 2.1 · 2.2 · 2.3 · 2.5 · 4.1 |
+| 9 | 2 | The exposed cloud share | Payne School: public, encrypted, logging off | | 7 | 1.2 · 2.1 · 2.2 · 2.4 · 2.5 · 4.2 |
+| 10 | 2 | Signatures 19 days old | No Go Smile: the update path blocked, HIPAA | | 6 | 1.1 · 2.1 · 2.2 · 2.4 · 2.5 |
+| 11 | 2 | The store plugin | OEF: EPSS climbing, not yet known-exploited | B | 4 | 1.4 · 2.3 · 4.1 |
+| 12 | 2 | The pipeline that published the keys | Nexxuss: infrastructure as code, a public bucket, a leaked key | | 7 | 1.5 · 2.2 · 2.4 |
+| 13 | 2 | The firmware certificate changed | Ironclad: the diagnostic tablets are OT | | 6 · 5 | 1.2 · 2.4 · 2.5 |
+| 14 | 3 | 003 The beacon reopened | Vanguard: new evidence | | 8 | 1.2 · 1.3 · 1.4 · 2.5 · 3.1 · 3.4 |
+| 15 | 3 | Attempt or success | OEF: traversal and injection in the logs | B | 10 | 1.2 · 1.3 · 3.1 · 3.3 |
+| 16 | 3 | The cryptominer | No Go Smile: process tree from the VPN | | 9 | 1.2 · 1.3 · 3.1 · 3.5 |
+| 17 | 3 | Sixty tickets, one cause, then a hunt | The ISP outage; Bozak's fingerprint (Pyramid of Pain) | B | 11 · 12 | 1.4 · 1.5 · 3.3 |
+| 18 | 3 | An internal scan | Payne School: a 15-year-old after cyber club | | 8 | 1.2 · 3.3 · 3.4 · 4.2 |
+| 19 | 3 | "This is Saxet, we need to reinstall" | Vanguard: the closed door tried again | V | 2 | 1.2 · 3.4 |
+| 20 | 3 | Every login succeeds | OEF: credential stuffing, gift cards drained | | 1 | 1.2 · 1.3 · 3.3 |
+| 21 | 4 | The first invoice | Ironclad and Zumroh: the macro (the owner's process tree) | V | 9 · 15 | 3.1 · 3.2 · 3.3 · 3.5 |
+| 22 | 4 | The second invoice | Ironclad and Zumroh: new bank details, no malware (BEC) | V | 15 | 1.2 · 3.2 · 3.3 · 3.4 |
+| 23 | 4 | Large downloads, one afternoon (1 of 2) | Nexxuss: the mailbox taken over: spray, MFA fatigue, a consent app | S | 1 · 7 · 13 | 1.1 · 1.2 · 3.2 · 3.5 |
+| 24 | 4 | Large downloads, one afternoon (2 of 2) | Nexxuss: the resigned employee. Separating it from 23 is the lesson | | 14 | 1.2 · 3.3 · 3.4 · 4.2 |
+| 25 | 4 | The principal's voice | Payne School: the AI voice clone at the help desk | V | 2 | 1.1 · 1.6 · 3.4 |
+| 26 | 4 | Grades changed at 2 a.m. | Payne School: a stolen session, no sign-in at all | | 1 · 13 | 1.1 · 1.2 · 3.5 |
+| 27 | 4 | The near miss | No Go Smile: access resold, ransomware staging caught early | | 13 | 2.5 · 3.2 · 3.3 · 3.5 · 4.2 |
+| 28 | 4 | The checkout skimmer | OEF: card numbers leaving through the browser | | 10 · 15 | 1.2 · 2.5 · 3.2 · 4.2 |
+| 29 | 5 | Quality review | Caramon's closed tickets, and the MTTR target behind them | | 3 · 16 | 3.3 · 4.2 |
+| 30 | 5 | Fix the playbook | The phishing SOAR playbook and its gaps | | 17 | 1.5 · 2.4 |
+| 31 | 5 | Report to leadership | MTTD, MTTR, the VM scorecard; the ISP notice that came late; **all three campaigns in the Diamond Model** | S · B · V | 16 | 1.4 · 3.1 · 4.1 · 4.2 |
+| 32 | 5 | Fizban told to lie | Fizban's quiet model update; prompt injection in a user-agent; the DDoS as a smokescreen | B | 17 | 1.6 · 3.2 |
 
-Decisions: Tier 1 **10**, Tier 2 **12**, Tier 3 **16**, Tier 4 **20**, Tier 5 **24**
-= **82**. The Steadfast Outpost never has an incident, as the storyline says.
+Decisions: Tier 1 7 × 2 = **14**, Tier 2 6 × 3 = **18**, Tier 3 7 × 4 = **28**,
+Tier 4 8 × 5 = **40**, Tier 5 4 × 6 = **24**. Total **124**. The Steadfast
+Outpost never has an incident: four tickets, all benign.
+
+**One either/or, resolved for now:** two No Go Smile ideas pulled against each
+other, *the near miss* (ransomware staging caught early) and *keep it small on
+purpose*. The map uses the near miss (27). The owner may swap it back.
 
 ### The practice queue — SETTLED 26 September: ten per type
 
@@ -1296,8 +1313,8 @@ The owner: "Yes, because you can do that in the real world, correct?"
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
 | **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
-| **21 tickets and the practice queue** | Section 13g: the map, and five practice tickets per scenario type |
-| **Storylines against objectives** | Section 13g is the first draft. **Ideas for the owner to pick from: `design/storyline-ideas.md`** (26 September): three cross-client campaigns, and new ideas per client |
+| **No Go Smile: near miss or keep it small** | Section 13g uses the near miss; the owner may swap it |
+
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
@@ -1347,25 +1364,25 @@ pass); the threads are still a draft.
 | **Nexxuss** | **Two things at once.** A slow password-spray campaign across many clients lands here, and a cloud consent-phishing app takes over a mailbox. At the same time, an employee who has resigned is copying files to personal cloud storage | Identity and cloud attacks; a real insider; running two investigations together |
 | **Optic Light Fibre / RF Jack Cable** | A regional outage floods every client's queue with alerts at once — sixty tickets, one cause. Late on, a genuine DDoS hits OEF's store | Correlation instead of sixty escalations; availability |
 
-### The three campaigns, across clients — SETTLED 26 September (timeline RECOMMENDED)
+### The three campaigns, across clients — SETTLED 26 September
 
 The owner: "Yes to the three attackers across clients." A managed SOC's real
 advantage is that one analyst sees many companies, so one attacker can be seen
-at three of them at once. Numbers in brackets are the 21-ticket map in
+at three of them at once. Numbers in brackets are the 32-ticket map in
 section 13g.
 
 | Tier | The Seekers (stolen logins) | Bozak (website attacks) | Sivak (impersonation) |
 |---|---|---|---|
 | 1 | Failed sign-ins below the lockout at Nexxuss [5]. **The threshold the student sets here decides when the campaign is caught** | Traversal probes at OEF, blocked by the WAF: queue noise | The lookalike login page at Payne School [2]: Sivak's first touch |
-| 2 | Tuned well, a new alert fires: **one address spraying three clients**. Tuned badly, nothing | The Joomla flaw on Ironclad's booking site [6]; the OEF plugin with EPSS climbing [9] | — |
-| 3 | Still spraying if the student didn't tune | Attempt vs success at OEF [11]; the hunt [13]: Bozak's addresses change daily, their tool's fingerprint never does (**Pyramid of Pain**) | After Vanguard removes the Saxet agent [10], a call "from Saxet" asks to reinstall it |
-| 4 | A password lands at Nexxuss; **MFA fatigue** at 2 a.m.; a consent app keeps the access [15] | — | The Zumroh invoices at Ironclad [14]; the principal's cloned voice at Payne School [17] |
-| 5 | — | Prompt injection in a user-agent that Fizban reads [21]; the DDoS as a smokescreen | — |
-| 5 | **All three, linked in the Diamond Model** (adversary · capability · infrastructure · victim) in the report to leadership [20] | | |
+| 2 | Tuned well, a new alert fires: **one address spraying three clients**. Tuned badly, nothing | The Joomla flaw on Ironclad's booking site [8]; the OEF plugin with EPSS climbing [11] | — |
+| 3 | Still spraying, if the student didn't tune | Attempt vs success at OEF [15]; the hunt [17]: Bozak's addresses change daily, their tool's fingerprint never does (**Pyramid of Pain**) | The call "from Saxet" to reinstall the removed agent [19] |
+| 4 | A password lands at Nexxuss; **MFA fatigue** at 2 a.m.; a consent app keeps the access [23] | — | The two Zumroh invoices at Ironclad [21, 22]; the principal's cloned voice at Payne School [25] |
+| 5 | — | Prompt injection in a user-agent that Fizban reads; the DDoS as a smokescreen [32] | — |
+| 5 | **All three, linked in the Diamond Model** (adversary · capability · infrastructure · victim) in the report to leadership [31] | | |
 
 **What the student's choices change:** only the Seekers' timeline moves with
-tuning. A tight Tier 1 threshold catches them in Tier 2, and ticket 15 becomes a
-near miss instead of a mailbox takeover. Bozak and Sivak run on the story's
+tuning. A tight Tier 1 threshold catches them in Tier 2, and ticket 23 becomes
+a near miss instead of a mailbox takeover. Bozak and Sivak run on the story's
 clock, so every student meets them.
 
 ### Threat actors — named from Dragonlance Chronicles — APPROVED
