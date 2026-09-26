@@ -190,9 +190,9 @@ guilty."
 | **Raistlin** | The SOC | Innocent suspect | PowerShell at 3 a.m.: his scheduled threat-intel automation | Tier 3 noise |
 
 **Palanthas Labs** is new: Nexxuss's competitor, named after the city in the
-Chronicles. PROPOSED.
+Chronicles. **SETTLED 26 September:** "Yes, Palanthas Labs works."
 
 ## 5. Still to adjust
 
-The owner approved the page. It stays the place to change anything:
-**Palanthas Labs** is the one new name still to confirm.
+The owner approved the page, including Palanthas Labs. It stays the place to
+change anything.
