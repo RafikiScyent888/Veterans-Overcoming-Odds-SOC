@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, tenth pass — severity colours, real names, the case page, searching from day one**. Supersedes the paused notes in
+Last updated **24 September 2026, eleventh pass — the phishing ticket, the objective summary**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -232,6 +232,14 @@ honest people honest; it is not a lock. The Security build is the same.
 | **The case page** | "What is the real world like? Match it." Limits go in the closure notes; the analyst writes "evidence reviewed"; the console keeps an automatic activity log |
 | **Searching** | "We are taught to search from the beginning." Typed searches from ticket 001 |
 | **The old ticket in ticket 003** | "Yes. I like this." The student closed VOO-1187 in Tier 1, correctly for what they could see, with a *not proven* line that reopens it in Tier 3. **A colleague's sloppy closure (Caramon) goes to Tier 5**, when the student reviews other analysts' closed tickets as a real SOC's quality check |
+
+### Eleventh pass — SETTLED 26 September
+
+| Decision | The owner's words |
+|---|---|
+| **First phishing ticket at Payne School** | "Yes." Drafted as `design/ticket-004-preview.md` (Tier 1) |
+| **Nobody submits a password in Tier 1** | "Yes, at a later tier." A later tier brings the submitter: password reset, and signing them out of every session |
+| **An objective-by-objective summary after every ticket** | The owner, in place of an exam-wording panel: "a summary with each objective that was used and an explanation about why it is." Shown after the ticket closes. One row per objective used: **what you did · why it is this objective · the words the exam uses**. First drafted in ticket 004, section 6. Tickets 001–003 are converted to it at build |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -1161,7 +1169,7 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 | # | Scenario type | Tier | Owner's list | Status |
 |---|---|---|---|---|
 | 1 | Identity alert triage: impossible travel, MFA fatigue, spraying | 1 | 1.1 · 1.2 · 3.3 | Ticket 001 |
-| 2 | User-reported phishing: headers, SPF/DKIM/DMARC, clicked vs submitted | 1 | 1.2 · 1.3 · 3.3 | **Proposed 26 September, owner not yet answered:** Payne School; SPF and DKIM pass but DMARC fails (From not aligned); trace shows 4 more recipients; 1 clicked, none submitted. D1 credential phishing despite the passes; D2 purge and block, no resets. A benign IT password notice the same shift. Questions: this client? nobody submits in Tier 1? a "how the exam asks this" panel on every ticket? |
+| 2 | User-reported phishing: headers, SPF/DKIM/DMARC, clicked vs submitted | 1 | 1.2 · 1.3 · 3.3 | Ticket 004 |
 | 3 | Noise and closing well: benign, duplicates, false positives | Every tier | 1.5 · 4.2 | Throughout |
 | 4 | Vulnerability prioritisation | 2 | 2.2 · 2.3 · 4.1 | Ticket 002 |
 | 5 | Scan method and scanner tuning | 2 | 2.1 | Ticket 002 |
@@ -1184,7 +1192,8 @@ phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
 |---|---|
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
-| **Scenario types** | Section 13f — each type talked through, real world against exam |
+| **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
+| **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
 | **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
