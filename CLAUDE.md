@@ -1022,6 +1022,62 @@ domain (4.2) in one sentence.
   case tools attach pivots the same way. It also shows the student, and the
   instructor, what they skipped
 
+### Field lists for the later tiers — 26 September
+
+**Packet viewer** (Tier 3–4). Three panes, as every packet tool has: the
+packet list (no., time, source, destination, protocol, length, info); the
+decoded layers of the selected packet (Ethernet → IPv4 → TCP → TLS, with
+addresses, ports, flags, sequence numbers and fields); and the raw bytes.
+*Accuracy note on the owner's example:* a TCP handshake is **three** packets
+(SYN, SYN-ACK, **ACK**) before the Client Hello. The example shows two. In the
+build the ACK is there, and **a missing ACK is itself evidence**: SYNs with no
+completed handshake are what a scan looks like.
+
+**IDS / IPS alert list** (Tier 3). Severity, alert, source, destination, time,
+status. Opening one shows the signature (rule ID, revision, category,
+priority), the affected asset, the packets that matched, and related alerts.
+*Two notes:* the owner's example rates High red and Medium orange, while the
+vulnerability example rated High orange. **The console uses one scale
+everywhere** (see the open colour question). The example also shows DNS going
+to `8.8.8.8`, a real public resolver. That realism matters, because devices
+skipping the company's own DNS is a genuine indicator. **RECOMMENDED:** well-known
+public resolvers may appear by their real address, and they are **never**
+labelled malicious.
+
+**Cloud posture finding** (Tier 2–3). Finding, severity, cloud, resource,
+account, region; details (public access, encryption, logging, data
+classification); compliance framework; evidence; remediation; status. The
+owner's example holds two lessons:
+
+- **Public, but encrypted.** Encryption at rest does nothing for a bucket
+  anyone may read, because the provider decrypts it for every authorised
+  reader, and a public bucket authorises everyone. It is the same point as
+  the class answer key's disk encryption and exfiltration (section 4)
+- **Logging disabled.** So nobody can prove whether it was read. That goes
+  straight into *not proven*
+
+Payne School's exposed share (section 15) uses this screen. **RECOMMENDED:**
+the client's cloud may be named with real provider and service names (the
+exam and the jobs use them). The console itself stays unbranded.
+
+**SOAR playbook editor** (Tier 5). Triggers, actions, conditions,
+integrations and decision points on a canvas. The owner's example phishing
+playbook runs: alert → extract URL → check reputation → malicious? → block URL
+→ search other recipients → create ticket, with "no" → close or monitor.
+**It is a good Tier 5 exercise because it has real gaps**, and the student's
+job is to find them:
+
+- **"Not malicious" is not a result.** A brand-new domain has no reputation.
+  Real playbooks have a third branch, **unknown**, for a sandbox or an
+  analyst. It is ticket 003's lesson again: new attacker infrastructure has
+  no reputation yet
+- **Nothing removes the email** from the other recipients' mailboxes, and
+  nothing asks **who clicked, and who submitted** (the class material's
+  proxy GET vs POST)
+- **No human approval before a destructive step.** Automation has a blast
+  radius (section 12). Blocking a URL that turns out to be the client's own
+  payment page stops the business
+
 ### The query bar — OPEN
 
 A real SIEM is driven by typing queries (`field=value`, `AND`, `| stats count by host`).
