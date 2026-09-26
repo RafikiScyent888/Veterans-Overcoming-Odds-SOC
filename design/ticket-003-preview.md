@@ -60,7 +60,7 @@ PAYLOAD    1.1 – 1.3 KB out · 3.2 – 3.5 KB in, every check-in
 
 `conn.log`, `VAD-FRONT-01`, six rows of seventy-two:
 
-| ts | id.orig_h | id.resp_h | id.resp_p | service | duration | orig_bytes | resp_bytes | conn_state |
+| ts<br>*time* | id.orig_h<br>*source host* | id.resp_h<br>*destination host* | id.resp_p<br>*destination port* | service<br>*protocol seen* | duration<br>*seconds open* | orig_bytes<br>*bytes sent* | resp_bytes<br>*bytes received* | conn_state<br>*how it ended* |
 |---|---|---|---|---|---|---|---|---|
 | 01:00:03 | 10.20.1.15 | 198.51.100.73 | 443 | ssl | 0.41 | 1204 | 3380 | SF |
 | 02:00:01 | 10.20.1.15 | 198.51.100.73 | 443 | ssl | 0.39 | 1198 | 3392 | SF |
@@ -71,9 +71,11 @@ PAYLOAD    1.1 – 1.3 KB out · 3.2 – 3.5 KB in, every check-in
 
 `ssl.log`, same connections:
 
-| server_name | subject | issuer | validation_status |
+| server_name<br>*site asked for (SNI)* | subject<br>*certificate issued to* | issuer<br>*issued by* | validation_status<br>*certificate check* |
 |---|---|---|---|
 | relay.saxet-keeper.example | CN=relay.saxet-keeper.example | CN=Example Trust CA | ok |
+
+`SF` means the connection opened and closed normally.
 
 Sensor notes: *Coverage extended to Vanguard's office VLAN on the 9th.*
 
@@ -313,7 +315,5 @@ The owner's objective list, with its numbers as supplied. The numbering is
 2. **The Tier 1 ticket that was closed wrongly** (Caramon's VOO-1187). Real
    SOCs have these all the time. Is it all right that a colleague made the
    mistake, or would you rather the earlier ticket was the student's own?
-3. **Zeek logs are shown with their real field names** (`id.orig_h`,
-   `conn_state`). That's closer to a real SOC and matches your objectives list,
-   but it is more to read. Keep them raw, or add plain-English column headings
-   underneath?
+3. ~~Zeek field names~~ — **settled 26 September:** raw Zeek names, with a
+   plain-English heading under each

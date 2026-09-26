@@ -2,7 +2,7 @@
 
 **Status: DESIGN ONLY. No code until the owner says "build".**
 
-Last updated **24 September 2026, eighth pass — objective list with numbers, crawl-walk-run, the live screens, ticket 003**. Supersedes the paused notes in
+Last updated **24 September 2026, ninth pass — no 3D, a real SOC console, the owner's screenshots, scenario types**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -212,6 +212,16 @@ objectives now carry AI use, governance and risk (section 3).
 **A note on the PIN, recorded honestly:** on a static site the PIN sits in the
 page's own code, so a student who reads the source can find it. It keeps
 honest people honest; it is not a lock. The Security build is the same.
+
+### Ninth pass — SETTLED 26 September
+
+| Decision | The owner's words |
+|---|---|
+| **No 3D model in this build** | "Forget the 3D model for this build. I want it to look like a real SOC, period. This is the bottom line. I want it to be real." **This overrides the standing 3D rule for this build only**, on the owner's explicit instruction |
+| **Zeek logs** | Raw Zeek field names, with a plain-English heading under each |
+| **Balance real world and exam prep** | "We need to talk through each type of scenario to ensure we balance real world prep with exam prep." Section 13f lists the types; each is talked through before it is built |
+| **The wrongly closed ticket** | "I am trying to balance real world and exam prep. Let's talk about this one." OPEN, options in section 14 |
+| **The 3-hour check** | Only while planning (section 0) |
 
 ### Real CVE data — the rules — SETTLED with the sixth pass
 
@@ -901,41 +911,107 @@ shows *this rule would have raised 212 alerts last week, and missed the
 spray on Nexxuss.* Too loose and the queue drowns them; too tight and the
 real attack walks past.
 
-## 13e. The live screens, and the 3D model — SETTLED in outline
+## 13e. The console — a real SOC, period — SETTLED 26 September
 
-The owner: **"The 3D model is going to be what a live SOC screen looks
-like. I will find screenshots if needed to mimic a real SOC console."**
+The owner: **"I want it to look like a real SOC, period. This is the bottom
+line. I want it to be real."** No 3D. The owner supplied screenshots of real
+consoles on 26 September. They are **layout reference only**: no product
+name, logo, or product-specific term (for example, a vendor's own name for
+its threat score) appears in the build.
 
-**The screens the console needs** (each built generic, no vendor's name or
-logo; the owner's screenshots are for **layout only**, never copied):
+### What the screenshots show, screen by screen
 
-| Screen | What it shows | First used |
+| Screen | Taken from the screenshots | Used for |
 |---|---|---|
-| **Queue** | Tickets, severity, SLA clocks, shift clock, backlog | Tier 1 |
-| **SIEM search** | Search bar, time picker, event histogram, results, field list | Tier 1 |
-| **Identity** | Sign-in logs, MFA, sessions and tokens | Tier 1 |
-| **Vulnerability scanner** | Scan jobs, policies, credential status, findings | Tier 2 |
-| **Asset inventory** | Hosts, owners, roles, approved software | Tier 2 |
-| **EDR / XDR** | Host list, process tree, timeline, files, isolate button | Tier 3 |
-| **Network sensor** | Zeek logs (conn, dns, http, ssl), Suricata/Snort alerts | Tier 3 |
-| **Threat intel** | Reputation, first seen, related indicators | Tier 3 |
-| **Packet viewer** | Packet list, details, bytes | Tier 3–4 |
-| **Detection rules** | Every rule, its threshold, and the backtest | Tier 1 (picks) → Tier 5 (edit) |
-| **Cloud posture** | Scout Suite / Prowler / Trivy-style findings | Tier 2–3 |
-| **SOAR** | Playbooks, triggers, actions, blast radius | Tier 5 |
-| **Metrics** | MTTD, MTTR, false-positive rate — **the student's own** | Tier 4–5 |
-| **Fizban** | The assistant panel | Tier 1 |
+| **The frame** | Dark theme. A narrow icon rail on the left, a breadcrumb and global search across the top, notifications and user at the right | Every screen. **The rail carries visible text labels**: icon-only rails are hard on damaged eyesight and fail the dyslexia rule |
+| **Alert queue** | Alert ID, time in UTC, severity as a coloured dot **and** a word, description, source, destination or asset, ATT&CK technique, status (New, Assigned, In Progress, On Hold, Triage Complete), assignee. Detections grouped by date, filter chips across the top (severity, status, assignee, source, host) | The queue, from Tier 1 |
+| **Detection detail** | Title, description, a detection summary box (severity, source, start and end time, assignee, status); tables of indicators, hosts, users, IP addresses and files; an **Actions** menu (contain host, restrict user) | Every ticket |
+| **Log search** | Time picker, index picker, **Add filter** showing a field's top values with counts, filter chips with ×, event count, a histogram stacked by severity, a results table, and a field list with counts. Click a row and a side panel opens with the JSON. **Click any value** for Copy / Add to filter / Exclude from filter / View this field | The SIEM, from Tier 1. **The click-a-value menu is how the student pivots between screens** |
+| **EDR dashboard** | Active hosts, new detections, detection sources, prevented malware; recent detections with status "Not acknowledged" | Tier 3 on |
+| **EDR detection** | Tabs: Summary · Process Info · Indicators · Actions/Response. A **process chain** with a detail panel for each process: path, command line, parent, signed or not, SHA-256, user, start and end time, behaviour, registry and network activity, threat intel, ATT&CK ID, status | Tier 3 on |
+| **Process graph** | Processes as nodes, with toggles for file, network, registry, DNS and lateral movement, and an ATT&CK matrix beside it | Tier 3–4 |
+| **Investigation graph** | Hosts, users, files, domains and indicators as a node graph, a legend with counts, and a side panel per entity: host details, discovery, vulnerabilities, identity, **cloud misconfigurations** | Tier 4 |
+| **Event search** | Query bar, time range, fields with coverage percentages, raw events | Tier 3 on |
+| **Creating a detection** | Name → query → *raise a detection* or *send a scheduled report* → severity → **ATT&CK tactic and technique** → how often it runs and over what window → who is notified | **The sensor-tuning screen at the run stage.** This is exactly how a real detection engineer writes a rule |
+| **Vulnerability dashboard** | Counts by the **vendor's own risk rating** beside counts by **CVSS severity**, and a 45-day trend of open findings | Tier 2. Two ratings side by side teaches "vendor severity vs CVSS" |
+| **Threat intel** | Indicators added and expired, categories, indicator types, alerts, latest intelligence, top threat sources | Tier 3 |
+| **Dashboards** | Charts (memory, CPU) beside a live log panel | Operations and metrics |
 
-**Screenshots wanted from the owner** (layout reference only): a SIEM search
-page, an alert queue, an EDR process tree, a vulnerability scanner's findings
-list, a packet viewer, a SOC wall or dashboard.
+### Rules that come with the screenshots
 
-**OPEN — what "3D" means here.** Either (a) the screens themselves, built to
-look like a real console, or (b) a 3D SOC room with a video wall, where the
-student walks to a desk and the screens on it are the live consoles.
-RECOMMENDED: (b) only as the entrance and between shifts, with the work done
-on full-size (a) screens, because text on a 3D surface is harder to read, and
-AAA contrast comes first.
+- **Severity is always a word as well as a colour** (the screenshots already
+  do this). This is the three-signal rule, applied to the whole console
+- **AAA contrast beats the screenshots.** Several use small grey text or red
+  text on near-black, which will not reach 7:1. The layout is copied; the
+  colours are the royal palette at AAA
+- **OPEN — the colour for "High".** Real consoles use **orange** for High,
+  between red and yellow. Orange is outside the royal six, so it needs the
+  owner's approval on a preview first
+- **Do not copy data from the screenshots.** One mock queue marks
+  `93.184.216.34` as "known bad". That is the real address of example.com.
+  Another uses `corp.com`, which is a real, registered domain. The build keeps
+  to documentation ranges and `.example`
+- **Do not reuse the training-room artefacts.** Some screenshots come from a
+  public online training lab (an introduction to EDR), which students may
+  already have done: `syncsvc.exe` dumping LSASS, `UpdateAgent.exe` in
+  AppData, `install.exe` in `C:\Users\Public`, `invoice.docm`, the
+  `haris.khan` and `daniel.richards` users. **Same skills, new artefacts**,
+  exactly as with the class sims (section 4). That lab also answers in free
+  text boxes; this build keeps its six-option boards
+
+### The process tree the owner pasted — checked
+
+`explorer → outlook → winword (macro-enabled invoice) → powershell → cmd →
+whoami`, and `powershell → curl` pulling a payload. **Real world:** one of the
+most common initial-access chains there is. **Exam:** exactly what "analyze
+indicators" (1.2) and ATT&CK (3.1) ask about. The mapping, checked against
+MITRE's own data (v19.2):
+
+| Step | ATT&CK |
+|---|---|
+| The attachment arrives | T1566.001 Spearphishing Attachment |
+| The user opens it | T1204.002 Malicious File |
+| Word starts PowerShell | T1059.001 PowerShell |
+| PowerShell starts cmd | T1059.003 Windows Command Shell |
+| `whoami` | T1033 System Owner/User Discovery |
+| `curl` pulls the payload | T1105 Ingress Tool Transfer |
+
+**Watch the overlap:** the class sim "Endpoint Behavioral Analysis — Process
+and Persistence" already teaches Office spawning PowerShell. The chain is the
+skill and stays in. The details change: it could be Excel instead of Word, a
+different built-in download tool, different names. It fits the Zumroh supplier
+invoice at Ironclad in Tier 4.
+
+## 13f. Scenario types — balancing the real world and the exam — FOR DISCUSSION
+
+The owner: "We need to talk through each type of scenario to ensure we
+balance real world prep with exam prep."
+
+**The balance, as a working principle (RECOMMENDED):** *the real world
+decides the story and the screens; the exam decides the words and the
+decisions.* The evidence looks like a real SOC. Every decision board is
+phrased the way CompTIA phrases things: *BEST*, *FIRST*, *MOST likely*,
+*benign true positive*, *compensating control*.
+
+| # | Scenario type | Tier | Owner's list | Status |
+|---|---|---|---|---|
+| 1 | Identity alert triage: impossible travel, MFA fatigue, spraying | 1 | 1.1 · 1.2 · 3.3 | Ticket 001 |
+| 2 | User-reported phishing: headers, SPF/DKIM/DMARC, clicked vs submitted | 1 | 1.2 · 1.3 · 3.3 | To discuss |
+| 3 | Noise and closing well: benign, duplicates, false positives | Every tier | 1.5 · 4.2 | Throughout |
+| 4 | Vulnerability prioritisation | 2 | 2.2 · 2.3 · 4.1 | Ticket 002 |
+| 5 | Scan method and scanner tuning | 2 | 2.1 | Ticket 002 |
+| 6 | Baselines and compliance: CIS, PCI DSS | 2 | 2.2 · 2.5 | To discuss |
+| 7 | Cloud posture: exposed storage, IAM, IMDSv1 | 2–3 | 1.2 · 2.2 · 2.4 | To discuss |
+| 8 | Network beaconing and C2 | 3 | 1.2 · 1.3 · 3.1 | Ticket 003 |
+| 9 | Endpoint process tree | 3 | 1.2 · 1.3 · 3.1 | To discuss (the owner's tree) |
+| 10 | Web attacks in logs: attempt vs success | 3 | 1.2 · 1.3 | To discuss |
+| 11 | Threat hunting and intel: Pyramid of Pain, IOCs vs behaviours | 3 | 1.4 | To discuss |
+| 12 | Alert flood and correlation | 3 | 1.5 · 3.3 | To discuss |
+| 13 | Incident handling: contain, preserve, order of volatility, chain of custody | 4 | 3.2 · 3.3 · 3.5 | To discuss |
+| 14 | Insider and exfiltration | 4 | 1.2 · 3.4 | To discuss |
+| 15 | Supply chain and business email compromise | 4 | 1.2 · 3.2 | To discuss |
+| 16 | Reporting to audiences, and metrics | 5 (and every ticket) | 4.1 · 4.2 | To discuss |
+| 17 | Automation, SOAR, AI governance, prompt injection | 5 | 1.5 · 1.6 | To discuss |
 
 ## 14. Everything still OPEN
 
@@ -943,8 +1019,9 @@ AAA contrast comes first.
 |---|---|
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
-| **What "3D" means** | Section 13e — the screens themselves, or a 3D SOC room around them |
-| **Screenshots** | Section 13e — the owner is finding SOC console screenshots, for layout only |
+| **Scenario types** | Section 13f — each type talked through, real world against exam |
+| **The colour for "High"** | Section 13e — orange is standard in real consoles but outside the royal six; needs a preview |
+| **The wrongly closed ticket** | (a) a colleague's mistake, (b) the student's own earlier ticket, closed correctly with what they could see then and reopened on new evidence (RECOMMENDED), or both — see the owner conversation of 26 September |
 | **Five additional scenarios** | Does it mean five extra tickets per ticket type? |
 | **Storylines** | Section 15 — no objection raised yet; still a draft until the owner says it is right |
 | **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
