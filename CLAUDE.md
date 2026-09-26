@@ -1,8 +1,8 @@
 # Veterans Overcoming Odds SOC — CySA+ build document
 
-**Status: DESIGN ONLY. No code until the owner says "build".**
+**Status: BUILD STARTED 26 September.** The owner: "Yes to all of them and build it." Building tier by tier, the console and Tier 1 first.
 
-Last updated **24 September 2026, seventeenth pass — the world settled, the insiders named**. Supersedes the paused notes in
+Last updated **24 September 2026, eighteenth pass — design closed, build started**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -1311,22 +1311,30 @@ The owner: "Yes, because you can do that in the real world, correct?"
 - **Reopen** happens inside the story, with a reason, as VOO-1187 is in
   Tier 3
 
-## 14. Everything still OPEN — tidied 26 September
+## 14. Design closed — 26 September
 
-Settled today and removed from this list: the storylines (all ideas approved),
-the world and every name (`design/world-bible.md`), the scenario types (laid
-out in the world bible), the five-additional-scenarios rule (ten practice
-tickets per type), and how VOO relates to RafikisITS (RafikisITS runs the SOC).
+The owner answered the last open items with "Yes to all of them and build
+it":
 
-| | Owner to decide |
+| Item | Settled |
 |---|---|
-| **Ticket 003** | Four screens the student opens themselves, with the click-a-value menu to move between them: the right step up? |
-| **Ticket 004** | The objective summary has seven rows on a Tier 1 ticket: keep all, or only the three or four the ticket leaned on hardest? |
-| **Crawl, walk, run** | Section 13d: no objection raised; still to be confirmed |
-| **Email addresses and the lookalike domain** | Section 9: `soc@voo.rafikisits.example` for the SOC, `firstname@rafikisits.example` for staff, and `zumroh-motor-billing.example` for Sivak's fake domain |
-| **The official objectives PDF** | Section 3 holds the owner's numbered list. The numbering is checked against CompTIA's own document before the build is final |
-| **The README** | Written after the design conversation ends, per section 0 |
-| **"Build"** | The owner's word starts it. RECOMMENDED: the console and Tier 1 first (7 tickets, the search bar, every verifier), then tier by tier |
+| Ticket 003 | Four screens the student opens, with the click-a-value menu to move between them |
+| Ticket 004 | All seven objective rows kept in the summary |
+| Crawl, walk, run | Section 13d confirmed |
+| Addresses | `soc@voo.rafikisits.example`, `firstname@rafikisits.example`, and `zumroh-motor-billing.example` for Sivak |
+| The objectives PDF | Checked against CompTIA's document before the build is final; the owner's list is used meanwhile |
+| The README | Written now that the design conversation has ended |
+
+**The 3-hour design routine is deleted**, as agreed, now that the build has
+started.
+
+### Build order
+
+1. **The console and Tier 1**: seven tickets, the typed search bar, the case
+   page, review and replay, the instructor toggle, and every verifier,
+   calibrated. The owner tries it and adjusts
+2. Tier 2, then 3, 4 and 5, one at a time, each pushed when finished
+3. The practice queue, built from templates with their own verifiers
 
 ## 15. Storylines — FIRST DRAFT, 24 September — RECOMMENDED
 
