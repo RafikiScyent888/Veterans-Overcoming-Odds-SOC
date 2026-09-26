@@ -1314,6 +1314,7 @@ The owner: "Yes, because you can do that in the real world, correct?"
 | **Ticket 003** | `design/ticket-003-preview.md` — Tier 3, four decisions, for the owner to adjust |
 | **Crawl, walk, run** | Section 13d — the plan, for the owner's reaction |
 | **Ticket 004** | `design/ticket-004-preview.md` — the reported phishing email, with the first objective summary |
+| **Ticket 005** | `design/ticket-005-preview.md` — the near miss (map 27), the first run-stage ticket: five decisions, nothing attached, guide collapsed |
 | **The queue mock-up** | `design/mockups/queue.html`, for the owner's reaction |
 
 | **Scenario types** | Section 13f — each type talked through, real world against exam. Next: type 6, baselines and compliance |
