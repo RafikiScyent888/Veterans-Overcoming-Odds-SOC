@@ -201,3 +201,12 @@ footer { margin-top: auto; padding-block: 18px; padding-inline: 20px; border-top
   .switches { margin-left: 0; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* On the case page the search sits in a narrower column: the field list
+   becomes a row above the results so the results get the full width. */
+.case-grid .search-grid { grid-template-columns: minmax(0, 1fr); }
+.case-grid .fieldlist ul { flex-direction: row; flex-wrap: wrap; gap: 4px 16px; }
+.case-grid .fieldlist li { gap: 6px; }
+/* Screens that open in later tiers are shown, not offered */
+.rail a[aria-disabled="true"] { cursor: default; }
+.rail a[aria-disabled="true"]:hover { background: none; color: var(--ink-dim); }

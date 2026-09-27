@@ -1,8 +1,8 @@
 # Veterans Overcoming Odds SOC — CySA+ build document
 
-**Status: BUILD STARTED 26 September.** The owner: "Yes to all of them and build it." Building tier by tier, the console and Tier 1 first.
+**Status: TIER 1 BUILT 27 September.** The owner: "Yes to all of them and build it." Building tier by tier. Tier 1 (the console and seven tickets) is built and verified; Tier 2 is next, after the owner has tried Tier 1.
 
-Last updated **24 September 2026, eighteenth pass — design closed, build started**. Supersedes the paused notes in
+Last updated **24 September 2026, nineteenth pass — Tier 1 built and verified**. Supersedes the paused notes in
 `/home/user/rafikiscyent888/cysa-build/CLAUDE.md`.
 
 | | |
@@ -1330,11 +1330,36 @@ started.
 
 ### Build order
 
-1. **The console and Tier 1**: seven tickets, the typed search bar, the case
-   page, review and replay, the instructor toggle, and every verifier,
-   calibrated. The owner tries it and adjusts
+1. **The console and Tier 1** — **BUILT 27 September** (below)
 2. Tier 2, then 3, 4 and 5, one at a time, each pushed when finished
 3. The practice queue, built from templates with their own verifiers
+
+### What Tier 1 is — built 27 September
+
+| Piece | File | Verified by |
+|---|---|---|
+| The search language: field=value, !=, wildcards, earliest, table, stats count/dc/avg/sum/min/max by, sort, head, dedup; plain errors | `assets/search.js` | `verify/search.mjs`: 19 checks, 6 plants |
+| Six options, seeded shuffle with authored slots, wrong stays red, the hint ladder (rung 1 at 3, rung 2 at 4, rung 3 from 5, never below two live), reset keeps hints earned, as in Security | `assets/decisions.js` | `verify/engine.mjs`: 18 checks, 8 plants |
+| Seven tickets, 14 boards, 171 log events | `assets/content/tier1.js`, `events-t1.js` | `verify/content.mjs`: shape, answer tells, hint leaks, objectives, ATT&CK, safe addresses and domains, do-not-reuse, SOC names, evidence proved against the data; 13 plants |
+| The console: seat change, queue, case page, search, case history, review, practice replay, instructor toggle, activity log, objective summary | `index.html`, `assets/app.js`, `style.css`, `theme.js`, `save.js` | `verify/page.mjs`: driven in Chromium, 36 checks, 6 plants |
+| AAA on painted pixels, marks at 3:1, no sideways scroll on a phone | all of it | `verify/contrast.mjs`: 16 states, 4 plants |
+
+**Decisions made while building, for the owner to see:**
+
+- **Wrong picks show their reason as they go red, and reset keeps the hints
+  earned**, matching the Security build so the two sites behave the same
+- **Right answers get an authored slot** (1–6), spread evenly across the
+  tier, because a seeded shuffle alone put 5 of 14 in the last slot
+- **Tier 1's guide shows the first search in full**, with a "Put it in the
+  search bar" button, as crawl-stage support. Students can still type it
+- **Closing a case needs both decisions answered and a written resolution.**
+  Nothing locks a tab; only the close button waits
+
+**OPEN, for the owner:** the design says the student's tuning moves the
+Seekers' storyline. But every board ends on the right answer, because the
+hint ladder never gives up, so every student's tuning ends up the same. One
+way to honour the design: branch on whether the tuning board was answered
+**on the first try**.
 
 ## 15. Storylines — FIRST DRAFT, 24 September — RECOMMENDED
 
