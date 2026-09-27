@@ -48,6 +48,7 @@ const CASES = [
   ["reset clears every red mark", m => { const st = m.createBoard("t1", D); const w = wrongIds(m, st); for (let i = 0; i < 4; i++) m.pick(D, st, w[i]); m.reset(D, st); return st.struck.length === 0 && m.live(D, st).length === 6; }],
   ["reset keeps the hints already earned", m => { const st = m.createBoard("t1", D); const w = wrongIds(m, st); for (let i = 0; i < 4; i++) m.pick(D, st, w[i]); m.reset(D, st); return m.rung(st) === 2; }],
   ["after a reset at rung 3, two options are live at once", m => { const st = m.createBoard("t1", D); const w = wrongIds(m, st); for (let i = 0; i < 5; i++) m.pick(D, st, w[i]); m.reset(D, st); return m.live(D, st).length === 2 && m.live(D, st).includes("a"); }],
+  ["an authored slot puts the right answer there", m => { for (let k = 1; k <= 6; k++) { const st = m.createBoard("t1", { ...D, slot: k }); if (st.order.indexOf("a") !== k - 1 || st.order.length !== 6) return false; } return true; }],
   ["a saved board comes back the same", m => { const st = m.createBoard("t1", D); const w = wrongIds(m, st); m.pick(D, st, w[0]); const back = m.createBoard("t1", D, m.serialise(st)); return back.struck.join() === st.struck.join() && back.wrong === 1; }],
 ];
 
@@ -58,6 +59,7 @@ const PLANTS = {
   forgets: { catches: "a wrong pick stays red after further picks", fn: s => s.replace("st.struck.push(optionId);", "st.struck = [optionId];") },
   random: { catches: "the shuffle is the same every time for the same board", fn: s => s.replace("const r = rng(hash(seedText));", "const r = Math.random;") },
   hintloss: { catches: "reset keeps the hints already earned", fn: s => s.replace("st.struck = []; st.narrowed = []; st.solved = false; st.picked = null;", "st.struck = []; st.narrowed = []; st.solved = false; st.picked = null; st.wrong = 0;") },
+  noslot: { catches: "an authored slot puts the right answer there", fn: s => s.replace("if (!decision.slot) return order;", "return order;") },
   recount: { catches: "picking a red option changes nothing", fn: s => s.replace("|| st.struck.includes(optionId) ||", "||") },
 };
 

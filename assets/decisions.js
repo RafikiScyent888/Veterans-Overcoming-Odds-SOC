@@ -46,12 +46,23 @@ export function shuffledIds(ids, seedText) {
   return out;
 }
 
+/* A seeded shuffle alone can still park several right answers in one
+   slot. Each board may name the slot (1–6) its right answer goes in; the
+   content verifier checks those slots are spread evenly across a tier. */
+export function placed(decision, order) {
+  if (!decision.slot) return order;
+  const right = decision.options.find(o => o.correct).id;
+  const rest = order.filter(id => id !== right);
+  rest.splice(Math.min(Math.max(decision.slot - 1, 0), rest.length), 0, right);
+  return rest;
+}
+
 /* ---- one board ----------------------------------------------------- */
 
 /** decision: { id, options: [{ id, text, correct, why }], keep } —
     `keep` optionally names the wrong option rung 3 leaves standing. */
 export function createBoard(ticketId, decision, saved) {
-  const order = shuffledIds(decision.options.map(o => o.id), ticketId + "/" + decision.id);
+  const order = placed(decision, shuffledIds(decision.options.map(o => o.id), ticketId + "/" + decision.id));
   const st = {
     order,
     struck: [],        // ids the student picked wrongly — red until reset
