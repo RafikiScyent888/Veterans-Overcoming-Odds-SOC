@@ -32,17 +32,23 @@ happened so the right person can decide.
   read-only; replay runs them again for practice without touching the first
   attempt
 
-## Status
+## Status: the whole build
 
-| Tier | | Status |
-|---|---|---|
-| 1 | First shift: triage | **Built**: 7 tickets, 2 decisions each |
-| 2 | The scan: vulnerability management | Being built |
-| 3 | Endpoint and wire | Being built |
-| 4 | The incident | Being built |
-| 5 | Maturity: automation, AI, reporting | Being built |
+| Tier | | Tickets | Decisions each | What changes |
+|---|---|---|---|---|
+| 1 | First shift: triage | 7 | 2 | Evidence attached; the guide unfolds step by step |
+| 2 | The scan: vulnerability management | 6 | 3 | Evidence attached; the guide unfolds |
+| 3 | Endpoint and wire | 7 | 4 | Two screens linked, the rest opened by the student; the guide says *what* to find, not where |
+| 4 | The incident | 8 | 5 | Nothing attached; the guide collapsed; Fizban only when asked |
+| 5 | Maturity: automation, AI, reporting | 4 | 6 | The whole loop, then improving the SOC itself |
 
-Then a practice queue: ten more tickets for each scenario type.
+**32 story tickets, 124 decisions.** Tiers open in order; the instructor PIN
+opens everything.
+
+**The practice queue: 170 more tickets**, ten for each of the 17 scenario
+types, opening once a type has been met in the story. Each is generated
+from a seed, so the data is new every time, and its correct answer is
+computed from the facts it generates.
 
 ## Accessibility
 
@@ -74,8 +80,9 @@ static site, it keeps honest people honest: it isn't a lock.
 | `assets/search.js` | The search language |
 | `assets/decisions.js` | The decision boards and the hint ladder |
 | `assets/save.js` | Progress, saved in the browser |
-| `assets/content/tier1.js` | Tier 1's tickets |
-| `assets/content/events-t1.js` | Tier 1's log data |
+| `assets/content/tier1.js` … `tier5.js` | The story tickets, one file per tier |
+| `assets/content/events-t1.js` … `events-t5.js` | Each tier's log data |
+| `assets/content/practice.js` | The practice queue: 17 generators, ten seeded tickets each |
 
 **Checks and design, not needed to run the site:** `verify/`, `design/`,
 `CLAUDE.md`.
@@ -86,14 +93,23 @@ Each check is shown to **fail** on a planted defect before its pass is
 trusted.
 
 ```
-node verify/search.mjs      # the search language            (--plant: 6 planted bugs)
-node verify/engine.mjs      # six options and the hint ladder (--plant: 8)
-node verify/content.mjs     # every ticket against every rule (--plant: 13)
-node verify/page.mjs        # the console, driven in Chromium (--plant: 6)
-node verify/contrast.mjs    # AAA on painted pixels, 16 states (--plant: 4)
+node verify/search.mjs      # the search language                     (--plant: 6 planted bugs)
+node verify/engine.mjs      # six options and the hint ladder          (--plant: 8)
+node verify/content.mjs     # all 32 story tickets against every rule,
+                            #   ATT&CK names checked against MITRE     (--plant: 14)
+node verify/practice.mjs    # all 170 practice tickets, each proved
+                            #   against its own generated data         (--plant: 15)
+node verify/page.mjs        # the console, driven in Chromium, all
+                            #   five tiers and the practice queue      (--plant: 10)
+node verify/contrast.mjs    # AAA on painted pixels, 32 states         (--plant: 6)
 ```
 
 `page.mjs` and `contrast.mjs` need Playwright and Chromium.
+
+The practice verifier proves the owner's rule that **a generated fault must
+be exhibited by the parts generated**: two of its plants corrupt a ticket's
+generated data (un-flag a known-exploited finding; re-sign an implant) and
+it fails, because every proof reads that ticket's own events.
 
 ## Safe by design
 
